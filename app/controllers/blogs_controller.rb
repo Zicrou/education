@@ -53,7 +53,7 @@ class BlogsController < ApplicationController
 
   # DELETE /blogs/1
   # DELETE /blogs/1.json
-  def destroy
+  def destroyportfolio_item
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
@@ -64,7 +64,7 @@ class BlogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_blog
-      @blog = Blog.find(params[:id])
+      @blog = Blog.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
