@@ -1,6 +1,6 @@
 module ApplicationHelper
 	 
-	 def login_helper
+   def login_helper
 	 	if current_user.is_a?(User) 
        		link_to "Logout", destroy_user_session_path,method: :delete 
     	else
@@ -18,6 +18,12 @@ module ApplicationHelper
 	end
 
   def copyright_generator
-    Sk8zViewTool::Renderer.copyright 'Zicrou', "All rights reserved"
+    #Sk8zViewTool::Renderer.copyright 'Zicrou SECK', 'All rights reserved'
+    DevcampViewTool::Renderer.copyright 'Zicrou SECK', 'All rights reserved'
+    #sk8zviewtool
+    #'Hello Zicrou World!!!'
+    #puts @testt
   end
+  #DevcampViewTool::Renderer.copyright 'Jordan Hudgens', 'All rights reserved'
+
 end
