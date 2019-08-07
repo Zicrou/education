@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Zicrou/zicrou_view_tool.git
-  revision: 415bccbe9b7cde5a83c98a5987d179a863c878c5
+  revision: 013d23ca129089d214af97e6750592c45ecd20f2
   specs:
     zicrou_view_tool (0.1.0)
 
