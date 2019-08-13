@@ -57,7 +57,7 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 2rem;
+  padding: 1%;
 }
 
 
@@ -124,6 +124,7 @@ body {
 
 .mastfoot {
   color: rgba(255,255,255,.5);
+  padding: 2%;
 }
 
 
@@ -138,8 +139,7 @@ body {
     top: 0;
   }
   .mastfoot {
-    position: fixed;
-    bottom: 0;
+  position: fixed;
   }
   /* Start the vertical centering */
   .site-wrapper-inner {
@@ -159,4 +159,35 @@ body {
   .cover-container {
     width: 50rem;
   }
+}
+
+/*
+ * Custom Style
+ */
+
+.card-block{
+  color: black;
+  text-align: left;
+}
+
+
+.auth-link{
+  margin-left: 1rem;
+}
+
+.auth-link a {
+  color: black;
+}
+
+.starter-template {
+  padding: 9rem 1.5rem;
+  text-align: center;
+}
+
+.row {
+  margin-left: 0.1rem;
+}
+
+.resize-card{
+  
 }
