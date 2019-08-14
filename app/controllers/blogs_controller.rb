@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
   layout "blog"
-  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new]}, site_admin: :all
+  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all
 
   # GET /blogs
   # GET /blogs.json
@@ -58,12 +58,22 @@ class BlogsController < ApplicationController
 
   # DELETE /blogs/1
   # DELETE /blogs/1.json
-  def destroyportfolio_item
+  def destroy
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def toggle_status
+    if @blog.draft?
+      @blog.published!
+    elsif @blog.published?
+      @blog.draft!
+    end
+        
+    redirect_to blogs_url, notice: 'Post status has been updated.'
   end
 
   private
