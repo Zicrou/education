@@ -20,9 +20,6 @@ module ApplicationHelper
   def copyright_generator
     @copyright = ZicrouViewTool::Renderer.copyright 'Zicrou SECK', 'All rights reserved'
     #DevcampViewTool::Renderer.copyright 'Zicrou SECK', 'All rights reserved'
-    #sk8zviewtool
-    #'Hello Zicrou World!!!'
-    #puts @copyright
   end
   #DevcampViewTool::Renderer.copyright 'Jordan Hudgens', 'All rights reserved'
 

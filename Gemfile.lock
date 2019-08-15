@@ -194,7 +194,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    sk8z_view_tool (0.1.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -249,7 +248,6 @@ DEPENDENCIES
   puma (~> 3.11)
   rails (~> 5.2.3)
   sass-rails (~> 5.0)
-  sk8z_view_tool (~> 0.1.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
