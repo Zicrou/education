@@ -5,6 +5,7 @@ class PortfoliosController < ApplicationController
   
   def index
     @portfolio_items= Portfolio.by_position
+    #byebug
   end
 
   def sort
@@ -66,6 +67,8 @@ class PortfoliosController < ApplicationController
       params.require(:portfolio).permit(:title,
                                         :subtitle,
                                         :body,
+                                        :main_image,
+                                        :thumb_image,
                                         technologies_attributes: [:name]
                                         )
     end
