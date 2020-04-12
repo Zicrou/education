@@ -224,3 +224,16 @@ body {
 .app-footer {
   color: white;
 }
+
+.app-card-container{
+  color: black;
+  text-align: left;
+}
+.app-card-container > .card {
+  marging: 40px;
+}
+
+.profil-img{
+  padding: auto;
+  border: 1px solid grey;
+}
