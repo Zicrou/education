@@ -36,6 +36,7 @@ body {
   color: #fff;
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
+  font-family: 'PT Sans', sans-serif;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -54,6 +55,15 @@ body {
 .cover-container {
   margin-right: auto;
   margin-left: auto;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6{
+  font-family: 'Roboto', sans-serif;
 }
 
 /* Padding for spacing */
@@ -248,6 +258,6 @@ body {
 }
 
 .skill{
-  margin-top: 10px;
-  margin-bottom: 10px;
+  marging-top: 10px;
+  marging-bottom: 10px;
 }
