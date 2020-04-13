@@ -230,10 +230,14 @@ body {
   text-align: left;
 }
 .app-card-container > .card {
-  marging: 40px;
+  padding: 40px;
 }
 
-.profil-img{
+.profile-img{
   padding: auto;
   border: 1px solid grey;
+}
+
+.app-card-container a {
+  color: blue;
 }
