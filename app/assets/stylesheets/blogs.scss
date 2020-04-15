@@ -14,7 +14,7 @@
 }
 
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: 'Roboto',"Times New Roman";
   color: #555;
 }
 
@@ -189,4 +189,18 @@ h6, .h6 {
 
 .comment-name-style{
   font-weight: 800;
+}
+
+.blogcrumb{
+  font-size: 1.25em;
+  margin: 0px 10px 0px 10px;
+  
+}
+
+.blog-nav{
+  margin-bottom: 30px;
+}
+
+.blog-sidebar-source{
+  margin-top: 20px;
 }
