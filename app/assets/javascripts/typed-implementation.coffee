@@ -4,7 +4,7 @@ ready = ->
 			"Study should be simple."
 			"My name is Zicrou and this is my way."
 		]
-		typeSpeed: 30
+		typeSpeed: 0
 	return
 
 $(document).ready ready
