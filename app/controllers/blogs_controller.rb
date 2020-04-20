@@ -20,9 +20,8 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     if logged_in?(:site_admin) || @blog.published?
-      #@blog = Blog.includes(:comments).friendly.find(params[:id])
-      @blog = Blog.friendly.find(params[:id])
-      #@comment = Comment.new
+      @blog = Blog.includes(:comments).friendly.find(params[:id])
+      @comment = Comment.new
     
       @page_title = @blog.title
       @seo_keywords = @blog.body
