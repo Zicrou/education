@@ -15,6 +15,8 @@
 //= require rails-ujs
 //= require cocoon
 //= require gritter
+//= require lib/typed
+//= require typed-implementation
 //= require jquery-ui
 //= require activestorage
 //= require html.sortable
