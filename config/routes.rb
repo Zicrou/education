@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lecons
   resources :topics, only: [:index, :show]
   #get 'topics/index'
   #get 'topics/show'

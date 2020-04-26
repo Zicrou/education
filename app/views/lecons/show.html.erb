@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @lecon.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @lecon.body %>
+</p>
+
+<%= link_to 'Edit', edit_lecon_path(@lecon) %> |
+<%= link_to 'Back', lecons_path %>
