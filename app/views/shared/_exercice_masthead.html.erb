@@ -1,0 +1,14 @@
+<div class="blog-header">
+  <div class="container">
+    <h1 class="blog-title">Exercices</h1>
+    <p class="lead blog-description">Les exercices pour chaque niveau</p>
+    <span>
+    	<%= link_to 'Rediger une exercice', new_exercice_path() if logged_in?(:site_admin) %>
+    </span>
+
+    <span>
+    	<%#= link_to 'Topics', topics_path %>
+    </span>
+    
+  </div>
+</div>

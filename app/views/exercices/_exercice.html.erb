@@ -1,0 +1,12 @@
+<div class="blog-post blog-body">
+  <h2 class="blog-post-title"><%= link_to exercice.title, exercice %></h2>
+  <p class="blog-post-meta">Published <%= distance_of_time_in_words(exercice.created_at, Time.now) %> ago</p>
+  
+  <%= render partial: 'exercices/admin_actions', locals: { exercice: exercice } %>
+
+  <p>
+  	<%= exercice.title%>
+    <%= truncate(markdown(exercice.introduction), length: 600, escape: false) %>
+    <%= link_to "Continue reading", exercice %>
+  </p>
+</div>

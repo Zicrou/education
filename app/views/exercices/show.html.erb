@@ -1,0 +1,48 @@
+<div class="col-sm-8 blog-main">
+
+  <h2><%= @exercice.title %></h2>
+  <p class="breadcrumb-item">Published under the topic: 
+  	
+  </p> 
+  	<p>
+  		<%#= @blog.topic.title %>
+  	</p>
+
+  	<nav class="breadcrumb">
+	    <%= link_to "Home", root_path, class: 'breadcrumb-item' %>
+	    <%= link_to 'Exercice/topic', exercices_path, class: 'breadcrumb-item' %>
+	    <%#= link_to @blog.topic.title, topic_path(@blog.topic), class: 'breadcrumb-item' %>
+
+	    <span class="breadcrumb-item active" ><%= @exercice.title %></span>
+
+	    <span class="" style="margin-left: auto;">
+	      <%= link_to fa_icon('pencil-square-o'), edit_exercice_path(@exercice) if logged_in?(:site_admin)%>
+	      <%= link_to fa_icon('trash'), @exercice, method: :delete, data: { confirm: 'Are you sure you want to delete this post' } if logged_in?(:site_admin) %>
+	    </span>
+  	</nav>
+
+
+	<p>
+		<%= link_to 'Edit', edit_exercice_path(@exercice) if logged_in?(:site_admin) %> |
+		<%= link_to 'Back', exercices_path %>
+	</p> 
+	
+	<p>
+		<%= markdown(@exercice.introduction) %>
+		<%= markdown(@exercice.developpement) %>
+		<%= markdown(@exercice.conclusion) %>
+	</p>
+
+
+	<!-- Start of comment form -->
+	<%#= render 'comments/comment_form' %>
+	<!-- End of comment form -->
+
+
+	<!-- Start of comments -->
+	<div id="comments" data-blog-id="<%#= @blog.id %>" >
+		<%#= render @blog.comments %>
+	</div>
+	<!-- End of comments -->
+
+</div>
