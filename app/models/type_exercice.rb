@@ -1,0 +1,2 @@
+class TypeExercice < ApplicationRecord
+end

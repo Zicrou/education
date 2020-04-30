@@ -1,0 +1,2 @@
+class MatieresController < ApplicationController
+end

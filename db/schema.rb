@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_111638) do
+ActiveRecord::Schema.define(version: 2020_04_29_153905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2020_04_26_111638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+    t.bigint "type_exercice_id"
+    t.bigint "niveau_id"
+    t.bigint "serie_id"
+    t.bigint "matiere_id"
+    t.index ["matiere_id"], name: "index_exercices_on_matiere_id"
+    t.index ["niveau_id"], name: "index_exercices_on_niveau_id"
+    t.index ["serie_id"], name: "index_exercices_on_serie_id"
+    t.index ["type_exercice_id"], name: "index_exercices_on_type_exercice_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -64,6 +72,22 @@ ActiveRecord::Schema.define(version: 2020_04_26_111638) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "matieres", force: :cascade do |t|
+    t.string "name"
+    t.bigint "niveau_id"
+    t.bigint "serie_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["niveau_id"], name: "index_matieres_on_niveau_id"
+    t.index ["serie_id"], name: "index_matieres_on_serie_id"
+  end
+
+  create_table "niveaus", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -73,6 +97,14 @@ ActiveRecord::Schema.define(version: 2020_04_26_111638) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
+  end
+
+  create_table "series", force: :cascade do |t|
+    t.string "name"
+    t.bigint "niveau_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["niveau_id"], name: "index_series_on_niveau_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -97,6 +129,12 @@ ActiveRecord::Schema.define(version: 2020_04_26_111638) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "type_exercices", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -114,5 +152,12 @@ ActiveRecord::Schema.define(version: 2020_04_26_111638) do
   add_foreign_key "blogs", "topics"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
+  add_foreign_key "exercices", "matieres"
+  add_foreign_key "exercices", "niveaus"
+  add_foreign_key "exercices", "series", column: "serie_id"
+  add_foreign_key "exercices", "type_exercices"
+  add_foreign_key "matieres", "niveaus"
+  add_foreign_key "matieres", "series", column: "serie_id"
+  add_foreign_key "series", "niveaus"
   add_foreign_key "technologies", "portfolios"
 end
