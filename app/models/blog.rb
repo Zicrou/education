@@ -17,6 +17,6 @@ class Blog < ApplicationRecord
   end
 
   def self.recent
-  	order("created_at DESC")
+  	where(user).order("created_at DESC")
   end
 end
