@@ -7,13 +7,13 @@
   <%= source_helper("alert alert-info blog-sidebar-source") %>
   
   <div class="sidebar-module">
-    <h4>Topics</h4>
+    <h4>Niveau</h4>
     <% @side_bar_topics.each do |topic|%>
       <p><%= link_to topic.title, topic_path(topic) %></p>
     <% end %>
   </div>
   <div class="sidebar-module">
-    <h4>Elsewhere</h4>
+    <h4></h4>
     <ol class="list-unstyled">
       <li><a href="#"><%= fa_icon "github 3x" %></a></li>
       <li><a href="#"><%= fa_icon "facebook 3x" %></a></li>

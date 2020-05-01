@@ -13,7 +13,7 @@ class BlogsController < ApplicationController
       @blogs = Blog.published.page(params[:page]).per(3)
     end
     
-    @page_title = "My Portfolio Blog"
+    @page_title = "Mes cours"
   end
 
   # GET /blogs/1
@@ -26,7 +26,7 @@ class BlogsController < ApplicationController
       @page_title = @blog.title
       @seo_keywords = @blog.body
     else
-      redirect_to blogs_path, notice:"You are not authorize to access this page"
+      redirect_to blogs_path, notice:"Vous n'êtes pas autorisé à acceder à cette page"
     end
     
   end
@@ -47,7 +47,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
+        format.html { redirect_to @blog, notice: 'Le cours a été créé avec succés' }
         format.json { render :show, status: :created, location: @blog }
       else
         format.html { render :new }
@@ -61,7 +61,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
+        format.html { redirect_to @blog, notice: 'Le cours a été modifié avec succés.' }
         format.json { render :show, status: :ok, location: @blog }
       else
         format.html { render :edit }
@@ -75,7 +75,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'Blog was successfully destroyed.' }
+      format.html { redirect_to blogs_url, notice: 'Le cours a été supprimé avec succés.' }
       format.json { head :no_content }
     end
   end
@@ -87,7 +87,7 @@ class BlogsController < ApplicationController
       @blog.draft!
     end
         
-    redirect_to blogs_url, notice: 'Post status has been updated.'
+    redirect_to blogs_url, notice: 'Le statut du cours a été modifié avec succés.'
   end
 
   private

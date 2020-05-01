@@ -1,8 +1,8 @@
 ready = ->
 	Typed.new '.element',
 		strings: [
-			"Study should be simple."
-			"My name is Zicrou and this is my way."
+			"Etudier avec simplicité et efficacité, c'est à dire viser l'essentiel, nous rend pratique et pragmatique."
+			"Etudier n'est pas facile mais doit être SIMPLE!!!."
 		]
 		typeSpeed: 0
 	return
