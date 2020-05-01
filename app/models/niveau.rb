@@ -1,2 +1,0 @@
-class Niveau < ApplicationRecord
-end
