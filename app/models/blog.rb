@@ -16,7 +16,7 @@ class Blog < ApplicationRecord
   	limit(3)
   end
 
-  def self.recent
-  	where(user).order("created_at DESC")
+  def self.recent(user)
+    order("created_at DESC")
   end
 end
