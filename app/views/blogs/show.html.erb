@@ -1,7 +1,7 @@
 <div class="col-sm-8 blog-main">
 
   <h2><%= @blog.title %></h2>
-  <p class="breadcrumb-item">Published under the topic: 
+  <p class="breadcrumb-item">Publishé sous le sujet: 
   	
   </p> 
   	<p>
@@ -23,7 +23,7 @@
 
 	<p>
 		<%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %> |
-		<%= link_to 'Back', blogs_path %>
+		<%= link_to 'Retour', blogs_path %>
 	</p> 
 	
 	<p>
@@ -32,14 +32,14 @@
 
 
 	<!-- Start of comment form -->
-	<%= render 'comments/comment_form' %>
+	<%#= render 'comments/comment_form' %>
 	<!-- End of comment form -->
 
 
 	<!-- Start of comments -->
-	<div id="comments" data-blog-id="<%= @blog.id %>" >
-		<%= render @blog.comments %>
-	</div>
+	<!--div id="comments" data-blog-id="<%= @blog.id %>" >
+		<%#= render @blog.comments %>
+	</div!-->
 	<!-- End of comments -->
 
 </div>
