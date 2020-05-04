@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_181626) do
+ActiveRecord::Schema.define(version: 2020_05_04_183409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "etablissement_id"
+    t.bigint "matiere_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["etablissement_id"], name: "index_authors_on_etablissement_id"
+    t.index ["matiere_id"], name: "index_authors_on_matiere_id"
+    t.index ["user_id"], name: "index_authors_on_user_id"
+  end
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -165,6 +176,9 @@ ActiveRecord::Schema.define(version: 2020_05_04_181626) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "authors", "etablissements"
+  add_foreign_key "authors", "matieres"
+  add_foreign_key "authors", "users"
   add_foreign_key "blogs", "topics"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
