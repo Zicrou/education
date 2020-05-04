@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Seris</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Niveau</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @seris.each do |seri| %>
+      <tr>
+        <td><%= seri.name %></td>
+        <td><%= seri.niveau %></td>
+        <td><%= link_to 'Show', seri %></td>
+        <td><%= link_to 'Edit', edit_seri_path(seri) %></td>
+        <td><%= link_to 'Destroy', seri, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Seri', new_seri_path %>

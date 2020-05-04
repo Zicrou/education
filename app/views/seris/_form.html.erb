@@ -1,0 +1,27 @@
+<%= form_with(model: seri, local: true) do |form| %>
+  <% if seri.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(seri.errors.count, "error") %> prohibited this seri from being saved:</h2>
+
+      <ul>
+      <% seri.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :niveau_id %>
+    <%= form.text_field :niveau_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

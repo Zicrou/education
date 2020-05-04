@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :matieres
+  resources :seris
+  resources :niveaus
   resources :etablissements
   resources :departements
   resources :regions

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_173956) do
+ActiveRecord::Schema.define(version: 2020_05_04_181626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,21 @@ ActiveRecord::Schema.define(version: 2020_05_04_173956) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "matieres", force: :cascade do |t|
+    t.string "name"
+    t.bigint "seri_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["seri_id"], name: "index_matieres_on_seri_id"
+  end
+
+  create_table "niveaus", force: :cascade do |t|
+    t.string "name"
+    t.string "abbrege"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -104,6 +119,14 @@ ActiveRecord::Schema.define(version: 2020_05_04_173956) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_regions_on_country_id"
+  end
+
+  create_table "seris", force: :cascade do |t|
+    t.string "name"
+    t.bigint "niveau_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["niveau_id"], name: "index_seris_on_niveau_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -147,6 +170,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_173956) do
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
   add_foreign_key "etablissements", "departements"
+  add_foreign_key "matieres", "seris"
   add_foreign_key "regions", "countries"
+  add_foreign_key "seris", "niveaus"
   add_foreign_key "technologies", "portfolios"
 end
