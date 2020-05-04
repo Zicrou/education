@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_173046) do
+ActiveRecord::Schema.define(version: 2020_05_04_173956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 2020_05_04_173046) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["region_id"], name: "index_departements_on_region_id"
+  end
+
+  create_table "etablissements", force: :cascade do |t|
+    t.string "name"
+    t.string "adresse"
+    t.bigint "departement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["departement_id"], name: "index_etablissements_on_departement_id"
   end
 
   create_table "exercices", force: :cascade do |t|
@@ -137,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_173046) do
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
+  add_foreign_key "etablissements", "departements"
   add_foreign_key "regions", "countries"
   add_foreign_key "technologies", "portfolios"
 end
