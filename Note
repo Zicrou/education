@@ -1,5 +1,7 @@
-Fix blog params in Blog Controller
-Create Adress table
-Create Etablissement link_with Adresse
-Create Author link_with etablissement
-Add Author in Blogs 
+!Fix blog params in Blog Controller
+!Create Adress table
+!Create Etablissement link_with Adresse
+!Create Author link_with etablissement
+!Add Author in Blogs 
+
+privilege table not working!

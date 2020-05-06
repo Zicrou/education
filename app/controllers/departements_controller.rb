@@ -1,6 +1,7 @@
 class DepartementsController < ApplicationController
   before_action :set_departement, only: [:show, :edit, :update, :destroy]
   access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
+  layout 'general-layout'
 
   # GET /departements
   def index

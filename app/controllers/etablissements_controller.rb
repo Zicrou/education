@@ -1,6 +1,7 @@
 class EtablissementsController < ApplicationController
   before_action :set_etablissement, only: [:show, :edit, :update, :destroy]
   access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
+  layout 'general-layout'
 
   # GET /etablissements
   def index
