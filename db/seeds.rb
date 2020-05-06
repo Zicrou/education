@@ -34,6 +34,45 @@ User.create!(
 )
 puts "1 User Admin created"
 
+
+User.create!(
+    email:"prof@user.com",
+    password:"profuser",
+    password_confirmation: "profuser",
+    name:"Prof User",
+    roles:"prof"
+)
+
+
+puts "1 User Prof created"
+
+User.create!(
+    email:"author@user.com",
+    password:"authoruser",
+    password_confirmation: "authoruser",
+    name:"Author User",
+    roles:"author"
+)
+puts "1 User Athor created"
+
+User.create!(
+    email:"publieur@user.com",
+    password:"publieuruser",
+    password_confirmation: "publieuruser",
+    name:"Publieur User",
+    roles:"publieur"
+)
+puts "1 User Publieur created"
+
+User.create!(
+    email:"proviseur@user.com",
+    password:"proviseuruser",
+    password_confirmation: "proviseuruser",
+    name:"Proviseur User",
+    roles:"proviseur"
+)
+puts "1 User Proviseur created"
+
 3.times do |topic|
     Topic.create!(
         title: "Topic #{topic}"
