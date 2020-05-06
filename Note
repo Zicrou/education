@@ -1,7 +1,5 @@
-BISMILLAH
-
-(DONE!)Fix blog params in Blog Controller
-(DONE!)Create Adress table
-(DONE!)Create Etablissement link_with Adresse
-(DONE!)Create Author link_with user, etablissement, matiere
+Fix blog params in Blog Controller
+Create Adress table
+Create Etablissement link_with Adresse
+Create Author link_with etablissement
 Add Author in Blogs 
