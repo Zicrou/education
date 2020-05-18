@@ -1,4 +1,8 @@
 <div class="col-sm-3 offset-sm-1 blog-sidebar">
+  <% if logged_in?(:site_admin , :censeur, :proviseur, :principale) %>
+  <%= render partial: 'blogs/admin_configuration' %>
+  <% end %>
+  <p></p>
   <div class="sidebar-module sidebar-module-inset">
     <h4><u>CLBK</u></h4>
     <p><b>Notice: </b><em>Apprendre n'est pas facile mais peut bien être simple</em>...</p>

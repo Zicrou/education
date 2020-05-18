@@ -5,6 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#Profil
+Profil.create!(
+    name:"site_admin"
+)
+Profil.create!(
+    name:"professeur"
+)
+Profil.create!(
+    name:"censeur"
+)
+Profil.create!(
+    name:"proviseur"
+)
+Profil.create!(
+    name:"principale"
+)
+Profil.create!(
+    name:"surveillante"
+)
+puts "6 Profils created"
+#END Profil
 User.create!(
     email:"guest@guest.com",
     password:"guestuser",
@@ -35,44 +57,105 @@ User.create!(
 puts "1 User Admin created"
 
 
-User.create!(
-    email:"prof@user.com",
-    password:"profuser",
-    password_confirmation: "profuser",
-    name:"Prof User",
-    roles:"prof"
+# Zone
+#Country
+
+Country.create(
+    name:"SENEGAL"
+)
+#END ZONE COUNTRY
+
+#REGION
+Region.create!(
+    name:"SK8Z",
+    country_id: Country.first.id
 )
 
-
-puts "1 User Prof created"
-
-User.create!(
-    email:"author@user.com",
-    password:"authoruser",
-    password_confirmation: "authoruser",
-    name:"Author User",
-    roles:"author"
+Region.create!(
+    country_id: Country.first.id,
+    name:"DAKAR"
 )
-puts "1 User Athor created"
 
-User.create!(
-    email:"publieur@user.com",
-    password:"publieuruser",
-    password_confirmation: "publieuruser",
-    name:"Publieur User",
-    roles:"publieur"
+Region.create!(
+    country_id: Country.first.id,
+    name:"THIES"
 )
-puts "1 User Publieur created"
 
-User.create!(
-    email:"proviseur@user.com",
-    password:"proviseuruser",
-    password_confirmation: "proviseuruser",
-    name:"Proviseur User",
-    roles:"proviseur"
+Region.create!(
+    country_id: Country.first.id,
+    name:"ZIGUINCHOR"
 )
-puts "1 User Proviseur created"
 
+Region.create!(
+    country_id: Country.first.id,
+    name:"DIOURBEL"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"SAINT-LOUIS"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"TAMBACOUNDA"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"KAOLACK"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"LOUGA"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"FATICK"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"KOLDA"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"MATAM"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"KAFFRINE"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"KEDOUGOU"
+)
+
+Region.create!(
+    country_id: Country.first.id,
+    name:"SEDHIOU"
+)
+puts "14 Regions created"
+
+#END ZONE REGION
+
+#DEPARTEMENT
+Departement.create(
+    name:"CL8K",
+    region_id: Region.first.id
+)
+
+Departement.create!(
+    name:"CLBK",
+    region_id: Region.first.id
+)
+#END ZONE DEPARTEMENT
+#End Zone
 3.times do |topic|
     Topic.create!(
         title: "Topic #{topic}"
@@ -129,3 +212,5 @@ puts "9 portfolio items created"
 end
 
 puts "3 technologies items created"
+
+

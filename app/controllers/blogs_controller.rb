@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
-  before_action :set_blog_auteur, only: [:new, :create, :edit, :update]
+  #before_action :set_blog_auteur, only: [:new, :create, :edit, :update]
   before_action :set_sidebar_topics, except: [:destroy, :create, :update, :toggle_status]
 
   layout "blog"
@@ -36,8 +36,8 @@ class BlogsController < ApplicationController
   # GET /blogs/new
   def new
     @blog = Blog.new
-    @privileges = Privileges.all
-    pry
+    #@privileges = Privileges.all
+    #pry
   end
 
   # GET /blogs/1/edit

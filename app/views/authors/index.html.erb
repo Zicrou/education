@@ -6,8 +6,9 @@
   <table>
   <thead>
     <tr>
-      <th>User</th>
-      <th>Etablissement</th>
+      <th>Telephone||</th>
+      <th>User||</th>
+      <th>Etablissement||</th>
       <th>Matiere</th>
       <th colspan="3"></th>
     </tr>
@@ -16,6 +17,7 @@
   <tbody>
     <% @authors.each do |author| %>
       <tr>
+        <td><%= author.telephone %></td>
         <td><%= author.user %></td>
         <td><%= author.etablissement %></td>
         <td><%= author.matiere %></td>

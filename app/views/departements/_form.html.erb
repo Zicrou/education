@@ -14,15 +14,22 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :region_id %>
-    <%= form.text_field :region_id %>
-  </div>
+    <%= form.collection_select(:region_id, Region.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
+  </div>  
 
   <div class="actions">
     <%= form.submit %>

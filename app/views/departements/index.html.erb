@@ -16,7 +16,7 @@
     <% @departements.each do |departement| %>
       <tr>
         <td><%= departement.name %></td>
-        <td><%= departement.region %></td>
+        <td><%= departement.region.name %></td>
         <td><%= link_to 'Show', departement %></td>
         <td><%= link_to 'Edit', edit_departement_path(departement) %></td>
         <td><%= link_to 'Destroy', departement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
