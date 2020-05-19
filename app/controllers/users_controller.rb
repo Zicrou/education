@@ -34,7 +34,6 @@ layout 'general-layout'
 
 	def definir_profil
 		if @user.set_to_profil('user')
-			#pry
 			redirect_to users_url, notice: 'Le statut du cours a été modifié avec succés.'
 		end
 	end

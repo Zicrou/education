@@ -24,7 +24,7 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
     if @author.save
-      redirect_to @author, notice: 'Author was successfully created.'
+      redirect_to blogs_path(), notice: 'Author was successfully created.'
     else
       render :new
     end
