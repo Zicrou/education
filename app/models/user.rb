@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def last_name
   	self.name.split.last
   end
+
+  def set_to_profil(profil)
+    self.update!(roles:profil)
+  end
 end

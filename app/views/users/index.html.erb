@@ -1,0 +1,23 @@
+<div class="col-sm-8 blog-main">
+
+	<h1>USERS</h1>
+	<p>*************************</p>
+	<% @users.each do |user| %>
+		<p>ID:<%= user.id %></p>
+		<p>NAME:<%= user.name %></p>
+		<p>EMAIL:<%= user.email %></p>
+		<p>ROLE:<%= user.role %></p>
+		<p>PROFIL:<%= user.profil_id %></p>
+		<p>DATE DE CREATION:<%= user.created_at %></p>
+		<p>DATE DE MODIFICATION:<%= user.updated_at %></p>
+		<p>
+			<%#= link_to 'Edit', edit_user_path(user) %> || 
+			<%= link_to 'Valider professeur', definir_profil_user_path(user) %>
+		</p>
+		<br>
+		<p>*************************</p>
+		<br>
+	<% end %>
+	
+
+</div>

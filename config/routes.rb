@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :users do
+    member do
+      get :definir_profil
+    end
+  end
   resources :profils
   resources :authors
   resources :matieres
