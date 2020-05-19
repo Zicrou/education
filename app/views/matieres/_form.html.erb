@@ -21,7 +21,14 @@
 
   <div class="field">
     <%= form.label :seri_id %>
-    <%= form.text_field :seri_id %>
+    <%= form.collection_select(:seri_id, Seri.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
   </div>
 
   <div class="actions">

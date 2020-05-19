@@ -19,17 +19,24 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :adresse %>
-    <%= form.text_field :adresse %>
+    <%= form.text_field :adresse, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :departement_id %>
-    <%= form.text_field :departement_id %>
+    <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions form-group">
+    <%= form.submit class: 'btn btn-primary', value: 'Valider'%>
   </div>
 <% end %>

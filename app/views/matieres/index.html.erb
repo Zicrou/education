@@ -16,7 +16,7 @@
     <% @matieres.each do |matiere| %>
       <tr>
         <td><%= matiere.name %></td>
-        <td><%= matiere.seri %></td>
+        <td><%= matiere.seri.name %></td>
         <td><%= link_to 'Show', matiere %></td>
         <td><%= link_to 'Edit', edit_matiere_path(matiere) %></td>
         <td><%= link_to 'Destroy', matiere, method: :delete, data: { confirm: 'Are you sure?' } %></td>

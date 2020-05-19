@@ -14,26 +14,40 @@
     </div>
   <% end %>
 
-
-  <div class="field">
-    <%= form.label :telephone %>
-    <%= form.number_field :telephone %>
-  </div>
-
-  <div class="field">
+  <div class="form-group" style="display:none;">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, value: current_user.id, class: 'form-control' %>
   </div>
-  
 
-  <div class="field">
+  <div class="form-group">
+    <%= form.label :telephone %>
+    <%= form.number_field :telephone, class: 'form-control', placeholder: '777777777' %>
+  </div>
+
+
+  <div class="form-group">
     <%= form.label :etablissement_id %>
-    <%= form.text_field :etablissement_id %>
+    <%= form.collection_select(:etablissement_id, Etablissement.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
   </div>
 
-  <div class="field">
+
+  <div class="form-group">
     <%= form.label :matiere_id %>
-    <%= form.text_field :matiere_id %>
+    <%= form.collection_select(:matiere_id, Matiere.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
   </div>
 
   <div class="actions">

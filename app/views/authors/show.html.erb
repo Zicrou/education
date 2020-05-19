@@ -4,17 +4,18 @@
 </p>
 <p>
   <strong>User:</strong>
-  <%= @author.user %>
+  <%= @author.user.name %>
+  <%#= @author.user %>
 </p>
 
 <p>
   <strong>Etablissement:</strong>
-  <%= @author.etablissement %>
+  <%= @author.etablissement.name %>
 </p>
 
 <p>
   <strong>Matiere:</strong>
-  <%= @author.matiere %>
+  <%= @author.matiere.name %>
 </p>
 
 <%= link_to 'Edit', edit_author_path(@author) %> |

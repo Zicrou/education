@@ -23,7 +23,6 @@ class AuthorsController < ApplicationController
   # POST /authors
   def create
     @author = Author.new(author_params)
-
     if @author.save
       redirect_to @author, notice: 'Author was successfully created.'
     else
@@ -54,6 +53,6 @@ class AuthorsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def author_params
-      params.require(:author).permit(:user_id, :telephone, :etablissement_id, :matiere_id)
+      params.require(:author).permit(:telephone, :user_id, :etablissement_id, :matiere_id)
     end
 end

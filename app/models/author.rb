@@ -5,5 +5,5 @@ class Author < ApplicationRecord
 
   has_many	 :blogs
 
-  validates_presence_of :user_id, :telephone, :etablissement_id, :matiere_id
+  validates_presence_of :telephone, :user_id, :etablissement_id, :matiere_id
 end

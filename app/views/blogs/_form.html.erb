@@ -4,10 +4,12 @@
     <%= alert_generator error %>
     <% end %>
   <% end %>
-  <%#= @user.id %>
+  <%# current_user.authors.each do |u| %>
+  <%#= u.id %>
+  <%# end %>
   
   <div class="form-group" style="display: none;">
-    <%#= f.text_field :author_id, class: 'form-control', value: :author_id %>
+    <%= f.text_field :author_id, class: 'form-control', value: current_user.authors.first.id %>
   </div>
 
   <div class="form-group">

@@ -16,7 +16,7 @@
     <% @seris.each do |seri| %>
       <tr>
         <td><%= seri.name %></td>
-        <td><%= seri.niveau %></td>
+        <td><%= seri.niveau.name %></td>
         <td><%= link_to 'Show', seri %></td>
         <td><%= link_to 'Edit', edit_seri_path(seri) %></td>
         <td><%= link_to 'Destroy', seri, method: :delete, data: { confirm: 'Are you sure?' } %></td>
