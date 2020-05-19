@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :definir_profil]
-  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :definir_profil]}, site_admin: :all
+  access all: [:index, :definir_profil], user: {except: [:index, :definir_profil, :show, :destroy, :create, :edit, :update, :new, :definir_profil]}, site_admin: :all
 layout 'general-layout'
 	def index
 		@users = User.all
