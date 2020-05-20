@@ -1,6 +1,6 @@
 class SerisController < ApplicationController
   before_action :set_seri, only: [:show, :edit, :update, :destroy]
-  access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
+  access user: {except: [:index, :show, :new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:new, :index, :create, :edit, :update, :show]
   layout 'general-layout'
 
   # GET /seris

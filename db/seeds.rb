@@ -37,11 +37,11 @@ puts "1 Guest user created"
 
 
 User.create!(
-    email:"test@test.com",
+    email:"prof@prof.com",
     password:"asdfasdf",
     password_confirmation: "asdfasdf",
-    name:"Test User",
-    roles:"user"
+    name:"Prof User",
+    roles:"professeur"
 )
 puts "1 regular user created"
 
@@ -149,12 +149,17 @@ Departement.create(
     name:"CL8K",
     region_id: Region.first.id
 )
-
-Departement.create!(
-    name:"CLBK",
-    region_id: Region.first.id
-)
+puts "1 Departement created"
 #END ZONE DEPARTEMENT
+
+#Etablissement
+Etablissement.create!(
+    name:"CLBK",
+    departement_id: Departement.first.id,
+    adresse: "EVERYWHERE"
+)
+#END ETABLISSEMENT
+puts "1 Etablissement created"
 #End Zone
 3.times do |topic|
     Topic.create!(
@@ -164,15 +169,50 @@ end
 
 puts "3 topics created"
 
+Niveau.create!(
+    name: "TERMINALE"
+    )
+
+puts "1 niveau created"
+
+Seri.create!(
+    name: "L2",
+    niveau_id: Niveau.first.id
+    )
+
+puts "1 seri created"
+
+Matiere.create!(
+    name: "HISTOIRE",
+    seri_id: Seri.first.id,
+    niveau_id: Niveau.first.id
+    )
+
+puts "1 matiere created"
+
+Author.create!(
+    user_id: User.last.id,
+    etablissement_id: Etablissement.first.id,
+    matiere_id: Matiere.first.id,
+    telephone: 781026837
+    )
+
+puts "1 author created"
+
 10.times do |blog|
   Blog.create(
     title: "My Blog Post #{blog}",
     body: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
-    topic_id: Topic.last.id
+    topic_id: Topic.last.id,
+    niveau_id: Niveau.first.id,
+    seri_id: Seri.first.id,
+    matiere_id: Matiere.first.id,
+    author_id: Author.first.id
     )
 end
 
-puts "10 blog posts create"
+puts "10 blog posts created"
+
 
 5.times do |skill|
   Skill.create(

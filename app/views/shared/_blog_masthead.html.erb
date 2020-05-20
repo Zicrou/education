@@ -2,25 +2,31 @@
   <div class="container">
     <h1 class="blog-title">Mes Cours</h1>
     <p class="lead blog-description">La liste de tous les cours publiés.</p>
-    <p class="lead">
+    <!--p class="lead">
         <h2 class="elementBlog sidebar-module sidebar-module-inset"></h2>
-    </p>
+    </p-->
     <span>
-    	<%if logged_in?(:professeur) and (current_user.authors.ids == nil or current_user.authors.ids.empty?) %>
-            <%= link_to 'Completer mon inscription', new_author_path  %>
-            <%#= link_to 'Ecrire une leçon', new_blog_path  %>
-        <%else if logged_in?(:site_admin, :professeur) and (current_user.authors.ids != nil or current_user.authors.ids.!empty?) %>
-            <%= link_to 'Ecrire une leçon', new_blog_path  %>
-        <%else%>
-            
-        <%end%>
-            
-        <%end%>
+        <% if logged_in?(:site_admin)%>
+        <%= link_to 'Ecrire une leçon', new_blog_path  %>
+        <%end %>
     </span>
-    <span> || </span>
-    <span>
-    	<%= link_to 'Niveau', topics_path %>
-    </span>
+    <!--span>
+    	<%#= link_to 'Niveau', niveaus_path %>
+    </span-->
     
   </div>
 </div>
+<!--span>
+        
+        
+        <%#if logged_in?(:professeur) and (current_user.authors.ids == nil or current_user.authors.ids.empty?) %>
+            <%#= link_to 'Completer mon inscription', new_author_path  %>
+            <%#= link_to 'Ecrire une leçon', new_blog_path  %>
+        <%#else if logged_in?(:site_admin, :professeur) and (current_user.authors.ids != nil or current_user.authors.ids.!empty?) %>
+            <%#= link_to 'Ecrire une leçon', new_blog_path  %>
+        <%#else%>
+            
+        <%#end%>
+            
+        <%#end%>
+    </--span>

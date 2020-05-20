@@ -1,14 +1,17 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
-  before_action :set_blog_auteur, only: [:new, :create, :edit, :update, :show]
+  #before_action :set_blog_auteur, only: [:new, :create, :edit, :update, :show]
   before_action :set_sidebar_niveaus, except: [:destroy, :create, :update, :toggle_status]
-
   layout "blog"
-  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:show,:create, :edit, :update, :new]
 
+  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new]
+
+  
   # GET /blogs
   # GET /blogs.json
   def index
+    @blogs = Blog.all
+    pry
     if logged_in?(:site_admin)
       @blogs = Blog.recent.page(params[:page]).per(3)
     else

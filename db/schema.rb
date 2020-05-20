@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_19_181307) do
+ActiveRecord::Schema.define(version: 2020_05_20_125702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,8 @@ ActiveRecord::Schema.define(version: 2020_05_19_181307) do
     t.bigint "seri_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "niveau_id"
+    t.index ["niveau_id"], name: "index_matieres_on_niveau_id"
     t.index ["seri_id"], name: "index_matieres_on_seri_id"
   end
 
@@ -211,6 +213,7 @@ ActiveRecord::Schema.define(version: 2020_05_19_181307) do
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
   add_foreign_key "etablissements", "departements"
+  add_foreign_key "matieres", "niveaus"
   add_foreign_key "matieres", "seris"
   add_foreign_key "regions", "countries"
   add_foreign_key "seris", "niveaus"
