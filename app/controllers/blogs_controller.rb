@@ -109,7 +109,7 @@ class BlogsController < ApplicationController
     end
 
     def set_sidebar_niveaus
-      @niveau = Niveau.with_blogs
+      @niveau = Niveau.all
     end
 
     def set_blog_auteur
