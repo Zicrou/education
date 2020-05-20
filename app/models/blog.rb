@@ -4,7 +4,7 @@ class Blog < ApplicationRecord
   friendly_id :title, use: :slugged
 
   validates_presence_of :title, :body, :topic_id, :author_id, :matiere_id, :seri_id, :niveau_id
-  belongs_to :topic, optional: true
+  #belongs_to :topic, optional: true
   belongs_to :author, optional: true
   belongs_to :niveau
   belongs_to :seri

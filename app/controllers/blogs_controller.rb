@@ -1,7 +1,7 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
   before_action :set_blog_auteur, only: [:new, :create, :edit, :update, :show]
-  before_action :set_sidebar_niveaus, except: [:destroy, :create, :update, :toggle_status]
+  before_action :set_sidebar_niveaus
 
   layout "blog"
   access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:show,:create, :edit, :update, :new]
@@ -9,12 +9,12 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    if logged_in?(:site_admin)
+    if logged_in?(:site_admin, :professeur)
       @blogs = Blog.recent.page(params[:page]).per(3)
     else
       @blogs = Blog.published.page(params[:page]).per(3)
     end
-    
+    #@set_sidebar_niveaus = Niveau.all
     @page_title = "Mes cours"
   end
 
@@ -101,7 +101,7 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :topic_id, :status,:author_id, :matiere_id, :seri_id, :niveau_id ) #, :author_id, :user_id
+      params.require(:blog).permit(:title, :body, :status,:author_id, :matiere_id, :seri_id, :niveau_id ) #, :author_id, :user_id
     end
 
     def set_sidebar_topics
@@ -109,7 +109,7 @@ class BlogsController < ApplicationController
     end
 
     def set_sidebar_niveaus
-      @niveau = Niveau.with_blogs
+      @set_sidebar_niveaus = Niveau.all
     end
 
     def set_blog_auteur

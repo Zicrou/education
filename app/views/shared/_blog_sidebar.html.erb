@@ -11,13 +11,11 @@
   <%= source_helper("alert alert-info blog-sidebar-source") %>
   
   <div class="sidebar-module">
-    <%= @side_bar_niveaus.nil?%>
+    <%#= @side_bar_niveaus.name%>
     <h4>Niveau</h4>
-    <%if @side_bar_niveaus != nil%>
-      <% @side_bar_niveaus.each do |niveau|%>
-        <p><%= link_to 'les cours de '+ niveau.title, niveau_path(niveau) %></p>
-        <% end %>
-    <%end%>
+      <% @set_sidebar_niveaus.each do |niveau|%>
+        <p><%= link_to niveau.name, niveau_path(niveau) %></p>
+      <% end %>
     
   </div>
   <div class="sidebar-module">
