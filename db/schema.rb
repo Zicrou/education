@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_085427) do
+ActiveRecord::Schema.define(version: 2020_05_19_181307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,13 @@ ActiveRecord::Schema.define(version: 2020_05_18_085427) do
     t.integer "status", default: 0
     t.bigint "topic_id"
     t.bigint "author_id"
+    t.bigint "niveau_id"
+    t.bigint "seri_id"
+    t.bigint "matiere_id"
     t.index ["author_id"], name: "index_blogs_on_author_id"
+    t.index ["matiere_id"], name: "index_blogs_on_matiere_id"
+    t.index ["niveau_id"], name: "index_blogs_on_niveau_id"
+    t.index ["seri_id"], name: "index_blogs_on_seri_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
     t.index ["topic_id"], name: "index_blogs_on_topic_id"
   end
@@ -197,6 +203,9 @@ ActiveRecord::Schema.define(version: 2020_05_18_085427) do
   add_foreign_key "authors", "matieres"
   add_foreign_key "authors", "users"
   add_foreign_key "blogs", "authors"
+  add_foreign_key "blogs", "matieres"
+  add_foreign_key "blogs", "niveaus"
+  add_foreign_key "blogs", "seris"
   add_foreign_key "blogs", "topics"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"

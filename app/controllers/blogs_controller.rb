@@ -1,10 +1,10 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
-  #before_action :set_blog_auteur, only: [:new, :create, :edit, :update]
-  before_action :set_sidebar_topics, except: [:destroy, :create, :update, :toggle_status]
+  before_action :set_blog_auteur, only: [:new, :create, :edit, :update, :show]
+  before_action :set_sidebar_niveaus, except: [:destroy, :create, :update, :toggle_status]
 
   layout "blog"
-  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all
+  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:show,:create, :edit, :update, :new]
 
   # GET /blogs
   # GET /blogs.json
@@ -106,6 +106,10 @@ class BlogsController < ApplicationController
 
     def set_sidebar_topics
       @side_bar_topics = Topic.with_blogs
+    end
+
+    def set_sidebar_niveaus
+      @niveau = Niveau.with_blogs
     end
 
     def set_blog_auteur

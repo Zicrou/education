@@ -6,6 +6,9 @@ class Blog < ApplicationRecord
   validates_presence_of :title, :body, :topic_id, :author_id, :matiere_id, :seri_id, :niveau_id
   belongs_to :topic, optional: true
   belongs_to :author, optional: true
+  belongs_to :niveau
+  belongs_to :seri
+  belongs_to :matiere
   has_many :comments, dependent: :destroy
 
   def self.special_blogs

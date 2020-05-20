@@ -1,5 +1,5 @@
 <div class="sidebar-module sidebar-module-inset">
-      <% if logged_in?(:site_admin, :principale, :proviseur, :censeur, :professeur) %>
+      <% if logged_in?(:site_admin, :principale, :proviseur, :censeur) %>
             <h4>Ajouter:</h4>
       <% end %>
       <% if logged_in?(:site_admin) %>
@@ -14,11 +14,11 @@
             <p><%= link_to "Les Departements", departements_path() %></p>
       <% end %>
 
-      <% if logged_in?(:site_admin, :principale, :proviseur, :censeur, :professeur) %>
+      <% if logged_in?(:site_admin, :principale, :proviseur, :censeur) %>
             <p><%= link_to "Les Etablissements", etablissements_path() %></p>
       <% end %>
 
-      <% if logged_in?(:site_admin, :professeur) %>
+      <% if logged_in?(:site_admin) %>
             <p><%= link_to "Les Auteurs", authors_path() %></p>
       <% end %>
 
