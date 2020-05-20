@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   access all: [:index, :definir_profil], user: {except: [:index, :definir_profil, :show, :destroy, :create, :edit, :update, :new, :definir_profil]}, site_admin: :all
 layout 'general-layout'
 	def index
-		@users = User.all
+		@users = User.recent.all
 	end
 
 	def new
@@ -34,7 +34,7 @@ layout 'general-layout'
 
 	def definir_profil
 		if @user.set_to_profil('user')
-			redirect_to users_url, notice: 'Le statut du cours a été modifié avec succés.'
+			redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
 		end
 	end
 

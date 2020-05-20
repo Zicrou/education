@@ -14,7 +14,7 @@
     <%#= @side_bar_niveaus.name%>
     <h4>Niveau</h4>
       <% @set_sidebar_niveaus.each do |niveau|%>
-        <p><%= link_to niveau.name, niveau_path(niveau) %></p>
+        <p><%= link_to niveau.name, niveaus_path() %></p>
       <% end %>
     
   </div>

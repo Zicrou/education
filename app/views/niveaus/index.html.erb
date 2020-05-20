@@ -17,9 +17,9 @@
       <tr>
         <td><%= niveau.name %></td>
         <td><%= niveau.abbrege %></td>
-        <td><%= link_to 'Show', niveau %></td>
-        <td><%= link_to 'Edit', edit_niveau_path(niveau) %></td>
-        <td><%= link_to 'Destroy', niveau, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', niveau if logged_in?(:site_admin) %></td>
+        <td><%= link_to 'Edit', edit_niveau_path(niveau)  if logged_in?(:site_admin) %></td>
+        <td><%= link_to 'Destroy', niveau, method: :delete, data: { confirm: 'Are you sure?' }  if logged_in?(:site_admin) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,4 +27,4 @@
 
 <br>
 
-<%= link_to 'New Niveau', new_niveau_path %>
+<%= link_to 'New Niveau', new_niveau_path  if logged_in?(:site_admin)%>

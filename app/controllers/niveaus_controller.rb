@@ -1,6 +1,6 @@
 class NiveausController < ApplicationController
   before_action :set_niveau, only: [:show, :edit, :update, :destroy]
-  access user: {except: [:index, :show, :new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:new, :index, :create, :edit, :update, :show]
+  access all: [:index], user: {except: [:show, :new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:new, :index, :create, :edit, :update, :show]
   layout 'general-layout'
   
   # GET /niveaus

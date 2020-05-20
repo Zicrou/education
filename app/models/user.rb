@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def set_to_profil(profil)
     self.update!(roles:profil)
   end
+
+  def self.recent
+    order("created_at ASC")
+  end
 end
