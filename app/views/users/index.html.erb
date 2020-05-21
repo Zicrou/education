@@ -7,12 +7,17 @@
 		<p>NAME:<%= user.name %></p>
 		<p>EMAIL:<%= user.email %></p>
 		<p>ROLE:<%= user.role %></p>
-		<p>PROFIL:<%= user.profil_id %></p>
+		<!--p>PROFIL:<%#= user.profil_id %></p-->
 		<p>DATE DE CREATION:<%= user.created_at %></p>
 		<p>DATE DE MODIFICATION:<%= user.updated_at %></p>
 		<p>
-			<%#= link_to 'Edit', edit_user_path(user) %> || 
-			<%= link_to 'Valider professeur', definir_profil_user_path(user) %>
+			<%if user.role === :user %>
+				<%= link_to 'Définir professeur', definir_profil_user_path(user) %>
+				<%end%>
+				<span>||</span>
+			<%if user.role === :professeur %>
+				<%= link_to 'Définir user', definir_profil_user_path(user) %>
+			<%end%>
 		</p>
 		<br>
 		<p>*************************</p>

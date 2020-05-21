@@ -1,7 +1,17 @@
-<p>
+<div class="col-sm-8 blog-main">
+
+	<h1><%= @niveau.name %></h1>
+	<%#= render @matieres %>
+	<%#= render partial: 'niveaus/matiere', locals: { niveau: @niveau } %>
+
+</div>
+<br>
+<%if logged_in?(:site_admin)%>
+	<p>
   <strong>Name:</strong>
   <%= @niveau.name %>
 </p>
-
 <%= link_to 'Edit', edit_niveau_path(@niveau) %> |
 <%= link_to 'Back', niveaus_path %>
+
+<%end%>

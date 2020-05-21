@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :definir_profil]
-  access all: [:index, :definir_profil], user: {except: [:index, :definir_profil, :show, :destroy, :create, :edit, :update, :new, :definir_profil]}, site_admin: :all
+  access professeur: [:index] ,user: {except: [:index, :definir_profil, :show, :destroy, :create, :edit, :update, :new, :definir_profil]}, site_admin: :all
 layout 'general-layout'
 	def index
 		@users = User.recent.all
@@ -33,9 +33,23 @@ layout 'general-layout'
 	end
 
 	def definir_profil
-		if @user.set_to_profil('user')
-			redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
+		#pry
+		if @user.role == :user
+			if @user.set_to_profil('professeur')
+				redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
+			else
+				redirect_to users_url, notice: 'La mdification a échoué.'
+			end
 		end
+
+		if @user.role == :professeur
+			if @user.set_to_profil(:user)
+				redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
+			else
+				redirect_to users_url, notice: 'La mdification a échoué.'
+			end
+		end
+
 	end
 
 	private

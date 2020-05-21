@@ -1,30 +1,15 @@
-<h1>Niveaus</h1><br\><br\><br\>
-<br>
-<br>
-
-<br>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="col-sm-8 blog-main">
+  
+  <%= render @niveaus %>
+  
     <% @niveaus.each do |niveau| %>
-      <tr>
-        <td><%= niveau.name %></td>
-        <td><%= niveau.abbrege %></td>
+      
         <td><%= link_to 'Show', niveau if logged_in?(:site_admin) %></td>
         <td><%= link_to 'Edit', edit_niveau_path(niveau)  if logged_in?(:site_admin) %></td>
         <td><%= link_to 'Destroy', niveau, method: :delete, data: { confirm: 'Are you sure?' }  if logged_in?(:site_admin) %></td>
-      </tr>
+      
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
+ 
 <%= link_to 'New Niveau', new_niveau_path  if logged_in?(:site_admin)%>
+
+</div>

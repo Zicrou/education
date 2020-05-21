@@ -1,6 +1,6 @@
 class NiveausController < ApplicationController
   before_action :set_niveau, only: [:show, :edit, :update, :destroy]
-  access all: [:index], user: {except: [:show, :new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:new, :index, :create, :edit, :update, :show]
+  access all: [:index, :show], user: {except: [:new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:new, :index, :create, :edit, :update, :show]
   layout 'general-layout'
   
   # GET /niveaus
@@ -9,7 +9,10 @@ class NiveausController < ApplicationController
   end
 
   # GET /niveaus/1
-  def show
+  def show  
+    @niveau = Niveau.find(params[:id])  
+    @matieres = @niveau.matieres
+    #pry
   end
 
   # GET /niveaus/new
