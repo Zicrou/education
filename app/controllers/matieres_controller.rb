@@ -55,6 +55,6 @@ class MatieresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def matiere_params
-      params.require(:matiere).permit(:name, :seri_id)
+      params.require(:matiere).permit(:name, :seri_id, :niveau_id)
     end
 end
