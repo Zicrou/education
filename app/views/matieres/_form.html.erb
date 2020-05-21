@@ -19,6 +19,8 @@
     <%= form.text_field :name %>
   </div>
 
+  
+
   <div class="field">
     <%= form.label :seri_id %>
     <%= form.collection_select(:seri_id, Seri.all, :id, :name,
