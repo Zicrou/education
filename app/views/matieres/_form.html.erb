@@ -31,6 +31,18 @@
   %>
   </div>
 
+  <div class="field">
+    <%= form.label :niveau_id %>
+    <%= form.collection_select(:niveau_id, Niveau.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
