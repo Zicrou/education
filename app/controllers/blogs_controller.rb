@@ -104,9 +104,9 @@ class BlogsController < ApplicationController
       params.require(:blog).permit(:title, :body, :status,:author_id, :matiere_id, :seri_id, :niveau_id ) #, :author_id, :user_id
     end
 
-    def set_sidebar_topics
-      @side_bar_topics = Topic.with_blogs
-    end
+    #def set_sidebar_topics
+     # @side_bar_topics = Topic.with_blogs
+    #end
 
     def set_sidebar_niveaus
       @set_sidebar_niveaus = Niveau.all
