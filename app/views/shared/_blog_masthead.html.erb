@@ -6,18 +6,15 @@
         <h2 class="elementBlog sidebar-module sidebar-module-inset"></h2>
     </p>
     <span>
-        <%if logged_in?(:professeur) and (current_user.authors.ids == nil or current_user.authors.ids.empty?) %>
+        <%if @author == "Empty" %>
             <%= link_to 'Completer mon inscription', new_author_path  %>
             <%#= link_to 'Ecrire une leçon', new_blog_path  %>
-        <%else if logged_in?(:site_admin, :professeur) and (current_user.authors.ids != nil or current_user.authors.ids.!empty?) %>
+        <%elsif @author == "Exist" %>
             <%= link_to 'Ecrire une leçon', new_blog_path  %>
         <%else%>
             
         <%end%>
-            
-        <%end%>
     </span>
-    <span> || </span>
     <span>
         <%#= link_to 'Niveau', topics_path %>
     </span>

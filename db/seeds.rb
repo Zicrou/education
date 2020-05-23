@@ -43,7 +43,7 @@ User.create!(
     name:"Prof User",
     roles:"professeur"
 )
-puts "1 regular user created"
+puts "1 Prof user created"
 
 
 

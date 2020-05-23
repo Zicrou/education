@@ -22,4 +22,13 @@ class Blog < ApplicationRecord
   def self.recent
     order("created_at DESC")
   end
+
+  def self.owner(user)
+    Blog.all.where(author_id: user.authors.ids)
+  end
+
+  def prov_princens
+    Blog.all.where(author_id: user.authors.ids)
+  end
+  #if logged_in?(:professeur) and current_user.id.authors.empty? #for User with no authors 
 end

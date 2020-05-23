@@ -4,15 +4,30 @@ class BlogsController < ApplicationController
   before_action :set_sidebar_niveaus
 
   layout "blog"
-  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:show,:create, :edit, :update, :new]
+  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new]
 
   # GET /blogs
   # GET /blogs.json
   def index
-    if logged_in?(:site_admin, :professeur)
-      @blogs = Blog.recent.page(params[:page]).per(3)
+    if logged_in?(:site_admin)
+      #@author = ""
+      @blogs = Blog.all.recent.page(params[:page]).per(3)
+    elsif logged_in?(:professeur) and current_user.authors.empty?
+      #@blogs = Blog.owner(current_user.id).page(params[:page]).per(3)
+      #@blogs = Blog.published.page(params[:page]).per(3)
+      @message_empty = "Vous n'avez pas encore saisi un cours. Pour en saisir veuillez completer votre inscription svp!"
+      @author = "Empty"
+    elsif logged_in?(:professeur) and !current_user.authors.empty?
+      @blogs = Blog.owner(current_user).page(params[:page]).per(3)
+      @message_exist = "La liste de vos cours"
+      @author = "Exist" 
+    elsif logged_in?(:censeur, :proviseur, :principale)
+      @test = 'nothing'
+      #pry
     else
       @blogs = Blog.published.page(params[:page]).per(3)
+      @test = 'nothing else'
+      #pry
     end
     #@set_sidebar_niveaus = Niveau.all
     @page_title = "Mes cours"
@@ -21,10 +36,11 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    if logged_in?(:site_admin) || @blog.published?
-      @blog = Blog.includes(:comments).friendly.find(params[:id])
-      @comment = Comment.new
-    
+    if logged_in?(:site_admin, :professeur, :censeur, :proviseur, :principale) || @blog.published?
+      #@blog = Blog.includes(:comments).friendly.find(params[:id])
+      #@comment = Comment.new
+      @blog = Blog.friendly.find(params[:id])
+      
       @page_title = @blog.title
       @seo_keywords = @blog.body
     else
