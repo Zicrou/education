@@ -30,6 +30,10 @@ module ApplicationHelper
         title: 'Home'
       },
       {
+        url: about_me_path,
+        title: 'About Us'
+      },
+      {
         url: contact_path,
         title: 'Contact'
       },
