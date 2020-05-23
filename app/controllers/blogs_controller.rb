@@ -12,25 +12,21 @@ class BlogsController < ApplicationController
     if logged_in?(:site_admin)
       #@author = ""
       @blogs = Blog.all.recent.page(params[:page]).per(3)
-    end
-    if logged_in?(:professeur) and current_user.authors.empty?
+    elsif logged_in?(:professeur) and current_user.authors.empty?
       #@blogs = Blog.owner(current_user.id).page(params[:page]).per(3)
       #@blogs = Blog.published.page(params[:page]).per(3)
       @message_empty = "Vous n'avez pas encore saisi un cours. Pour en saisir veuillez completer votre inscription svp!"
       @author = "Empty"
-    end
-    if logged_in?(:professeur) and !current_user.authors.empty?
+    elsif logged_in?(:professeur) and !current_user.authors.empty?
       @blogs = Blog.owner(current_user).page(params[:page]).per(3)
       @message_exist = "La liste de vos cours"
       @author = "Exist"
-      #pry
-    end
-    if logged_in?(:censeur, :proviseur, :principale)
+      #pry 
+    elsif logged_in?(:censeur, :proviseur, :principale)
 
-    end
-    if Blog.published
-      @blogs = Blog.published.page(params[:page]).per(3)
-      @message_published = 'cours published'
+    else
+      @blogs = Blog.published.recent.page(params[:page]).per(3)
+      @test = 'nothing else'
       #pry
     end
     #@set_sidebar_niveaus = Niveau.all

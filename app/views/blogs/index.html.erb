@@ -1,12 +1,8 @@
 <div class="col-sm-8 blog-main">
 	
-	<%if @author == "Empty" %>
-        <p style="color: green;font-size: 1.5em"><%= @message_empty %></p>
-	<%elsif @author == "Exist" or logged_in?(:site_admin) or @message_published%>
-        <p style="color: green;font-size: 1.5em"><%= @message_exist %></p>
+
 		<%= paginate @blogs %>
 		<%= render @blogs %>
 		<%= paginate @blogs %>
-	<% end %>
 
 </div>
