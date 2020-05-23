@@ -31,7 +31,7 @@ class BlogsController < ApplicationController
     if Blog.published
       @blogs = Blog.published.page(params[:page]).per(3)
       @message_published = 'cours published'
-      pry
+      #pry
     end
     #@set_sidebar_niveaus = Niveau.all
     @page_title = "Mes cours"
