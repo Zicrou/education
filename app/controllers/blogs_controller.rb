@@ -10,26 +10,21 @@ class BlogsController < ApplicationController
   # GET /blogs.json
   def index
     if logged_in?(:site_admin)
-      #@author = ""
+      @author = "admin"
       @blogs = Blog.all.recent.page(params[:page]).per(3)
-    elsif logged_in?(:professeur) and current_user.authors.empty?
+    elsif logged_in?(:professeur, :censeur, :proviseur, :principale) and current_user.authors.empty?
       #@blogs = Blog.owner(current_user.id).page(params[:page]).per(3)
       #@blogs = Blog.published.page(params[:page]).per(3)
       @message_empty = "Vous n'avez pas encore saisi un cours. Pour en saisir veuillez completer votre inscription svp!"
       @author = "Empty"
-    elsif logged_in?(:professeur) and !current_user.authors.empty?
+    elsif logged_in?(:professeur, :censeur, :proviseur, :principale) and !current_user.authors.empty?
       @blogs = Blog.owner(current_user).page(params[:page]).per(3)
       @message_exist = "La liste de vos cours"
       @author = "Exist"
-      #pry 
-    elsif logged_in?(:censeur, :proviseur, :principale)
-
     else
       @blogs = Blog.published.recent.page(params[:page]).per(3)
       @test = 'nothing else'
-      #pry
     end
-    #@set_sidebar_niveaus = Niveau.all
     @page_title = "Mes cours"
   end
 

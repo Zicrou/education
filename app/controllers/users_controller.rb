@@ -33,23 +33,12 @@ layout 'general-layout'
 	end
 
 	def definir_profil
-		#pry
 		if @user.role == :user
-			if @user.set_to_profil('professeur')
-				redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
-			else
-				redirect_to users_url, notice: 'La mdification a échoué.'
-			end
+			@user.set_to_profil('professeur')
+		elsif @user.role == :professeur
+			@user.set_to_profil('user')
 		end
-
-		if @user.role == :professeur
-			if @user.set_to_profil(:user)
-				redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
-			else
-				redirect_to users_url, notice: 'La mdification a échoué.'
-			end
-		end
-
+		redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
 	end
 
 	private
