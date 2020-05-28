@@ -9,10 +9,9 @@
         <%if @author == "Empty" %>
             <%= link_to 'Completer mon inscription', new_author_path  %>
             <%#= link_to 'Ecrire une leçon', new_blog_path  %>
-        <%elsif @author == "Exist" || current_user.role == ":site_admin" %>
+        <%elsif @author == "Exist" || @author == "admin" %>
             <%= link_to 'Ecrire une leçon', new_blog_path  %>
             <%#= current_user.role  %>
-        <%else%>
             
         <%end%>
     </span>

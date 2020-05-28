@@ -4,7 +4,7 @@ class BlogsController < ApplicationController
   before_action :set_sidebar_niveaus
 
   layout "blog"
-  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new]
+  access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new], censeur: [:index, :show,:create, :edit, :update, :new], principale: [:index, :show,:create, :edit, :update, :new], proviseur: [:index, :show,:create, :edit, :update, :new]
 
   # GET /blogs
   # GET /blogs.json
@@ -13,14 +13,30 @@ class BlogsController < ApplicationController
       @author = "admin"
       @blogs = Blog.all.recent.page(params[:page]).per(3)
     elsif logged_in?(:professeur, :censeur, :proviseur, :principale) and current_user.authors.empty?
-      #@blogs = Blog.owner(current_user.id).page(params[:page]).per(3)
+      @blogs = Blog.owner(current_user).page(params[:page]).per(3)
       #@blogs = Blog.published.page(params[:page]).per(3)
       @message_empty = "Vous n'avez pas encore saisi un cours. Pour en saisir veuillez completer votre inscription svp!"
       @author = "Empty"
-    elsif logged_in?(:professeur, :censeur, :proviseur, :principale) and !current_user.authors.empty?
+    elsif logged_in?(:professeur) and !current_user.authors.empty?
       @blogs = Blog.owner(current_user).page(params[:page]).per(3)
       @message_exist = "La liste de vos cours"
       @author = "Exist"
+
+    elsif logged_in?(:censeur) and !current_user.authors.empty?
+      @blogs = Blog.owner(current_user).page(params[:page]).per(3)
+      @message_exist = "La liste de vos cours"
+      @author = "Exist"
+
+    elsif logged_in?(:proviseur) and !current_user.authors.empty?
+      @blogs = Blog.owner(current_user).page(params[:page]).per(3)
+      @message_exist = "La liste de vos cours"
+      @author = "Exist"
+
+    elsif logged_in?(:principale) and !current_user.authors.empty?
+      @blogs = Blog.owner(current_user).page(params[:page]).per(3)
+      @message_exist = "La liste de vos cours"
+      @author = "Exist"
+
     else
       @blogs = Blog.published.recent.page(params[:page]).per(3)
       @test = 'nothing else'
