@@ -1,6 +1,6 @@
 class EtablissementsController < ApplicationController
   before_action :set_etablissement, only: [:show, :edit, :update, :destroy]
-  access user: {except: [:index, :show, :new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:new, :edit, :create, :update,]
+  access user: {except: [:index, :show, :new, :edit, :create, :update, :destroy]}, site_admin: :all, censeur: [:index, :new, :edit, :create, :update], principale: [:index, :new, :edit, :create, :update], proviseur: [:index, :new, :edit, :create, :update]
   layout 'general-layout'
 
   # GET /etablissements
