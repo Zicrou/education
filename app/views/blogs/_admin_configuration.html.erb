@@ -14,7 +14,7 @@
             <p><%= link_to "Les Departements", departements_path() %></p>
       <% end %>
 
-      <% if logged_in?(:site_admin, :principale, :proviseur, :censeur) %>
+      <% if logged_in?(:site_admin) %>
             <p><%= link_to "Les Etablissements", etablissements_path() %></p>
       <% end %>
 
