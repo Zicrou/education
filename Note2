@@ -12,3 +12,10 @@ class AddNiveauRefToMatieres < ActiveRecord::Migration[5.2]
   end
 end
 20200520125702_add_niveau_ref_to_matieres
+
+class AddNiveuRefToMatieres < ActiveRecord::Migration[5.2]
+  def change
+    add_reference :matieres, :niveau, foreign_key: true
+  end
+end
+20200520171652_add_niveu_ref_to_matieres
