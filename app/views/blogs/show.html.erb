@@ -30,6 +30,9 @@
 		<%= markdown(@blog.body) %>
 	</p>
 
+	<p>
+		<%= image_tag @blog.image.to_s %>
+	</p>
 
 	<!-- Start of comment form -->
 	<%#= render 'comments/comment_form' %>

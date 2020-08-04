@@ -51,7 +51,7 @@ class BlogsController < ApplicationController
       #@blog = Blog.includes(:comments).friendly.find(params[:id])
       #@comment = Comment.new
       @blog = Blog.friendly.find(params[:id])
-      
+      #pry
       @page_title = @blog.title
       @seo_keywords = @blog.body
     else
@@ -128,7 +128,7 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :status,:author_id, :matiere_id, :seri_id, :niveau_id ) #, :author_id, :user_id
+      params.require(:blog).permit(:title, :body, :status,:author_id, :matiere_id, :seri_id, :niveau_id, :image ) #, :author_id, :user_id
     end
 
     #def set_sidebar_topics

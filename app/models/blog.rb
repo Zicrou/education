@@ -11,6 +11,8 @@ class Blog < ApplicationRecord
   belongs_to :matiere
   has_many :comments, dependent: :destroy
 
+  mount_uploader :image, BlogUploader
+
   def self.special_blogs
   	all
   end
