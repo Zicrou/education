@@ -1,0 +1,21 @@
+<div class="col-sm-8 blog-main">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @ouvrier.name %>
+  </p>
+
+  <p>
+    <strong>Prenom:</strong>
+    <%= @ouvrier.prenom %>
+  </p>
+
+  <p>
+    <strong>Telephone:</strong>
+    <%= @ouvrier.telephone %>
+  </p>
+
+  <%= link_to 'Edit', edit_ouvrier_path(@ouvrier) %> |
+  <%= link_to 'Back', ouvriers_path %>
+</div>

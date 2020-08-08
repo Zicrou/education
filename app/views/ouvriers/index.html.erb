@@ -1,0 +1,25 @@
+<div class="col-sm-10 blog-main">
+<h1>Ouvriers</h1>
+
+<h2 style=color:red;><u>Liste des Ouvriers :</u></h2>
+<table>
+  <tbody>
+    <% @ouvriers.each do |ouvrier| %>
+      <tr>
+        <p>Name :<%= ouvrier.name %></p>
+        <p>Prenom :<%= ouvrier.prenom %></p>
+        <p>Téléphone :<%= ouvrier.telephone %></p>
+        <span style=margin-right:12px; ><%= link_to 'Show', ouvrier %></span>
+        <span style=margin-right:12px;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) %></span>
+        <span><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+      </tr>
+      <hr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ouvrier', new_ouvrier_path %>
+
+</div>
