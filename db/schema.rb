@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_08_014141) do
+ActiveRecord::Schema.define(version: 2020_08_10_053047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(version: 2020_08_08_014141) do
     t.index ["region_id"], name: "index_departements_on_region_id"
   end
 
+  create_table "domaines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "etablissements", force: :cascade do |t|
     t.string "name"
     t.string "adresse"
@@ -122,6 +128,12 @@ ActiveRecord::Schema.define(version: 2020_08_08_014141) do
     t.bigint "niveau_id"
     t.index ["niveau_id"], name: "index_matieres_on_niveau_id"
     t.index ["seri_id"], name: "index_matieres_on_seri_id"
+  end
+
+  create_table "metiers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "niveaus", force: :cascade do |t|

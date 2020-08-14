@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :metiers
+  resources :domaines
   resources :ouvriers
   resources :users do
     member do
