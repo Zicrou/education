@@ -1,19 +1,19 @@
 <div class="col-sm-12 blog-main" id="">
-<h1>Ouvriers</h1>
+<h2>Recherche Ouvriers Select List Option Region Departement Domaine Metier</h2>
 
-<%= link_to 'New Ouvrier', new_ouvrier_path %>
-<h2 style=color:red;><u>Liste des Ouvriers :</u></h2>  
+<%= link_to 'New Ouvrier', new_ouvrier_path if logged_in?(:site_admin)%>
+<h1 style=color:red;><u>Liste des Ouvriers :</u></h1>  
 <% @ouvriers.each do |ouvrier| %>
   <div class="card text-center">  
     <div class="card-header">
-    Region/Departement
+    <span><%= ouvrier.departement.region.name + "(" + ouvrier.departement.name + ")" %></span>
     </div>
     <div class="card-body">
-      <h2 class="card-title">Special Domaine/Metier</h2>
+      <h2 class="card-title"><%= ouvrier.domaine.name + " / " + ouvrier.metier.name%></h2>
       <div class="row">
         <div class="col-md-6">
           <p class="card-text" style=text-align:left; ><%= ouvrier.name + " " + ouvrier.prenom%></p>
-          <p class="card-text" style=text-align:left; >Adresse :<%= "#" %></p>
+          <p class="card-text" style=text-align:left; >Adresse : <%= ouvrier.adresse %></p>
         </div>
         <div class="col-md-6">
           <p class="card-text" style=text-align:right; >Téléphone 1 :+221 <%= ouvrier.telephone %></p>
@@ -23,9 +23,10 @@
       <!-- a href="#" class="btn btn-primary">Go somewhere</a -->
     </div>
     <div class="card-footer text-muted">
-      <span style=margin-right:12px; ><%= link_to 'Show', ouvrier %></span>
-      <span style=margin-right:12px;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) %></span>
-      <span><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+      <span style=>CiiLaaBokK</span>
+      <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin)%></span>
+      <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin) %></span>
+      <span style=margin:auto;><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
     </div>
   </div>
       <hr>

@@ -2,12 +2,8 @@
 
   <%= form_with(model: ouvrier, local: true) do |form| %>
     <% if ouvrier.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(ouvrier.errors.count, "error") %> prohibited this ouvrier from being saved:</h2>
-
-        <ul>
-        <% ouvrier.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <% ouvrier.errors.full_messages.each do |error| %>
+      <%= alert_generator error %>
         <% end %>
         </ul>
       </div>
@@ -15,19 +11,73 @@
 
     <div class="col-md-12">
       <div class="form-group">
-        <%= form.label :name %>
+        <%= form.label :Nom %>
         <%= form.text_field :name, class:"form-control"%>
       </div>
 
       <div class="form-group">
-        <%= form.label :prenom %>
+        <%= form.label :Prénom %>
         <%= form.text_field :prenom, class:"form-control"%>
       </div>
 
       <div class="form-group">
-        <%= form.label :telephone %>
+        <%= form.label :Téléphone %>
         <%= form.text_field :telephone, class:"form-control"%>
       </div>
+      
+      <div class="form-group">
+      <%= form.label :Adresse %>
+      <%= form.text_field :adresse, class:"form-control"%>
+    </div>
+
+      <div class="form-group">
+        <%= form.label :domaine_id %>
+        <%= form.collection_select(:domaine_id, Domaine.all, :id, :name,
+                                  {
+                                    #selected: blog.topic_id,
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :metier_id %>
+        <%= form.collection_select(:metier_id, Metier.all, :id, :name,
+                                  {
+                                    #selected: blog.topic_id,
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :region_id %>
+        <%= form.collection_select(:region_id, Region.all, :id, :name,
+                                  {
+                                    #selected: blog.topic_id,
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :departement_id %>
+        <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+                                  {
+                                    #selected: blog.topic_id,
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
 
       <div class="actions">
         <%= form.submit class:"form-control btn-primary" %>
