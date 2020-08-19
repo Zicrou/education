@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resources :metiers
   resources :domaines
-  resources :ouvriers
+  resources :ouvriers do
+    collection do
+      get :recherche
+    end
+  end
   resources :users do
     member do
       get :definir_profil

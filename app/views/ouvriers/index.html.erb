@@ -1,6 +1,57 @@
 <div class="col-sm-12 blog-main" id="">
 <h2>Recherche Ouvriers Select List Option Region Departement Domaine Metier</h2>
+<span>Select List Domaine</span>
 
+<%#= @msg %>
+<%#= @departement %>
+<%#= @domaine %>
+<%#= @metier %>
+<%= form_for Ouvrier.new, url: recherche_ouvriers_path, method: :get do |form| %>
+  <div class="form-group">
+    <%= form.label :region_id %>
+    <%= form.collection_select(:region_id, Region.all, :id, :name,
+      {
+        include_blank: true
+      },
+      class: "form-control col-md-3"
+    ) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :departement_id %>
+    <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+      {
+        include_blank: true
+      },
+      class: "form-control col-md-3"
+    ) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :domaine_id %>
+    <%= form.collection_select(:domaine_id, Domaine.all, :id, :name,
+      {
+        include_blank: true
+      },
+      class: "form-control col-md-3"
+    ) %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :metier_id %>
+    <%= form.collection_select(:metier_id, Metier.all, :id, :name,
+      {
+        include_blank: true
+      },
+      class: "form-control col-md-3"
+    ) %>
+  </div>
+  
+  <%= form.submit "Rechercher",  class:"form-control col-md-2 btn-primary" %>
+  <%# if defined?(@query) && @query.present?  %>
+    <%#= link_to 'Réinitialiser', ouvriers_path %>
+  <%# end %>
+<% end %>
 <%= link_to 'New Ouvrier', new_ouvrier_path if logged_in?(:site_admin)%>
 <h1 style=color:red;><u>Liste des Ouvriers :</u></h1>  
 <% @ouvriers.each do |ouvrier| %>

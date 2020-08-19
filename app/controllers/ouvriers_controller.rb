@@ -10,6 +10,26 @@ layout 'general-layout'
     @ouvriers = Ouvrier.all
   end
 
+  def recherche
+    @domaine = recherche_params.fetch(:domaine_id)
+    @region = recherche_params.fetch(:region_id)
+    @departement = recherche_params.fetch(:departement_id)
+    @metier = recherche_params.fetch(:metier_id)
+    if !@domaine.empty? and @region.empty? and @departement.empty? and @metier.empty?
+      @ouvriers = Ouvrier.filtrer_by_domaine(@domaine)
+    elsif !@metier.empty? and @domaine.empty? and @region.empty? and @departement.empty?
+      @ouvriers = Ouvrier.filtrer_by_metier(@metier)
+    elsif !@region.empty? and @metier.empty? and @domaine.empty? and @departement.empty?
+      @ouvriers = Ouvrier.filtrer_by_region(@region)
+    elsif !@departement.empty? and @metier.empty? and @domaine.empty? and @region.empty?
+      @ouvriers = Ouvrier.filtrer_by_departement(@departement)
+    end
+    render :index
+    @domaine = ""
+    @region = ""
+    @departement = ""
+    @metier = ""
+  end
   # GET /ouvriers/1
   def show
   end
@@ -55,6 +75,10 @@ layout 'general-layout'
       @ouvrier = Ouvrier.find(params[:id])
     end
 
+    # Custom params
+    def recherche_params
+      params.require(:ouvrier).permit(:domaine_id, :region_id, :departement_id, :metier_id)
+    end
     # Only allow a trusted parameter "white list" through.
     def ouvrier_params
       params.require(:ouvrier).permit(:name, :prenom, :telephone, :adresse, :metier_id, :domaine_id, :region_id, :departement_id)
