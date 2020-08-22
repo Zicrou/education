@@ -63,6 +63,14 @@ layout 'general-layout'
     @departement = ""
     @metier = ""
   end
+
+  def populate_other_list
+    team_id = params[:team_id]
+    @staff = Staff.find_by team_id: team_id
+    respond_to do |format|
+      format.json { render json: @staff }
+    end
+  end
   # GET /ouvriers/1
   def show
   end
