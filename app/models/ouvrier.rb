@@ -6,10 +6,6 @@ class Ouvrier < ApplicationRecord
     
     validates_presence_of :name, :prenom, :telephone, :adresse, :metier_id, :domaine_id, :region_id, :departement_id
 
-    def self.filtrer(intitule,id)
-        Ouvrier.all.where(intitule+_id: id)
-    end
-
     def self.filtrer_by_domaine(id)
         Ouvrier.all.where(domaine_id: id)
     end
@@ -24,6 +20,32 @@ class Ouvrier < ApplicationRecord
 
     def self.filtrer_by_departement(id)
         Ouvrier.all.where(departement_id: id)
+    end
+
+    #by two
+
+    def self.domaine_metier
+        
+    end
+
+    def self.region_departement
+
+    end
+
+    def self.region_domaine
+
+    end
+
+    def self.region_metier
+
+    end
+
+    def self.departement_domaine
+
+    end
+
+    def self.departement_metier
+
     end
 
 end
