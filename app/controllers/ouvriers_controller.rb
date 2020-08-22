@@ -17,12 +17,45 @@ layout 'general-layout'
     @metier = recherche_params.fetch(:metier_id)
     if !@domaine.empty? and @region.empty? and @departement.empty? and @metier.empty?
       @ouvriers = Ouvrier.filtrer_by_domaine(@domaine)
+
     elsif !@metier.empty? and @domaine.empty? and @region.empty? and @departement.empty?
       @ouvriers = Ouvrier.filtrer_by_metier(@metier)
+
     elsif !@region.empty? and @metier.empty? and @domaine.empty? and @departement.empty?
       @ouvriers = Ouvrier.filtrer_by_region(@region)
+
     elsif !@departement.empty? and @metier.empty? and @domaine.empty? and @region.empty?
       @ouvriers = Ouvrier.filtrer_by_departement(@departement)
+
+    elsif @departement.empty? and !@metier.empty? and !@domaine.empty? and @region.empty?
+      @ouvriers = Ouvrier.domaine_metier(@domaine, @metier)
+
+    elsif !@departement.empty? and @metier.empty? and @domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.region_departement(@departement, @region)
+
+    elsif @departement.empty? and @metier.empty? and !@domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.region_domaine(@region, @domaine)
+
+    elsif @departement.empty? and !@metier.empty? and @domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.region_metier(@region, @metier)
+
+    elsif !@departement.empty? and @metier.empty? and !@domaine.empty? and @region.empty?
+      @ouvriers = Ouvrier.departement_domaine(@departement, @domaine)
+    
+    elsif !@departement.empty? and !@metier.empty? and @domaine.empty? and @region.empty?
+      @ouvriers = Ouvrier.departement_metier(@departement, @metier)
+
+    elsif !@departement.empty? and @metier.empty? and !@domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.region_departement_domaine(@region, @departement, @domaine)
+
+    elsif !@departement.empty? and !@metier.empty? and @domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.region_departement_metier(@region, @departement, @domaine)
+
+    elsif !@departement.empty? and !@metier.empty? and @domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.departement_domaine_metier(@departement, @domaine, @metier)
+
+    elsif !@departement.empty? and !@metier.empty? and !@domaine.empty? and !@region.empty?
+      @ouvriers = Ouvrier.region_departement_domaine_metier(@departement, @domaine, @metier)
     end
     render :index
     @domaine = ""
