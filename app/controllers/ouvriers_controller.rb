@@ -8,6 +8,7 @@ layout 'general-layout'
   # GET /ouvriers
   def index
     @ouvriers = Ouvrier.all
+    @page_title = "CiiLaaBokK"
   end
 
   def recherche
