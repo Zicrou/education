@@ -1,0 +1,24 @@
+<div class="col-sm-8 blog-main">
+  <%= form_with(model: metier, local: true) do |form| %>
+    <% if metier.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(metier.errors.count, "error") %> prohibited this metier from being saved:</h2>
+
+        <ul>
+        <% metier.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class:"btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

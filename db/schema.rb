@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_02_150216) do
+ActiveRecord::Schema.define(version: 2020_08_17_050038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,12 @@ ActiveRecord::Schema.define(version: 2020_08_02_150216) do
     t.index ["region_id"], name: "index_departements_on_region_id"
   end
 
+  create_table "domaines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "etablissements", force: :cascade do |t|
     t.string "name"
     t.string "adresse"
@@ -106,6 +112,14 @@ ActiveRecord::Schema.define(version: 2020_08_02_150216) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "mainsdoeuvres", force: :cascade do |t|
+    t.string "nom"
+    t.string "prenom"
+    t.string "telephone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "matieres", force: :cascade do |t|
     t.string "name"
     t.bigint "seri_id"
@@ -116,11 +130,36 @@ ActiveRecord::Schema.define(version: 2020_08_02_150216) do
     t.index ["seri_id"], name: "index_matieres_on_seri_id"
   end
 
+  create_table "metiers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "domaine_id"
+    t.index ["domaine_id"], name: "index_metiers_on_domaine_id"
+  end
+
   create_table "niveaus", force: :cascade do |t|
     t.string "name"
     t.string "abbrege"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ouvriers", force: :cascade do |t|
+    t.string "name"
+    t.string "prenom"
+    t.string "telephone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "domaine_id"
+    t.bigint "metier_id"
+    t.bigint "departement_id"
+    t.string "adresse"
+    t.bigint "region_id"
+    t.index ["departement_id"], name: "index_ouvriers_on_departement_id"
+    t.index ["domaine_id"], name: "index_ouvriers_on_domaine_id"
+    t.index ["metier_id"], name: "index_ouvriers_on_metier_id"
+    t.index ["region_id"], name: "index_ouvriers_on_region_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -213,6 +252,11 @@ ActiveRecord::Schema.define(version: 2020_08_02_150216) do
   add_foreign_key "etablissements", "departements"
   add_foreign_key "matieres", "niveaus"
   add_foreign_key "matieres", "seris"
+  add_foreign_key "metiers", "domaines"
+  add_foreign_key "ouvriers", "departements"
+  add_foreign_key "ouvriers", "domaines"
+  add_foreign_key "ouvriers", "metiers"
+  add_foreign_key "ouvriers", "regions"
   add_foreign_key "regions", "countries"
   add_foreign_key "seris", "niveaus"
   add_foreign_key "technologies", "portfolios"
