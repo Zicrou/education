@@ -116,6 +116,6 @@ layout 'general-layout'
     end
     # Only allow a trusted parameter "white list" through.
     def ouvrier_params
-      params.require(:ouvrier).permit(:name, :prenom, :telephone, :adresse, :metier_id, :domaine_id, :region_id, :departement_id)
+      params.require(:ouvrier).permit(:name, :prenom, :telephone, :telephone2, :adresse, :metier_id, :domaine_id, :region_id, :departement_id)
     end
 end
