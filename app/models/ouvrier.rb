@@ -34,19 +34,19 @@ class Ouvrier < ApplicationRecord
         Ouvrier.all.where(region_id: region, departement_id: departement)
     end
 
-    def self.region_domaine
+    def self.region_domaine(region, domaine)
         Ouvrier.all.where(region_id: region, domaine_id: domaine)
     end
 
-    def self.region_metier
+    def self.region_metier(region, metier)
         Ouvrier.all.where(region_id: region, metier_id: metier)
     end
 
-    def self.departement_domaine
+    def self.departement_domaine(departement, domaine)
         Ouvrier.all.where(departement_id: departement, domaine: domaine_id)
     end
 
-    def self.departement_metier
+    def self.departement_metier(departement, metier)
         Ouvrier.all.where(departement_id: departement, metier_id: metier)
     end
 
@@ -65,7 +65,7 @@ class Ouvrier < ApplicationRecord
     end
 
     #by four
-    def self.region_departement_domaine_metier
+    def self.region_departement_domaine_metier(region, departement, domaine, metier)
         Ouvrier.all.where(region_id: region, departement_id: departement, domaine_id: domaine, metier_id: metier)
     end
 

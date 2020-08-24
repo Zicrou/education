@@ -78,4 +78,6 @@ gem 'redcarpet', '~> 3.5'
 gem 'coderay', '~> 1.1', '>= 1.1.2'
 gem 'sassc'
 
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
 ruby "2.6.3"

@@ -1,5 +1,5 @@
 <div class="col-sm-12 blog-main" id="">
-<h2>Recherche Ouvriers Select List Option Region Departement Domaine Metier</h2>
+<h1>Rechercher des Ouvriers</h1>
 <span>Select List Domaine</span>
 
 <%#= @msg %>
@@ -18,7 +18,7 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :departement_id %>
+    <%= form.label :Zone %>
     <%= form.collection_select(:departement_id, Departement.all, :id, :name,
       {
         include_blank: true
@@ -54,38 +54,56 @@
 <% end %>
 <%= link_to 'New Ouvrier', new_ouvrier_path if logged_in?(:site_admin)%>
 <h1 style=color:red;><u>Liste des Ouvriers :</u></h1>  
-<% @ouvriers.each do |ouvrier| %>
-  <div class="card text-center">  
-    <div class="card-header">
-    <span><%= ouvrier.departement.region.name + "(" + ouvrier.departement.name + ")" %></span>
-    </div>
-    <div class="card-body">
-      <h2 class="card-title"><%= ouvrier.domaine.name + " / " + ouvrier.metier.name%></h2>
-      <div class="row">
-        <div class="col-md-6">
-          <p class="card-text" style=text-align:left; ><%= ouvrier.name + " " + ouvrier.prenom%></p>
-          <p class="card-text" style=text-align:left; >Adresse : <%= ouvrier.adresse %></p>
-        </div>
-        <div class="col-md-6">
-          <p class="card-text" style=text-align:right; >Téléphone 1 :+221 <%= ouvrier.telephone %></p>
-          <p class="card-text" style=text-align:right; >Téléphone 2 :+221 <%= ouvrier.telephone %></p>
-        </div>
+<% if !@ouvriers.nil? %>
+  <% @ouvriers.each do |ouvrier| %>
+    <div class="card text-center">  
+      <div class="card-header">
+      <span><%= ouvrier.departement.region.name + "(" + ouvrier.departement.name + ")" %></span>
       </div>
-      <!-- a href="#" class="btn btn-primary">Go somewhere</a -->
+      <div class="card-body">
+        <h2 class="card-title"><%= ouvrier.domaine.name + " / " + ouvrier.metier.name%></h2>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="card-text" style=text-align:left; ><%= ouvrier.name + " " + ouvrier.prenom%></p>
+            <p class="card-text" style=text-align:left; >Adresse : <%= ouvrier.adresse %></p>
+          </div>
+          <div class="col-md-6">
+            <p class="card-text" style=text-align:right; >Téléphone 1 :+221 <%= ouvrier.telephone %></p>
+            <p class="card-text" style=text-align:right; >Téléphone 2 :+221 <%= ouvrier.telephone %></p>
+          </div>
+        </div>
+        <!-- a href="#" class="btn btn-primary">Go somewhere</a -->
+      </div>
+      <div class="card-footer text-muted">
+        <span style=>CiiLaaBokK</span>
+        <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin)%></span>
+        <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin) %></span>
+        <span style=margin:auto;><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
+      </div>
     </div>
-    <div class="card-footer text-muted">
-      <span style=>CiiLaaBokK</span>
-      <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin)%></span>
-      <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin) %></span>
-      <span style=margin:auto;><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
+        <hr>
+      <% end %>
+<% elsif %>
+  <div class="card text-center">  
+      <div class="card-header">
+        <span>Pas d'ouvrier</span>
+      </div>
+      <div class="card-body">
+    <h2 class="card-title">Aucun ouvrier avec ce profil</h2>
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6"></div>
     </div>
+    </div>
+      <div class="card-footer text-muted">
+        <span style=>CiiLaaBokK</span>
+      </div>
   </div>
-      <hr>
-    <% end %>
+<% end %>
 
 
-<br>
+  <br>
 
 
 
-</div>
+  </div>

@@ -30,8 +30,8 @@ layout 'general-layout'
     elsif @departement.empty? and !@metier.empty? and !@domaine.empty? and @region.empty?
       @ouvriers = Ouvrier.domaine_metier(@domaine, @metier)
 
-    elsif !@departement.empty? and @metier.empty? and @domaine.empty? and !@region.empty?
-      @ouvriers = Ouvrier.region_departement(@departement, @region)
+    elsif !@region.empty? and !@departement.empty? and @metier.empty? and @domaine.empty?
+      @ouvriers = Ouvrier.region_departement(@region, @departement)
 
     elsif @departement.empty? and @metier.empty? and !@domaine.empty? and !@region.empty?
       @ouvriers = Ouvrier.region_domaine(@region, @domaine)
@@ -49,19 +49,27 @@ layout 'general-layout'
       @ouvriers = Ouvrier.region_departement_domaine(@region, @departement, @domaine)
 
     elsif !@departement.empty? and !@metier.empty? and @domaine.empty? and !@region.empty?
-      @ouvriers = Ouvrier.region_departement_metier(@region, @departement, @domaine)
+      @ouvriers = Ouvrier.region_departement_metier(@region, @departement, @metier)
 
     elsif !@departement.empty? and !@metier.empty? and @domaine.empty? and !@region.empty?
       @ouvriers = Ouvrier.departement_domaine_metier(@departement, @domaine, @metier)
 
     elsif !@departement.empty? and !@metier.empty? and !@domaine.empty? and !@region.empty?
-      @ouvriers = Ouvrier.region_departement_domaine_metier(@departement, @domaine, @metier)
+      @ouvriers = Ouvrier.region_departement_domaine_metier(@region, @departement, @domaine, @metier)
     end
     render :index
     @domaine = ""
     @region = ""
     @departement = ""
     @metier = ""
+  end
+
+  def populate_other_list
+    team_id = params[:team_id]
+    @staff = Staff.find_by team_id: team_id
+    respond_to do |format|
+      format.json { render json: @staff }
+    end
   end
   # GET /ouvriers/1
   def show
