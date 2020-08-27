@@ -11,6 +11,18 @@
         </ul>
       </div>
     <% end %>
+    
+      <div class="form-group">
+      <%= form.label :domaine_id %>
+      <%= form.collection_select(:domaine_id, Domaine.order(:name), :id, :name,
+                                {
+                                  #selected: blog.topic_id,
+                                  include_blank: true
+                                },
+                                class: 'form-control'
+                              ) 
+    %>
+    </div>  
 
     <div class="form-group">
       <%= form.label :name %>
