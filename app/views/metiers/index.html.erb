@@ -15,6 +15,7 @@
       <% @metiers.each do |metier| %>
         <tr>
           <td><%= metier.name %></td>
+          <td><%= metier.domaine.name %></td>
           <td><%= link_to 'Show', metier %></td>
           <td><%= link_to 'Edit', edit_metier_path(metier) %></td>
           <td><%= link_to 'Destroy', metier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
