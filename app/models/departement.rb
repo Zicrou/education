@@ -3,4 +3,5 @@ class Departement < ApplicationRecord
   has_many :ouvriers
   
 
+  validates_presence_of :name, :region_id
 end

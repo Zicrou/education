@@ -55,6 +55,6 @@ class MetiersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def metier_params
-      params.require(:metier).permit(:name)
+      params.require(:metier).permit(:name, :domaine_id)
     end
 end
