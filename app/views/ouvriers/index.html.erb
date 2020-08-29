@@ -8,7 +8,7 @@
 <%= form_for Ouvrier.new, url: recherche_ouvriers_path, method: :get do |form| %>
   <div class="form-group">
     <%= form.label :region_id %>
-    <%= form.collection_select(:region_id, Region.all, :id, :name,
+    <%= form.collection_select(:region_id, Region.order(:name), :id, :name,
       {
         include_blank: true
       },
@@ -18,7 +18,7 @@
 
   <div class="form-group">
     <%= form.label :Zone %>
-    <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+    <%= form.collection_select(:departement_id, Departement.order(:name), :id, :name,
       {
         include_blank: true
       },
@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <%= form.label :domaine_id %>
-    <%= form.collection_select(:domaine_id, Domaine.all, :id, :name,
+    <%= form.collection_select(:domaine_id, Domaine.order(:name), :id, :name,
       {
         include_blank: true
       },
@@ -38,7 +38,7 @@
   
   <div class="form-group">
     <%= form.label :metier_id %>
-    <%= form.collection_select(:metier_id, Metier.all, :id, :name,
+    <%= form.collection_select(:metier_id, Metier.order(:name), :id, :name,
       {
         include_blank: true
       },
