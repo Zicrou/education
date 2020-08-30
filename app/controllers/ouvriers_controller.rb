@@ -10,6 +10,15 @@ layout 'general-layout'
     @ouvriers = Ouvrier.all
     @page_title = "CiiLaaBokK"
   end
+  
+  def filtered
+    region = params[:region]
+    pry
+    @departement = Region.find_by region_id: region
+    respond_to do |format|
+    format.json { render json: @departement }
+  end
+  end
 
   def recherche
     @domaine = recherche_params.fetch(:domaine_id)

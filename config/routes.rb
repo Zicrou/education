@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     collection do
       get :recherche
     end
+    collection do
+      get :filtered
+    end
   end
   resources :users do
     member do
