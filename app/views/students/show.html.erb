@@ -1,0 +1,36 @@
+<div class="col-sm-8 blog-main">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Nom:</strong>
+    <%= @student.nom %>
+  </p>
+
+  <p>
+    <strong>Prenom:</strong>
+    <%= @student.prenom %>
+  </p>
+
+  <p>
+    <strong>Cni:</strong>
+    <%= @student.cni %>
+  </p>
+
+  <p>
+    <strong>Telephone:</strong>
+    <%= @student.telephone %>
+  </p>
+
+  <p>
+    <strong>Numtable:</strong>
+    <%= @student.numtable %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @student.email %>
+  </p>
+
+  <%= link_to 'Edit', edit_student_path(@student) %> |
+  <%= link_to 'Back', students_path %>
+</div>

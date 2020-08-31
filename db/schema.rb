@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_041013) do
+ActiveRecord::Schema.define(version: 2020_08_31_105336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(version: 2020_08_24_041013) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "eleves", force: :cascade do |t|
+    t.string "nom"
+    t.string "prenom"
+    t.string "cni"
+    t.string "telephone"
+    t.string "numtable"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "etablissements", force: :cascade do |t|
     t.string "name"
     t.string "adresse"
@@ -183,10 +194,12 @@ ActiveRecord::Schema.define(version: 2020_08_24_041013) do
     t.string "adresse"
     t.bigint "region_id"
     t.string "telephone2"
+    t.bigint "user_id"
     t.index ["departement_id"], name: "index_ouvriers_on_departement_id"
     t.index ["domaine_id"], name: "index_ouvriers_on_domaine_id"
     t.index ["metier_id"], name: "index_ouvriers_on_metier_id"
     t.index ["region_id"], name: "index_ouvriers_on_region_id"
+    t.index ["user_id"], name: "index_ouvriers_on_user_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -236,6 +249,17 @@ ActiveRecord::Schema.define(version: 2020_08_24_041013) do
     t.text "badge"
   end
 
+  create_table "students", force: :cascade do |t|
+    t.string "nom"
+    t.string "prenom"
+    t.string "cni"
+    t.string "telephone"
+    t.string "numtable"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "technologies", force: :cascade do |t|
     t.string "name"
     t.bigint "portfolio_id"
@@ -261,8 +285,10 @@ ActiveRecord::Schema.define(version: 2020_08_24_041013) do
     t.datetime "updated_at", null: false
     t.string "roles"
     t.bigint "profil_id"
+    t.bigint "region_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profil_id"], name: "index_users_on_profil_id"
+    t.index ["region_id"], name: "index_users_on_region_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -284,8 +310,10 @@ ActiveRecord::Schema.define(version: 2020_08_24_041013) do
   add_foreign_key "ouvriers", "domaines"
   add_foreign_key "ouvriers", "metiers"
   add_foreign_key "ouvriers", "regions"
+  add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
   add_foreign_key "seris", "niveaus"
   add_foreign_key "technologies", "portfolios"
   add_foreign_key "users", "profils"
+  add_foreign_key "users", "regions"
 end
