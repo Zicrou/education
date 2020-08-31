@@ -1,5 +1,7 @@
 class Centre < ApplicationRecord
     has_many :juris
 
-    validates_presence_of :numcentre
+    belongs_to :departement
+    
+    validates_presence_of :numcentre, :departement_id
 end

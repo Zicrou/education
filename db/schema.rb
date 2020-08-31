@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_112856) do
+ActiveRecord::Schema.define(version: 2020_08_31_131124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_112856) do
     t.string "numcentre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "departement_id"
+    t.index ["departement_id"], name: "index_centres_on_departement_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -272,6 +274,8 @@ ActiveRecord::Schema.define(version: 2020_08_31_112856) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "etablissement_id"
+    t.index ["etablissement_id"], name: "index_students_on_etablissement_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -313,6 +317,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_112856) do
   add_foreign_key "blogs", "matieres"
   add_foreign_key "blogs", "niveaus"
   add_foreign_key "blogs", "seris"
+  add_foreign_key "centres", "departements"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
@@ -328,6 +333,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_112856) do
   add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
   add_foreign_key "seris", "niveaus"
+  add_foreign_key "students", "etablissements"
   add_foreign_key "technologies", "portfolios"
   add_foreign_key "users", "profils"
   add_foreign_key "users", "regions"

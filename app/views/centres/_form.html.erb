@@ -17,6 +17,17 @@
       <%= form.text_field :numcentre, class:"form-control" %>
     </div>
 
+    <div class="form-group">
+        <%= form.label :departement_id %>
+        <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+    </div>
+
     <div class="actions">
       <%= form.submit class:'form-control btn btn-primary'%>
     </div>

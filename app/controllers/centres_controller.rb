@@ -55,6 +55,6 @@ class CentresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def centre_params
-      params.require(:centre).permit(:numcentre)
+      params.require(:centre).permit(:numcentre, :departement_id)
     end
 end

@@ -43,6 +43,17 @@
         <%= form.text_field :email, class: 'form-control'%>
       </div>
 
+      <div class="form-group">
+        <%= form.label :etablissement_id %>
+        <%= form.collection_select(:etablissement_id, Etablissement.all, :id, :name,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
       <div class="actions">
         <%= form.submit class: 'form-control btn btn-primary', value:'Valider' %>
       </div>
