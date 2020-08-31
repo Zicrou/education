@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :juris
   resources :students
   resources :metiers
   resources :domaines
