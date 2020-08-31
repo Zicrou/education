@@ -55,6 +55,6 @@ class JurisController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def juri_params
-      params.require(:juri).permit(:numjuri)
+      params.require(:juri).permit(:numjuri, :centre_id)
     end
 end
