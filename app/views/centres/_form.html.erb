@@ -1,0 +1,24 @@
+<div class="col-sm-8 blog-main">
+  <%= form_with(model: centre, local: true) do |form| %>
+    <% if centre.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(centre.errors.count, "error") %> prohibited this centre from being saved:</h2>
+
+        <ul>
+        <% centre.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :numcentre %>
+      <%= form.text_field :numcentre, class:"form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class:'form-control btn btn-primary'%>
+    </div>
+  <% end %>
+</div>
