@@ -1,10 +1,6 @@
 <div class="col-sm-12 blog-main" id="">
 <h1>Rechercher des Ouvriers</h1>
 
-<%#= @msg %>
-<%#= @departement %>
-<%#= @domaine %>
-<%#= @metier %>
 <%= form_for Ouvrier.new, url: recherche_ouvriers_path, method: :get do |form| %>
   <div class="form-group">
     <%= form.label :region_id %>

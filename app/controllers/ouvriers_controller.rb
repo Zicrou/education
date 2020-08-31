@@ -9,15 +9,15 @@ layout 'general-layout'
   def index
     @ouvriers = Ouvrier.all
     @page_title = "CiiLaaBokK"
+    @region = params[:region]
+    puts @region
   end
   
   def filtered
-    region = params[:region]
+    @region = params[:region]
+    @departement = Departement.find_by region_id: @region
     pry
-    @departement = Region.find_by region_id: region
-    respond_to do |format|
-    format.json { render json: @departement }
-  end
+  
   end
 
   def recherche
