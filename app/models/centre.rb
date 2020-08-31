@@ -1,5 +1,6 @@
 class Centre < ApplicationRecord
     has_many :juris
+    has_many :students
 
     belongs_to :departement
     

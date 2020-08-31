@@ -36,6 +36,21 @@
     <%= @student.etablissement.name %>
   </p>
 
+  <p>
+    <strong>Niveau:</strong>
+    <%= @student.niveau.name %>
+  </p>
+
+  <p>
+    <strong>Serie:</strong>
+    <%= @student.seri.name %>
+  </p>
+
+  <p>
+    <strong>Etablissement:</strong>
+    <%= @student.centre.numcentre %>
+  </p>
+
   <%= link_to 'Edit', edit_student_path(@student) %> |
   <%= link_to 'Back', students_path %>
 </div>

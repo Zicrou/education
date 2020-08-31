@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_131124) do
+ActiveRecord::Schema.define(version: 2020_08_31_133331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -275,7 +275,15 @@ ActiveRecord::Schema.define(version: 2020_08_31_131124) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "etablissement_id"
+    t.bigint "niveau_id"
+    t.bigint "seri_id"
+    t.bigint "juri_id"
+    t.bigint "centre_id"
+    t.index ["centre_id"], name: "index_students_on_centre_id"
     t.index ["etablissement_id"], name: "index_students_on_etablissement_id"
+    t.index ["juri_id"], name: "index_students_on_juri_id"
+    t.index ["niveau_id"], name: "index_students_on_niveau_id"
+    t.index ["seri_id"], name: "index_students_on_seri_id"
   end
 
   create_table "technologies", force: :cascade do |t|
@@ -333,7 +341,11 @@ ActiveRecord::Schema.define(version: 2020_08_31_131124) do
   add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
   add_foreign_key "seris", "niveaus"
+  add_foreign_key "students", "centres"
   add_foreign_key "students", "etablissements"
+  add_foreign_key "students", "juris"
+  add_foreign_key "students", "niveaus"
+  add_foreign_key "students", "seris"
   add_foreign_key "technologies", "portfolios"
   add_foreign_key "users", "profils"
   add_foreign_key "users", "regions"
