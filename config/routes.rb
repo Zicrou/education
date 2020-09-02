@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :centres
+  resources :juris
+  resources :students
   resources :metiers
   resources :domaines
   resources :ouvriers do

@@ -1,0 +1,2 @@
+module JurisHelper
+end

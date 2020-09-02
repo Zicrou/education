@@ -1,0 +1,31 @@
+<div class="col-sm-8 blog-main">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Juris</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="padding:0.2em">Numjuri</th>
+        <th>Centre</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @juris.each do |juri| %>
+        <tr>
+          <td style="padding:0.2em"><%= juri.numjuri %></td>
+          <td><%= juri.centre.numcentre %></td>
+          <td><%= link_to 'Show', juri %></td>
+          <td><%= link_to 'Edit', edit_juri_path(juri) %></td>
+          <td><%= link_to 'Destroy', juri, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Juri', new_juri_path %>
+</div>
