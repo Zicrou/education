@@ -16,6 +16,7 @@
         <th style="padding-right:1em;" >Niveau</th>
         <th style="padding-right:1em;" >Serie</th>
         <th style="padding-right:1em;" >Centre·Examen</th>
+        <th style="padding-right:1em;" >Maths</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -32,6 +33,8 @@
           <td style="padding-right:1.3em;"><%= student.etablissement.name %></td>
           <td style="padding-right:1.3em;"><%= student.niveau.name %></td>
           <td style="padding-right:1.3em;"><%= student.seri.name %></td>
+          <td style="padding-right:1.3em;"><%= student.centre.numcentre %></td>
+          <td style="padding-right:1.3em;">20</td>
           <td style="padding-right:1.3em;"><%= student.centre.numcentre %></td>
           <td style="padding-right:1.3em;"><%= link_to 'Show', student %></td>
           <td style="padding-right:1.3em;"><%= link_to 'Edit', edit_student_path(student) %></td>
