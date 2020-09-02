@@ -3,6 +3,7 @@ class Region < ApplicationRecord
   
   has_many :regions, dependent: :destroy
   has_many :ouvrier, dependent: :destroy
+  #has_many :students, dependent: :destroy
 
   validates_presence_of :name, :country_id 
 

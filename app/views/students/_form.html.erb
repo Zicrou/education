@@ -1,0 +1,106 @@
+<div class="col-sm-8 blog-main">
+  <%= form_with(model: student, local: true) do |form| %>
+    <% if student.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+        <ul>
+        <% student.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :nom %>
+        <%= form.text_field :nom, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :prenom %>
+        <%= form.text_field :prenom, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :cni %>
+        <%= form.text_field :cni, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :telephone %>
+        <%= form.text_field :telephone, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :numtable %>
+        <%= form.text_field :numtable, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :email %>
+        <%= form.text_field :email, class: 'form-control'%>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :etablissement_id %>
+        <%= form.collection_select(:etablissement_id, Etablissement.all, :id, :name,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :niveau_id %>
+        <%= form.collection_select(:niveau_id, Niveau.all, :id, :name,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :seri_id %>
+        <%= form.collection_select(:seri_id, Seri.all, :id, :name,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+      
+      <div class="form-group">
+        <%= form.label :centre_id %>
+        <%= form.collection_select(:centre_id, Centre.all, :id, :numcentre,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :juri_id %>
+        <%= form.collection_select(:juri_id, Juri.all, :id, :numjuri,
+                                  {
+                                    include_blank: true
+                                  },
+                                  class: 'form-control'
+                                ) 
+        %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: 'form-control btn btn-primary', value:'Valider' %>
+      </div>
+    <% end %>
+  </div>
+</div>
