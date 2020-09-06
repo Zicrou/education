@@ -14,3 +14,18 @@
 //      })
 //    })
 //})
+function getID() {
+    let departement = $('.region').data('departements')
+    let regionid = document.getElementById("ouvrier_region_id").value
+    alert(departement.value)
+    //for(let i = 0; i < regionid.length; i++){
+
+    //}
+    //$.ajax({
+    //    type: "GET",
+    //    url: "ouvriers/filtered",
+    //    data: regionid,
+    //    //contentType: "application/json; charset=utf-8",
+    //    //dataType: "json"
+    //});
+  }

@@ -9,15 +9,17 @@ layout 'general-layout'
   def index
     @ouvriers = Ouvrier.all
     @page_title = "CiiLaaBokK"
-    @region = params[:region]
-    puts @region
+    @departements = Departement.all
+    #@regionID = params[:regionid]
+    #pry
   end
   
   def filtered
-    @region = params[:region]
-    @departement = Departement.find_by region_id: @region
+    @region = params[:regionid]
+    puts @region
+    #@departement = Departement.find_by region_id: @region
+    #render :index
     pry
-  
   end
 
   def recherche

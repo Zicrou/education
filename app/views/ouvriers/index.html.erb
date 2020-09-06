@@ -8,11 +8,12 @@
       {
         include_blank: true
       },
-      class: "form-control col-md-3"
+      :onchange => 'getID()'
     ) %>
   </div>
 
-  <div class="form-group">
+
+  <div class="form-group region" data-departements="<%= @departements %>" >
     <%= form.label :Zone %>
     <%= form.collection_select(:departement_id, Departement.order(:name), :id, :name,
       {

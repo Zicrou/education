@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get :recherche
     end
     collection do
-      post :filtered
+      get :filtered
     end
   end
   resources :users do
