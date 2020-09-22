@@ -34,11 +34,12 @@
       {
         include_blank: true
       },
+      onchange: 'getIDDomaine()',
       class: "form-control col-md-3"
     ) %>
   </div>
   
-  <div class="form-group">
+  <div class="form-group metiers" data-metiers="<%= @metiers.to_json %>">
     <%= form.label :metier_id %>
     <%= form.collection_select(:metier_id, Metier.order(:name), :id, :name,
       {
@@ -55,7 +56,23 @@
 <% end %>
 <%= link_to 'New Ouvrier', new_ouvrier_path if logged_in?(:site_admin)%>
 <h1 style=color:red;><u>Liste des Ouvriers :</u></h1>  
-<% if !@ouvriers.nil? %>
+<% if @ouvriers.nil? or @ouvriers.empty? %>
+  <div class="card text-center">  
+    <div class="card-header">
+      <span>Pas d'ouvrier</span>
+    </div>
+    <div class="card-body">
+      <h1 class="card-title">Aucun ouvrier avec ce profil</h1>
+      <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6"></div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <span style=>CiiLaaBokK</span>
+    </div>
+  </div>
+<% else %>
   <% @ouvriers.each do |ouvrier| %>
     <div class="card text-center">  
       <div class="card-header">
@@ -83,23 +100,7 @@
       </div>
     </div>
         <hr>
-      <% end %>
-<% elsif %>
-  <div class="card text-center">  
-      <div class="card-header">
-        <span>Pas d'ouvrier</span>
-      </div>
-      <div class="card-body">
-    <h1 class="card-title">Aucun ouvrier avec ce profil</h1>
-    <div class="row">
-      <div class="col-md-6"></div>
-      <div class="col-md-6"></div>
-    </div>
-    </div>
-      <div class="card-footer text-muted">
-        <span style=>CiiLaaBokK</span>
-      </div>
-  </div>
+  <% end %>
 <% end %>
 
 

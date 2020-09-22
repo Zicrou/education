@@ -10,26 +10,40 @@ layout 'general-layout'
     @ouvriers = Ouvrier.all
     @page_title = "CiiLaaBokK"
     @departements = Departement.all
-    #@regionID = params[:regionid]
-    #pry
+    @metiers = Metier.all
   end
   
   def filtered
-    @region = params[:region_id]
-    @departements = Departement.where(region_id:@region)
-    #puts @departements
-    #render :index
-    respond_to do |format|
-      format.json { render json: @departements }
+    @region = params[:regionId]
+    @domaine = params[:domaineId]
+    if !@region.nil?
+      @departements = Departement.where(region_id:@region)
+      puts "region= "+ @region
+      respond_to do |format|
+        format.json { render json: @departements }
+      end
+
+    elsif !@domaine.nil?
+      @metiers = Metier.where(domaine_id:@domaine)
+      puts "domaine= "+ @domaine
+      respond_to do |format|
+        format.json { render json: @metiers }
+      end
     end
+    #render :index
+    
   end
 
   def recherche
     @domaine = recherche_params.fetch(:domaine_id)
     @region = recherche_params.fetch(:region_id)
     @departement = recherche_params.fetch(:departement_id)
+    #puts @departement
     @metier = recherche_params.fetch(:metier_id)
-    if !@domaine.empty? and @region.empty? and @departement.empty? and @metier.empty?
+    if @domaine.empty? and @region.empty? and @departement.empty? and @metier.empty?
+      @ouvriers = Ouvrier.all
+
+    elsif !@domaine.empty? and @region.empty? and @departement.empty? and @metier.empty?
       @ouvriers = Ouvrier.filtrer_by_domaine(@domaine)
 
     elsif !@metier.empty? and @domaine.empty? and @region.empty? and @departement.empty?
@@ -71,11 +85,13 @@ layout 'general-layout'
     elsif !@departement.empty? and !@metier.empty? and !@domaine.empty? and !@region.empty?
       @ouvriers = Ouvrier.region_departement_domaine_metier(@region, @departement, @domaine, @metier)
     end
-    render :index
+    @departements = Departement.all
+    @metiers = Metier.all
     @domaine = ""
     @region = ""
     @departement = ""
     @metier = ""
+    render :index
   end
 
   # GET /ouvriers/1
