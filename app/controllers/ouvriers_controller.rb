@@ -15,11 +15,13 @@ layout 'general-layout'
   end
   
   def filtered
-    @region = params[:regionid]
-    puts @region
-    #@departement = Departement.find_by region_id: @region
+    @region = params[:region_id]
+    @departements = Departement.where(region_id:@region)
+    #puts @departements
     #render :index
-    pry
+    respond_to do |format|
+      format.json { render json: @departements }
+    end
   end
 
   def recherche

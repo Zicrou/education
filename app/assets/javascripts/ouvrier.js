@@ -14,18 +14,30 @@
 //      })
 //    })
 //})
+departement = undefined
 function getID() {
-    let departement = $('.region').data('departements')
-    let regionid = document.getElementById("ouvrier_region_id").value
-    alert(departement.value)
-    //for(let i = 0; i < regionid.length; i++){
-
-    //}
-    //$.ajax({
-    //    type: "GET",
-    //    url: "ouvriers/filtered",
-    //    data: regionid,
-    //    //contentType: "application/json; charset=utf-8",
-    //    //dataType: "json"
-    //});
+    var regionid = document.getElementById("ouvrier_region_id").value
+    let regionID = regionid
+    if (regionID == "") {
+        $("#ouvrier_departement_id").children().remove();
+        var departements = $('.departements').data('departements')
+        var listdeparetement = [];
+        console.log(departements.id)
+        
+    }else{
+        $.ajax({
+            url: "ouvriers/filtered",
+            type: "GET",
+            data: {region_id: regionID},
+            success: function(data) {
+                $("#ouvrier_departement_id").children().remove();
+                var listitems = [];
+    
+                $.each(data,function(key, value) {
+                    listitems += '<option value="' + value.id+ '">' + value.name + '</option>';
+                });
+                $("#ouvrier_departement_id").append(listitems).prepend("<option value='' selected='selected'></option>");
+            }
+        });
+    }
   }
