@@ -33,12 +33,15 @@ layout 'general-layout'
 	end
 
 	def definir_profil
-		if @user.role == :user
-			@user.set_to_profil('professeur')
-		elsif @user.role == :professeur
-			@user.set_to_profil('user')
-		end
-		redirect_to users_url, notice: 'Le statut du Prof a été modifié avec succés.'
+		puts @user.id
+		puts @user.role
+		@user.set_to_profil(:role)
+		#if @user.role == :user
+		#	@user.set_to_profil('professeur')
+		#elsif @user.role == :professeur
+		#	@user.set_to_profil('user')
+		#end
+		redirect_to users_url, notice: 'Le profil a été modifié avec succés.'
 	end
 
 	private
