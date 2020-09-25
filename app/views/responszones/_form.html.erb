@@ -1,0 +1,106 @@
+<div class="col-sm-8 blog-main">
+  <%= form_with(model: responszone, local: true) do |form| %>
+    <% if responszone.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(responszone.errors.count, "error") %> prohibited this responszone from being saved:</h2>
+
+        <ul>
+        <% responszone.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :photocni %>
+      <%= form.file_field :photocni %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :photo %>
+      <%= form.file_field :photo %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.collection_select(:name, User.all, :name, :name,
+          {
+            include_blank: true
+          },
+          class: 'form-control'
+        ) 
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.collection_select(:email, User.all, :email, :email,
+          {
+            include_blank: true
+          },
+          class: 'form-control'
+        ) 
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :telephone %>
+      <%= form.text_field :telephone, class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :cni %>
+      <%= form.text_field :cni, class:"form-control"%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :user_id %>
+      <%= form.collection_select(:user_id, User.all, :id, :name,
+            {
+              include_blank: true
+            },
+            class: 'form-control'
+          ) 
+        %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :country_id %>
+      <%= form.collection_select(:country_id, Country.all, :id, :name,
+            {
+              include_blank: true
+            },
+            class: 'form-control'
+          ) 
+        %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :region_id %>
+      <%= form.collection_select(:region_id, Region.all, :id, :name,
+            {
+              include_blank: true
+            },
+            onchange: 'getIDRegionResponzone()',
+            class: 'form-control'
+          ) 
+        %>
+    </div>
+
+    <div class="form-group departements" data-departements="<%= @departements.to_json %>">
+      <%= form.label :departement_id %>
+      <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+            {
+              include_blank: true
+            },
+            class: 'form-control'
+          ) 
+        %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class:"btn btn-primary"%>
+    </div>
+  <% end %>
+</div>

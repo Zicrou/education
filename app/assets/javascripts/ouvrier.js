@@ -75,3 +75,33 @@ function getIDDomaine() {
         });
     }
 }
+
+
+function getIDRegionResponzone() {
+    var regionid = document.getElementById("responszone_region_id").value
+    let regionID = regionid
+    if (regionID == "") {
+        $("#responszone_departement_id").children().remove();
+        var departements = $('.departements').data('departements')
+        var listdeparetement = [];
+        $.each(departements,function(key, value) {
+            listdeparetement += '<option value="' + value.id+ '">' + value.name + '</option>';
+        });
+        $("#responszone_departement_id").append(listdeparetement).prepend("<option value='' selected='selected'></option>");
+        
+    }else{
+        $.ajax({
+            url: "/responszones/filtered",
+            type: "GET",
+            data: {regionId: regionID},
+            success: function(data) {
+                $("#responszone_departement_id").children().remove();
+                var listdeparetement = [];
+                $.each(data,function(key, value) {
+                    listdeparetement += '<option value="' + value.id+ '">' + value.name + '</option>';
+                });
+                $("#responszone_departement_id").append(listdeparetement).prepend("<option value='' selected='selected'></option>");
+            }
+        });
+    }
+}

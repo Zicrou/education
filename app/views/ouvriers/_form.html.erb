@@ -8,7 +8,23 @@
       </div>
     <% end %>
 
+    <div class="form-group">
+      <%= form.label :photocni %>
+      <%= form.file_field :photocni %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :photo %>
+      <%= form.file_field :photo %>
+    </div>
+
     <div class="col-md-12">
+      <div class="form-group">
+        <%= form.label :numerocni %>
+        <%= form.text_field :numerocni, class:"form-control"%>
+      </div>
+
+      <div class="col-md-12">
       <div class="form-group">
         <%= form.label :Nom %>
         <%= form.text_field :name, class:"form-control"%>
@@ -37,44 +53,42 @@
       <div class="form-group">
         <%= form.label :domaine_id %>
         <%= form.collection_select(:domaine_id, Domaine.all, :id, :name,
-                                  {
-                                    #selected: blog.topic_id,
-                                    include_blank: true
-                                  },
-                                  class: 'form-control'
-                                ) 
+          {
+            include_blank: true
+          },
+            onchange: 'getIDDomaine()',
+            class: 'form-control'
+        ) 
         %>
       </div>
 
-      <div class="form-group">
+      <div class="form-group metiers" data-metiers="<%= @metiers.to_json %>">
         <%= form.label :metier_id %>
         <%= form.collection_select(:metier_id, Metier.all, :id, :name,
-                                  {
-                                    #selected: blog.topic_id,
-                                    include_blank: true
-                                  },
-                                  class: 'form-control'
-                                ) 
+            {
+              include_blank: true
+            },
+            class: 'form-control'
+          ) 
         %>
       </div>
 
       <div class="form-group">
         <%= form.label :region_id %>
         <%= form.collection_select(:region_id, Region.all, :id, :name,
-                                  {
-                                    #selected: blog.topic_id,
-                                    include_blank: true
-                                  },
-                                  class: 'form-control'
-                                ) 
+            {
+              include_blank: true
+            },
+            onchange: 'getIDRegion()',
+            class: 'form-control'
+          ) 
         %>
       </div>
 
-      <div class="form-group">
+      <div class="form-group departements" data-departements="<%= @departements.to_json %>"">
         <%= form.label :Zone %>
         <%= form.collection_select(:departement_id, Departement.all, :id, :name,
                                   {
-                                    #selected: blog.topic_id,
                                     include_blank: true
                                   },
                                   class: 'form-control'

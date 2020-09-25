@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :responszones do
+    collection do
+      get :filtered
+    end
+  end
   resources :centres
   resources :juris
   resources :students

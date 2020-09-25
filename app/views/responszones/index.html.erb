@@ -1,0 +1,65 @@
+<div class="col-sm-8 blog-main">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Responszones</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+          <td>||</td>
+          <th>Email</th>
+          <td>||</td>
+          <th>Telephone</th>
+        <th>||</th>
+        <th>Cni</th>
+          <td>||</td>
+          <th>Photocni</th>
+        <th>||</th>
+        <th>Photo</th>
+          <td>||</td>
+          <th>User</th>
+          <td>||</td>
+          <th>Country</th>
+          <td>||</td>
+          <th>Region</th>
+          <td>||</td>
+          <th>Departement</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @responszones.each do |responszone| %>
+        <tr>
+          <td><%= responszone.name %></td>
+          <td>||</td>
+          <td><%= responszone.email %></td>
+          <td>||</td>
+          <td><%= responszone.telephone %></td>
+          <td>||</td>
+          <td><%= responszone.cni %></td>
+          <td>||</td>
+          <td><%= image_tag responszone.photocni.to_s, width: '100%'%></td>
+          <td>||</td>
+          <td><%= image_tag responszone.photo.to_s, width:'100%' %></td>
+          <td>||</td>
+          <td><%= responszone.user.name %></td>
+          <td>||</td>
+          <td><%= responszone.country.name %></td>
+          <td>||</td>
+          <td><%= responszone.region.name %></td>
+          <td>||</td>
+          <td><%= responszone.departement.name %></td>
+          <td><%= link_to 'Show', responszone %></td>
+          <td><%= link_to 'Edit', edit_responszone_path(responszone) %></td>
+          <td><%= link_to 'Destroy', responszone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Responszone', new_responszone_path %>
+</div>

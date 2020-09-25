@@ -1,7 +1,6 @@
 class OuvriersController < ApplicationController
   before_action :set_ouvrier, only: [:show, :edit, :update, :destroy]
-  access all: [:index], user: {except: [:destroy, :create, :edit, :update, :new, :show]}, site_admin: :all
-
+  access all: [:index], [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show], trusted: {except: [:destroy]}, respons_zone: [:new, :create, :edit, :update, :show], respons_zone: [:destroy]
   #access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new], censeur: [:index, :show,:create, :edit, :update, :new], principale: [:index, :show,:create, :edit, :update, :new], proviseur: [:index, :show,:create, :edit, :update, :new]
 
 layout 'general-layout'
@@ -101,10 +100,14 @@ layout 'general-layout'
   # GET /ouvriers/new
   def new
     @ouvrier = Ouvrier.new
+    @departements = Departement.all
+    @metiers = Metier.all
   end
 
   # GET /ouvriers/1/edit
   def edit
+    @departements = Departement.all
+    @metiers = Metier.all
   end
 
   # POST /ouvriers
@@ -145,6 +148,6 @@ layout 'general-layout'
     end
     # Only allow a trusted parameter "white list" through.
     def ouvrier_params
-      params.require(:ouvrier).permit(:name, :prenom, :telephone, :telephone2, :adresse, :metier_id, :domaine_id, :region_id, :departement_id)
+      params.require(:ouvrier).permit(:name, :prenom, :telephone, :telephone2, :adresse, :metier_id, :domaine_id, :region_id, :departement_id, :photocni, :photo, :numerocni)
     end
 end

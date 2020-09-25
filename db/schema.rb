@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_133331) do
+ActiveRecord::Schema.define(version: 2020_09_25_110924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,18 @@ ActiveRecord::Schema.define(version: 2020_08_31_133331) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "epreuves", force: :cascade do |t|
+    t.string "sujet"
+    t.bigint "matiere_id"
+    t.bigint "seri_id"
+    t.bigint "niveau_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["matiere_id"], name: "index_epreuves_on_matiere_id"
+    t.index ["niveau_id"], name: "index_epreuves_on_niveau_id"
+    t.index ["seri_id"], name: "index_epreuves_on_seri_id"
+  end
+
   create_table "etablissements", force: :cascade do |t|
     t.string "name"
     t.string "adresse"
@@ -211,6 +223,10 @@ ActiveRecord::Schema.define(version: 2020_08_31_133331) do
     t.bigint "region_id"
     t.string "telephone2"
     t.bigint "user_id"
+    t.string "cni"
+    t.string "photo"
+    t.string "photocni"
+    t.string "numerocni"
     t.index ["departement_id"], name: "index_ouvriers_on_departement_id"
     t.index ["domaine_id"], name: "index_ouvriers_on_domaine_id"
     t.index ["metier_id"], name: "index_ouvriers_on_metier_id"
@@ -247,6 +263,25 @@ ActiveRecord::Schema.define(version: 2020_08_31_133331) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_regions_on_country_id"
+  end
+
+  create_table "responszones", force: :cascade do |t|
+    t.string "telephone"
+    t.string "cni"
+    t.string "photocni"
+    t.string "photo"
+    t.bigint "user_id"
+    t.bigint "country_id"
+    t.bigint "region_id"
+    t.bigint "departement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "email"
+    t.index ["country_id"], name: "index_responszones_on_country_id"
+    t.index ["departement_id"], name: "index_responszones_on_departement_id"
+    t.index ["region_id"], name: "index_responszones_on_region_id"
+    t.index ["user_id"], name: "index_responszones_on_user_id"
   end
 
   create_table "seris", force: :cascade do |t|
@@ -329,6 +364,9 @@ ActiveRecord::Schema.define(version: 2020_08_31_133331) do
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
+  add_foreign_key "epreuves", "matieres"
+  add_foreign_key "epreuves", "niveaus"
+  add_foreign_key "epreuves", "seris"
   add_foreign_key "etablissements", "departements"
   add_foreign_key "juris", "centres"
   add_foreign_key "matieres", "niveaus"
@@ -340,6 +378,10 @@ ActiveRecord::Schema.define(version: 2020_08_31_133331) do
   add_foreign_key "ouvriers", "regions"
   add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
+  add_foreign_key "responszones", "countries"
+  add_foreign_key "responszones", "departements"
+  add_foreign_key "responszones", "regions"
+  add_foreign_key "responszones", "users"
   add_foreign_key "seris", "niveaus"
   add_foreign_key "students", "centres"
   add_foreign_key "students", "etablissements"
