@@ -80,7 +80,7 @@
       </div>
       <div class="card-body">
         <h2 class="card-title"><%= ouvrier.domaine.name + " / " + ouvrier.metier.name%></h2>
-        <p><%= image_tag ouvrier.photo.to_s, width:"10%" if !ouvrier.photo.nil?%></p>
+        <p><% image_tag ouvrier.photo.to_s, width:"10%" if !ouvrier.photo.nil?%></p>
         <div class="row">
           <div class="col-md-6">
             <p class="card-text" style=text-align:left; ><%= ouvrier.name + " " + ouvrier.prenom%></p>
