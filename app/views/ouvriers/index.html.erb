@@ -1,4 +1,5 @@
 <div class="col-sm-12 blog-main" id="">
+<%= link_to 'New Ouvrier', new_ouvrier_path, class:"btn btn-primary" if logged_in?(:site_admin, :respons_zone, :trusted)%>
 <h1>Rechercher des Ouvriers</h1>
 <%# @departements.each do |departement| %>
   <%#= departement.name  %>
@@ -54,7 +55,7 @@
     <%#= link_to 'Réinitialiser', ouvriers_path %>
   <%# end %>
 <% end %>
-<%= link_to 'New Ouvrier', new_ouvrier_path if logged_in?(:site_admin)%>
+
 <h1 style=color:red;><u>Liste des Ouvriers :</u></h1>  
 <% if @ouvriers.nil? or @ouvriers.empty? %>
   <div class="card text-center">  
@@ -95,8 +96,8 @@
       </div>
       <div class="card-footer text-muted">
         <span style=>CiiLaaBokK</span>
-        <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin)%></span>
-        <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin) %></span>
+        <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin, :respons_zone, :trusted)%></span>
+        <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin, :respons_zone, :trusted) %></span>
         <span style=margin:auto;><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
       </div>
     </div>

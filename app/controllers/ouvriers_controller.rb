@@ -1,6 +1,6 @@
 class OuvriersController < ApplicationController
   before_action :set_ouvrier, only: [:show, :edit, :update, :destroy]
-  access all: [:index], [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show], trusted: {except: [:destroy]}, respons_zone: [:new, :create, :edit, :update, :show], respons_zone: [:destroy]
+  access all: [:index], [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show], trusted: {except: [:destroy]}, respons_zone: [:new, :create, :edit, :update, :show], respons_zone: {except: [:destroy]}
   #access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new], censeur: [:index, :show,:create, :edit, :update, :new], principale: [:index, :show,:create, :edit, :update, :new], proviseur: [:index, :show,:create, :edit, :update, :new]
 
 layout 'general-layout'
