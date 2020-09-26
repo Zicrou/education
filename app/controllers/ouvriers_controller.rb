@@ -112,7 +112,9 @@ layout 'general-layout'
 
   # POST /ouvriers
   def create
+    puts current_user.id
     @ouvrier = Ouvrier.new(ouvrier_params)
+    @ouvrier.user_id = current_user.id
 
     if @ouvrier.save
       redirect_to @ouvrier, notice: 'Ouvrier was successfully created.'
@@ -123,6 +125,7 @@ layout 'general-layout'
 
   # PATCH/PUT /ouvriers/1
   def update
+    @ouvrier.user_id = current_user.id
     if @ouvrier.update(ouvrier_params)
       redirect_to @ouvrier, notice: 'Ouvrier was successfully updated.'
     else
@@ -148,6 +151,6 @@ layout 'general-layout'
     end
     # Only allow a trusted parameter "white list" through.
     def ouvrier_params
-      params.require(:ouvrier).permit(:name, :prenom, :telephone, :telephone2, :adresse, :metier_id, :domaine_id, :region_id, :departement_id, :photocni, :photo, :numerocni)
+      params.require(:ouvrier).permit(:name, :prenom, :telephone, :telephone2, :adresse, :metier_id, :domaine_id, :region_id, :departement_id, :photocni, :photo, :numerocni, :user_id)
     end
 end

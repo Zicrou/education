@@ -27,8 +27,43 @@
   </p>
 
   <p>
-    <strong>Telephone:</strong>
+    <strong>Téléphone:</strong>
     <%= @ouvrier.telephone %>
+  </p>
+
+  <p>
+    <strong>Téléphone 2:</strong>
+    <%= @ouvrier.telephone2 %>
+  </p>
+
+  <p>
+    <strong>Domaine:</strong>
+    <%= @ouvrier.domaine.name %>
+  </p>
+
+  <p>
+    <strong>Métier:</strong>
+    <%= @ouvrier.metier.name %>
+  </p>
+
+  <p>
+    <strong>Région:</strong>
+    <%= @ouvrier.region.name %>
+  </p>
+
+  <p>
+    <strong>Département:</strong>
+    <%= @ouvrier.departement.name %>
+  </p>
+
+  <p>
+    <strong>Adresse:</strong>
+    <%= @ouvrier.adresse %>
+  </p>
+
+  <p>
+    <strong>Create By :</strong>
+    <%= @ouvrier.user.name %>
   </p>
 
   <%= link_to 'Edit', edit_ouvrier_path(@ouvrier) %> |

@@ -48,6 +48,7 @@ class ResponszonesController < ApplicationController
   def create
     @responszone = Responszone.new(responszone_params)
 
+    @responszone.user_id = current_user.id
     if @responszone.save
       redirect_to @responszone, notice: 'Responszone was successfully created.'
     else
@@ -57,6 +58,7 @@ class ResponszonesController < ApplicationController
 
   # PATCH/PUT /responszones/1
   def update
+    @responszone.user_id = current_user.id
     if @responszone.update(responszone_params)
       redirect_to @responszone, notice: 'Responszone was successfully updated.'
     else
