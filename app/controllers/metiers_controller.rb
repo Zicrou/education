@@ -24,6 +24,7 @@ class MetiersController < ApplicationController
   # POST /metiers
   def create
     @metier = Metier.new(metier_params)
+    @metier.user_id = current_user.id
 
     if @metier.save
       redirect_to @metier, notice: 'Metier was successfully created.'
@@ -34,6 +35,8 @@ class MetiersController < ApplicationController
 
   # PATCH/PUT /metiers/1
   def update
+    @metier.user_id = current_user.id
+
     if @metier.update(metier_params)
       redirect_to @metier, notice: 'Metier was successfully updated.'
     else
@@ -55,6 +58,6 @@ class MetiersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def metier_params
-      params.require(:metier).permit(:name, :domaine_id)
+      params.require(:metier).permit(:name, :domaine_id, :user_id)
     end
 end

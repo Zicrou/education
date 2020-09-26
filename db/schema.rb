@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_110924) do
+ActiveRecord::Schema.define(version: 2020_09_26_051803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,9 @@ ActiveRecord::Schema.define(version: 2020_09_25_110924) do
     t.bigint "region_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["region_id"], name: "index_departements_on_region_id"
+    t.index ["user_id"], name: "index_departements_on_user_id"
   end
 
   create_table "domaines", force: :cascade do |t|
@@ -200,7 +202,9 @@ ActiveRecord::Schema.define(version: 2020_09_25_110924) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "domaine_id"
+    t.bigint "user_id"
     t.index ["domaine_id"], name: "index_metiers_on_domaine_id"
+    t.index ["user_id"], name: "index_metiers_on_user_id"
   end
 
   create_table "niveaus", force: :cascade do |t|
@@ -364,6 +368,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_110924) do
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
+  add_foreign_key "departements", "users"
   add_foreign_key "epreuves", "matieres"
   add_foreign_key "epreuves", "niveaus"
   add_foreign_key "epreuves", "seris"
@@ -372,6 +377,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_110924) do
   add_foreign_key "matieres", "niveaus"
   add_foreign_key "matieres", "seris"
   add_foreign_key "metiers", "domaines"
+  add_foreign_key "metiers", "users"
   add_foreign_key "ouvriers", "departements"
   add_foreign_key "ouvriers", "domaines"
   add_foreign_key "ouvriers", "metiers"

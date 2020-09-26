@@ -23,6 +23,7 @@ class DepartementsController < ApplicationController
   # POST /departements
   def create
     @departement = Departement.new(departement_params)
+    @departement.user_id = current_user.id
 
     if @departement.save
       redirect_to @departement, notice: 'Departement was successfully created.'
@@ -33,6 +34,7 @@ class DepartementsController < ApplicationController
 
   # PATCH/PUT /departements/1
   def update
+    @departement.user_id = current_user.id
     if @departement.update(departement_params)
       redirect_to @departement, notice: 'Departement was successfully updated.'
     else

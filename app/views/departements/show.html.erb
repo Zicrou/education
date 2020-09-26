@@ -8,5 +8,10 @@
   <%= @departement.region.name %>
 </p>
 
+<p>
+  <strong>User:</strong>
+  <%= @departement.user.name if logged_in?(:site_admin, :trusted)%>
+</p>
+
 <%= link_to 'Edit', edit_departement_path(@departement) %> |
 <%= link_to 'Back', departements_path %>
