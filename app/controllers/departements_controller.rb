@@ -1,6 +1,6 @@
 class DepartementsController < ApplicationController
   before_action :set_departement, only: [:show, :edit, :update, :destroy]
-  access [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show], trusted: {except: [:destroy]}, respons_zone: [:new, :create, :edit, :update, :show], respons_zone: {except: [:destroy]}
+  access [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}], respons_zone: [:new, :create, :edit, :update, :show, {except: [:destroy]}]
   layout 'general-layout'
   # GET /departements
   def index

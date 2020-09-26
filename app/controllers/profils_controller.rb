@@ -1,6 +1,6 @@
 class ProfilsController < ApplicationController
   before_action :set_profil, only: [:show, :edit, :update, :destroy]
-  access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
+  access [:user, :professeur, :principale, :censeur, :proviseur, :respons_zone, :trusted] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all
 layout 'general-layout'
   # GET /profils
   def index
