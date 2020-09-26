@@ -1,6 +1,6 @@
 function getIDRegion() {
     var regionid = document.getElementById("ouvrier_region_id").value
-    let regionID = regionid
+    var regionID = regionid
     if (regionID == "") {
         $("#ouvrier_departement_id").children().remove();
         var departements = $('.departements').data('departements')
@@ -31,7 +31,7 @@ function getIDRegion() {
 
 function getIDDomaine() {
     var domaineid = document.getElementById("ouvrier_domaine_id").value
-    let domaineID = domaineid
+    var domaineID = domaineid
     if (domaineID == "") {
         $("#ouvrier_metier_id").children().remove();
         var metiers = $('.metiers').data('metiers');
@@ -62,7 +62,7 @@ function getIDDomaine() {
 
 function getIDRegionResponzone() {
     var regionid = document.getElementById("responszone_region_id").value
-    let regionID = regionid
+    var regionID = regionid
     if (regionID == "") {
         $("#responszone_departement_id").children().remove();
         var departements = $('.departements').data('departements')
