@@ -6,6 +6,10 @@ class Ouvrier < ApplicationRecord
     
     validates_presence_of :name, :prenom, :telephone, :adresse, :metier_id, :domaine_id, :region_id, :departement_id
     
+  mount_uploader :photocni, OuvrierUploader
+  mount_uploader :photo, OuvrierUploader
+
+
     #by One
 
     def self.filtrer_by_domaine(id)

@@ -3,22 +3,26 @@
 	<h1>USERS</h1>
 	<p>*************************</p>
 	<% @users.each do |user| %>
-		<p>ID:<%= user.id %></p>
-		<p>NAME:<%= user.name %></p>
-		<p>EMAIL:<%= user.email %></p>
-		<p>ROLE:<%= user.role %></p>
-		<!--p>PROFIL:<%#= user.profil_id %></p-->
-		<p>DATE DE CREATION:<%= user.created_at %></p>
-		<p>DATE DE MODIFICATION:<%= user.updated_at %></p>
-		<p>
-			<%if user.role === :user %>
-				<%= link_to 'Définir professeur', definir_profil_user_path(user) %>
-				<%end%>
+		<p>ID : <% user.id %></p>
+		<p>NAME : <%= user.name %></p>
+		<p>EMAIL : <%= user.email %></p>
+		<p>ROLE : <%= user.role %></p>
+		<p>DATE DE CREATION : <%= user.created_at %></p>
+		<p>DATE DE MODIFICATION : <%= user.updated_at %></p>
+		<% if user.role != :site_admin %>
+			<p>
+				<%= link_to 'Edit', edit_user_path(user) %> |
+			</p>
+		<% end %>
+		<!--p>
+			<%#if user.role === :user %>
+				<%#= link_to 'Définir professeur', definir_profil_user_path(user) %>
+				<%#end%>
 				<span>||</span>
-			<%if user.role === :professeur %>
-				<%= link_to 'Définir user', definir_profil_user_path(user) %>
-			<%end%>
-		</p>
+			<%#if user.role === :professeur %>
+				<%#= link_to 'Définir user', definir_profil_user_path(user) %>
+			<%#end%>
+		</p -->
 		<br>
 		<p>*************************</p>
 		<br>

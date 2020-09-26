@@ -1,4 +1,4 @@
-class BlogUploader < CarrierWave::Uploader::Base
+class ResponsZoneUploader < CarrierWave::Uploader::Base
   
   storage :aws
 

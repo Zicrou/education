@@ -1,6 +1,7 @@
 class CountriesController < ApplicationController
   before_action :set_country, only: [:show, :edit, :update, :destroy]
-  access user: {except: [:index, :show, :new, :edit, :create, :update, :destroy]}, site_admin: :all
+  access [:user, :professeur, :respons_zone, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show], trusted: {except: [:destroy]}
+
   layout 'general-layout'
 
   # GET /countries

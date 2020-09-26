@@ -2,6 +2,21 @@
   <p id="notice"><%= notice %></p>
 
   <p>
+    <strong>Photo:</strong>
+    <%= image_tag @ouvrier.photo.to_s, width:'10%' %>
+  </p>
+
+  <p>
+    <strong>Photo CNI:</strong>
+    <%= image_tag @ouvrier.photocni.to_s, width:'10%' %>
+  </p>
+  
+  <p>
+    <strong>Numero CNI:</strong>
+    <%= @ouvrier.numerocni %>
+  </p>
+
+  <p>
     <strong>Name:</strong>
     <%= @ouvrier.name %>
   </p>
