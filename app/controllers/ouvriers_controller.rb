@@ -112,7 +112,6 @@ layout 'general-layout'
 
   # POST /ouvriers
   def create
-    puts current_user.id
     @ouvrier = Ouvrier.new(ouvrier_params)
     @ouvrier.user_id = current_user.id
 
