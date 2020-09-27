@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_051803) do
+ActiveRecord::Schema.define(version: 2020_09_27_034901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -382,7 +382,6 @@ ActiveRecord::Schema.define(version: 2020_09_26_051803) do
   add_foreign_key "ouvriers", "domaines"
   add_foreign_key "ouvriers", "metiers"
   add_foreign_key "ouvriers", "regions"
-  add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
   add_foreign_key "responszones", "countries"
   add_foreign_key "responszones", "departements"
