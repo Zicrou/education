@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :exercices
   resources :lecons
   resources :topics, only: [:index, :show]
+  get '/check.txt', to: proc {[200, {}, ['it_works']]}
   #get 'topics/index'
   #get 'topics/show'
   #resources :comments
