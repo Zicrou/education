@@ -1,0 +1,13 @@
+{
+    "name": "ruby-rails-sample",
+    "description": "CiiLaaBokk Running!",
+    "keywords": [
+      "dokku",
+      "rails"
+    ],
+    "scripts": {
+      "dokku": {
+        "postdeploy": "bundle exec rake db:migrate"
+      }
+    }
+  }
