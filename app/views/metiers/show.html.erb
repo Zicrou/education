@@ -7,7 +7,7 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @metier.user.name !if logged_in?(:site_admin, :trusted)%>
+  <%#= @metier.user.name !if logged_in?(:site_admin, :trusted)%>
 </p>
 
 <%= link_to 'Edit', edit_metier_path(@metier) %> |
