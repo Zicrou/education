@@ -6,7 +6,8 @@ class User < ApplicationRecord
   ## The multiple option can be set to true if you need users to have multiple roles.       ##
   petergate(roles: [:site_admin, :trusted, :respons_zone, :professeur, :principale, :censeur, :proviseur], multiple: false)                                      ##
   ############################################################################################ 
- 
+
+  # Les roles site_admin Et trusted Sont A Donner Uniquement Par L'Administrateur 
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

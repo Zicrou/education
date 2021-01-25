@@ -9,11 +9,11 @@
 		<p>ROLE : <%= user.role %></p>
 		<p>DATE DE CREATION : <%= user.created_at %></p>
 		<p>DATE DE MODIFICATION : <%= user.updated_at %></p>
-		<% if user.role != :site_admin %>
+		<% #if user.role != :site_admin %>
 			<p>
 				<%= link_to 'Edit', edit_user_path(user) %> |
 			</p>
-		<% end %>
+		<%# end %>
 		<!--p>
 			<%#if user.role === :user %>
 				<%#= link_to 'Définir professeur', definir_profil_user_path(user) %>

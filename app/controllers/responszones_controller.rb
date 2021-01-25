@@ -3,7 +3,7 @@ class ResponszonesController < ApplicationController
   access [:user, :respons_zone, :professeur, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}]
   
   layout 'general-layout'
-
+#Le Controller Pour Definir Un Responsable De Zone Avec ses Cordonnées Aprés Qu'Il S'Est Inscrit
   # GET /responszones
   def index
     @responszones = Responszone.all

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :definir_profil]
-  access professeur: [:index] ,user: {except: [:index, :definir_profil, :show, :destroy, :create, :edit, :update, :new, :definir_profil]}, site_admin: :all
-layout 'general-layout'
+  access trusted: [:index, :definir_profil, :show, :create, :edit, :update, :new, {except: [:destroy]}], [:user, :respons_zone]=>[{except: [:index, :definir_profil, :show, :destroy, :create, :edit, :update, :new, :definir_profil]}], site_admin: :all
+# A Definir Les Accés Des Roles : trusted: ,  respons_zone:
+  layout 'general-layout'
 	def index
 		@users = User.recent.all
 	end

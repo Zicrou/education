@@ -35,11 +35,11 @@ Rails.application.routes.draw do
   resources :exercices
   resources :lecons
   resources :topics, only: [:index, :show]
-  get '/check.txt', to: proc {[200, {}, ['YA_ALIMOU_GREIY']]}
+  get '/check.txt', to: proc {[200, {}, ['YA_ALIIMUL_GREIY']]}
   #get 'topics/index'
   #get 'topics/show'
   #resources :comments
-  devise_for :users, path: '', path_names: {sign_in: 'Login', sign_out: 'Logout', sign_up: 'Register'}
+  devise_for :users, path: '', path_names: {sign_in: 'Login', sign_out: 'Logout', sign_up: 'Register'}, controllers:{sessions: 'users/sessions'}
   resources :portfolios, except: [:show] do
     put :sort, on: :collection
   end

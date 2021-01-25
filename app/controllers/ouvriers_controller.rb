@@ -1,15 +1,19 @@
 class OuvriersController < ApplicationController
   before_action :set_ouvrier, only: [:show, :edit, :update, :destroy]
-  access all: [:index], [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}], respons_zone: [:new, :create, :edit, :update, :show, {except: [:destroy]}]
+  access all: [:index], [:user, :professeur, :principale, :censeur, :proviseur] => {except: [:destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}], respons_zone: [:index, :new, :create, :edit, :update, :show, {except: [:destroy]}]
   #access all: [:show, :index], user: {except: [:destroy, :create, :edit, :update, :new, :toggle_status]}, site_admin: :all, professeur: [:index, :show,:create, :edit, :update, :new], censeur: [:index, :show,:create, :edit, :update, :new], principale: [:index, :show,:create, :edit, :update, :new], proviseur: [:index, :show,:create, :edit, :update, :new]
 
 layout 'general-layout'
   # GET /ouvriers
   def index
-    @ouvriers = Ouvrier.all
     @page_title = "CiiLaaBokK"
+    @liste_des_ouvriers = "Liste des ouvriers"
     @departements = Departement.all
     @metiers = Metier.all
+    if logged_in?(:respons_zone, :trusted, :site_admin)
+    @liste_des_ouvriers = "Mes ouvriers" # de #{current_user.name}
+      @ouvriers = Ouvrier.where(user_id: current_user.id)
+    end
   end
   
   def filtered
