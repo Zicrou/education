@@ -1,0 +1,8 @@
+Fill the g_l-sidebar : Paramétrage {DONE!}
+ResponsZone{Have_TO
+    user_id = User.created The Responszone
+    respons_user = The User of The ResponsZone
+    Role: "respons_zone"
+(DONE!) Add A Migration To Responszone For Taking The User_Id(respons_user) Of The ResponsZone
+    Add A Button In User_Index "Définir ResponsZone?" With (respons_user.id)
+}

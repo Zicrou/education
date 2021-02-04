@@ -11,6 +11,8 @@ class Ouvrier < ApplicationRecord
   mount_uploader :photo, OuvrierUploader
 
 
+  
+
     #by One
 
     def self.filtrer_by_domaine(id)

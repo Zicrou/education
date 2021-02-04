@@ -1,13 +1,22 @@
-<div class="col-sm-3 offset-sm-1 blog-sidebar">
+<div class="col-sm-3 offset-sm-8 blog-sidebar">
   <div class="sidebar-module sidebar-module-inset">
     <h4><u>CLBK</u></h4>
-    </div>
+  </div>
 
   <%= source_helper("alert alert-info blog-sidebar-source") %>
   
   <div class="sidebar-module">
-    <h4>Niveau</h4>
-    <p>Topics</p>
+    <h4>Paramétrage</h4>
+    <%= link_to "Users", users_path()%>
+    <%= link_to "ResponsZones", responszones_path()%>
+    <%= link_to "Metiers", metiers_path()%>
+    <%= link_to "Domaines", domaines_path()%>
+    <%= link_to "Departments", departements_path()%>
+    <%= link_to "Regions", regions_path()%>
+    <%= link_to "Pays", countries_path()%>
+    <%= link_to "Centres", centres_path()%>
+    <p></p>
+    <p>dipbnflòjokfn</p>
     <%# @side_bar_topics.each do |topic|%>
       <p><%#= link_to 'les cours de '+ topic.title, topic_path(topic) %></p>
     <%# end %>

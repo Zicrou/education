@@ -1,111 +1,144 @@
 <div class="col-sm-12 blog-main" id="">
 <%= link_to 'New Ouvrier', new_ouvrier_path, class:"btn btn-primary" if logged_in?(:site_admin, :respons_zone, :trusted)%>
 <h1>Rechercher des Ouvriers</h1>
+<h1><%= current_user.role if logged_in?(:site_admin, :trusted, :respons_zone)%></h1>
 <%# @departements.each do |departement| %>
   <%#= departement.name  %>
   <%#= departement.region_id %>
 <%# end %>
 
-<%= form_for Ouvrier.new, url: recherche_ouvriers_path, method: :get do |form| %>
-  <div class="form-group">
-    <%= form.label :region_id %>
-    <%= form.collection_select(:region_id, Region.order(:name), :id, :name,
-      {
-        include_blank: true
-      },
-      onchange: 'getIDRegion()',
-      class:"form-control col-md-3"
-    ) %>
-  </div>
-
-
-  <div class="form-group departements" data-departements="<%= @departements.to_json %>">
-    <%= form.label :Zone %>
-    <%= form.collection_select(:departement_id, Departement.all, :id, :name,
-      {
-        include_blank: true
-      },
-      class: "form-control col-md-3"
-    ) %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :domaine_id %>
-    <%= form.collection_select(:domaine_id, Domaine.order(:name), :id, :name,
-      {
-        include_blank: true
-      },
-      onchange: 'getIDDomaine()',
-      class: "form-control col-md-3"
-    ) %>
-  </div>
-  
-  <div class="form-group metiers" data-metiers="<%= @metiers.to_json %>">
-    <%= form.label :metier_id %>
-    <%= form.collection_select(:metier_id, Metier.order(:name), :id, :name,
-      {
-        include_blank: true
-      },
-      class: "form-control col-md-3"
-    ) %>
-  </div>
-  
-  <%= form.submit "Rechercher",  class:"form-control col-md-2 btn-primary" %>
-  <%# if defined?(@query) && @query.present?  %>
-    <%#= link_to 'Réinitialiser', ouvriers_path %>
-  <%# end %>
-<% end %>
-
-<h1 style=color:red;><u><%= @liste_des_ouvriers %> :</u></h1>  
-<% if @ouvriers.nil? or @ouvriers.empty? %>
-  <div class="card text-center">  
-    <div class="card-header">
-      <span>Pas d'ouvrier</span>
-    </div>
-    <div class="card-body">
-      <h1 class="card-title">Aucun ouvrier avec ce profil</h1>
-      <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6"></div>
+<div class="row">
+  <div class="col-sm-9 blog-main">
+    <%= form_for Ouvrier.new, url: recherche_ouvriers_path, method: :get do |form| %>
+      <div class="form-group">
+        <%= form.label :region_id %>
+        <%= form.collection_select(:region_id, Region.order(:name), :id, :name,
+          {
+            include_blank: true
+          },
+          onchange: 'getIDRegion()',
+          class:"form-control col-md-3"
+        ) %>
       </div>
-    </div>
-    <div class="card-footer text-muted">
-      <span style=>CiiLaaBokK</span>
-    </div>
-  </div>
-<% else %>
-  <% @ouvriers.each do |ouvrier| %>
-    <div class="card text-center">  
-      <div class="card-header">
-      <span><%= ouvrier.departement.region.name + "(" + ouvrier.departement.name + ")" %></span>
+
+
+      <div class="form-group departements" data-departements="<%= @departements.to_json %>">
+        <%= form.label :Zone %>
+        <%= form.collection_select(:departement_id, Departement.all, :id, :name,
+          {
+            include_blank: true
+          },
+          class: "form-control col-md-3"
+        ) %>
       </div>
-      <div class="card-body">
-        <h2 class="card-title"><%= ouvrier.domaine.name + " / " + ouvrier.metier.name%></h2>
-        <p><%#= image_tag ouvrier.photo.to_s, width:"10%" if !ouvrier.photo.nil?%></p>
-        <div class="row">
-          <div class="col-md-6">
-            <p class="card-text" style=text-align:left; ><%= ouvrier.name + " " + ouvrier.prenom%></p>
-            <p class="card-text" style=text-align:left; >Adresse : <%= ouvrier.adresse %></p>
-          </div>
-          <div class="col-md-6">
-            <p class="card-text" style=text-align:right; >Téléphone 1 :+221 <%= ouvrier.telephone %></p>
-            <p class="card-text" style=text-align:right; >Téléphone 2 :+221 <%= ouvrier.telephone2 %></p>
+
+      <div class="form-group">
+        <%= form.label :domaine_id %>
+        <%= form.collection_select(:domaine_id, Domaine.order(:name), :id, :name,
+          {
+            include_blank: true
+          },
+          onchange: 'getIDDomaine()',
+          class: "form-control col-md-3"
+        ) %>
+      </div>
+      
+      <div class="form-group metiers" data-metiers="<%= @metiers.to_json %>">
+        <%= form.label :metier_id %>
+        <%= form.collection_select(:metier_id, Metier.order(:name), :id, :name,
+          {
+            include_blank: true
+          },
+          class: "form-control col-md-3"
+        ) %>
+      </div>
+      
+      <%= form.submit "Rechercher",  class:"form-control col-md-2 btn-primary" %>
+      <%# if defined?(@query) && @query.present?  %>
+        <%#= link_to 'Réinitialiser', ouvriers_path %>
+      <%# end %>
+    <% end %>
+  </div>
+    <!--RENDER SIDEBAR -->  
+    <!-- RENDER SIDEBAR IF LOG IN AS SITE_ADMIN -->  
+      
+      <% if logged_in?(:site_admin, :trusted) %>  
+        <div class="col-sm-3">
+          <%= render 'shared/g_l_sidebar'%> 
+        </div>
+      <% end %>
+      <!-- END RENDERRING SIDEBAR -->
+</div>
+
+
+<h1 style=color:red;><u><%= @liste_des_ouvrier %></u></h1>  
+
+<!--div class="row"-->
+      
+  <!-- SHOWING THE OUVRIERS -->
+  <div class="col-sm-9 offset-sm-1">
+    <% if @ouvriers.nil? or @ouvriers.empty? %>
+      <div class="card text-center">  
+        <div class="card-header">
+          <span>Pas d'ouvrier</span>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title">Aucun ouvrier avec ce profil</h1>
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6"></div>
           </div>
         </div>
-        <!-- a href="#" class="btn btn-primary">Go somewhere</a -->
+        <div class="card-footer text-muted">
+          <span style=>CiiLaaBokK</span>
+        </div>
       </div>
-      <div class="card-footer text-muted">
-        <span style=>CiiLaaBokK</span>
-        <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin, :respons_zone, :trusted)%></span>
-        <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin, :respons_zone, :trusted) %></span>
-        <span style=margin:auto;><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
-      </div>
-    </div>
+    <% else %>
+      <% @ouvriers.each do |ouvrier| %>
+        <div class="card text-center">  
+          <div class="card-header">
+          <span><%= ouvrier.departement.region.name + "(" + ouvrier.departement.name + ")" %></span>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title"><%= ouvrier.domaine.name + " / " + ouvrier.metier.name%></h2>
+            <p><%#= image_tag ouvrier.photo.to_s, width:"10%" if !ouvrier.photo.nil?%></p>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="card-text" style=text-align:left; ><%= ouvrier.name + " " + ouvrier.prenom%></p>
+                <p class="card-text" style=text-align:left; >Adresse : <%= ouvrier.adresse %></p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text" style=text-align:right; >Téléphone 1 :+221 <%= ouvrier.telephone %></p>
+                <p class="card-text" style=text-align:right; >Téléphone 2 :+221 <%= ouvrier.telephone2 %></p>
+              </div>
+            </div>
+            <!-- a href="#" class="btn btn-primary">Go somewhere</a -->
+          </div>
+          <div class="card-footer text-muted">
+            <span style=>CiiLaaBokK</span>
+            <span style=margin:auto; ><%= link_to 'Show', ouvrier if logged_in?(:site_admin, :respons_zone, :trusted)%></span>
+            <span style=margin:auto;><%= link_to 'Edit', edit_ouvrier_path(ouvrier) if logged_in?(:site_admin, :respons_zone, :trusted) %></span>
+            <span style=margin:auto;><%= link_to 'Destroy', ouvrier, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
+          </div>
+        </div>
         <hr>
-  <% end %>
-<% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <!-- ENDING THE OUVRIERS -->
 
+ <!--RENDER SIDEBAR -->  
+ <!-- RENDER SIDEBAR IF LOG IN AS SITE_ADMIN -->  
+  
+  <%# if logged_in?(:site_admin, :trusted) %>  
+    <!--div class="col-md-3">
+      <%#= render 'shared/g_l_sidebar'%> 
+    </div-->
+  <%# end %>
+  <!-- END RENDERRING SIDEBAR -->
+  <!--/div-->
 
+  
   <br>
 
 

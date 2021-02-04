@@ -4,7 +4,7 @@ class Responszone < ApplicationRecord
   belongs_to :region
   belongs_to :departement
 
-  validates_presence_of :name, :email, :user_id, :telephone, :cni, :photocni, :photo, :country_id, :region_id, :departement_id
+  validates_presence_of :name, :email, :user_id, :user_responszone, :telephone, :cni, :photocni, :photo, :country_id, :region_id, :departement_id
 
   mount_uploader :photocni, ResponsZoneUploader
   mount_uploader :photo, ResponsZoneUploader

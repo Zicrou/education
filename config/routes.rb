@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     collection do
       get :filtered
     end
+    collection do
+      get :responszone_user_id
+    end
   end
   resources :centres
   resources :juris

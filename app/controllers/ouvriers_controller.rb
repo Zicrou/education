@@ -13,6 +13,9 @@ layout 'general-layout'
     if logged_in?(:respons_zone, :trusted, :site_admin)
     @liste_des_ouvriers = "Mes ouvriers" # de #{current_user.name}
       @ouvriers = Ouvrier.where(user_id: current_user.id)
+    else
+      @liste_des_ouvriers = "Liste des ouvriers"
+      @ouvriers = Ouvrier.all
     end
   end
   
@@ -106,6 +109,11 @@ layout 'general-layout'
     @ouvrier = Ouvrier.new
     @departements = Departement.all
     @metiers = Metier.all
+    if logged_in?(:respons_zone)
+      @regions = Region.by_respons_zone(current_user.region_id)
+    else
+      @regions = Region.all
+    end
   end
 
   # GET /ouvriers/1/edit

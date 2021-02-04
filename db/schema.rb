@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_27_080753) do
+ActiveRecord::Schema.define(version: 2021_02_01_021507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -282,6 +282,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_080753) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "email"
+    t.bigint "user_responszone"
     t.index ["country_id"], name: "index_responszones_on_country_id"
     t.index ["departement_id"], name: "index_responszones_on_departement_id"
     t.index ["region_id"], name: "index_responszones_on_region_id"
@@ -388,6 +389,7 @@ ActiveRecord::Schema.define(version: 2020_09_27_080753) do
   add_foreign_key "responszones", "departements"
   add_foreign_key "responszones", "regions"
   add_foreign_key "responszones", "users"
+  add_foreign_key "responszones", "users", name: "user_responszone"
   add_foreign_key "seris", "niveaus"
   add_foreign_key "students", "centres"
   add_foreign_key "students", "etablissements"

@@ -70,7 +70,7 @@
 
       <div class="form-group">
         <%= form.label :region_id %>
-        <%= form.collection_select(:region_id, Region.all, :id, :name,
+        <%= form.collection_select(:region_id, @regions, :id, :name,
             {
               include_blank: true
             },

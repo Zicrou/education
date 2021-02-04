@@ -11,8 +11,19 @@
 		<p>DATE DE MODIFICATION : <%= user.updated_at %></p>
 		<% #if user.role != :site_admin %>
 			<p>
-				<%= link_to 'Edit', edit_user_path(user) %> |
+				<%= link_to 'Edit', edit_user_path(user) %> 
 			</p>
+			<p>
+				<%= link_to 'Definir responsable de zone', new_responszone_path(user)  %> |
+			</p>
+			<div class="actions">
+			  <% #Change Form URL To new_responszone_path   %>
+			  <%= form_for Responszone.new, url: responszone_user_id_responszones_path, method: :get do |form| %>
+				  <%= form.text_field :user_responszone, value: user.id, style:"" %>
+				  <%= form.submit "Définir Responsable", class:"form-control btn btn-primary col-md-3"%>
+  			  <% end %>
+			</div>
+			
 		<%# end %>
 		<!--p>
 			<%#if user.role === :user %>
