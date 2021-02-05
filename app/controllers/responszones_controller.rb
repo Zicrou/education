@@ -1,5 +1,6 @@
 class ResponszonesController < ApplicationController
   before_action :set_responszone, only: [:show, :edit, :update, :destroy] 
+  before_action :responszone_user, only: [:responszone_user_id]
   access [:user, :respons_zone, :professeur, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}]
   
   layout 'general-layout'
@@ -47,8 +48,8 @@ class ResponszonesController < ApplicationController
   def new
     @departements = Departement.all
     @responszone = Responszone.new
-    puts responszone_user_id
-    #pry
+    
+    pry
   end
 
   # GET /responszones/1/edit
@@ -93,5 +94,10 @@ class ResponszonesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def responszone_params
       params.require(:responszone).permit(:name, :email, :telephone, :cni, :photocni, :photo, :user_id, :country_id, :region_id, :departement_id, :user_responszone)
+    end
+
+    # Params For Responszone_user_id
+    def responszone_user
+      params.require(:responszone).permit(:user_responszone)
     end
 end
