@@ -42,6 +42,8 @@ class ResponszonesController < ApplicationController
 
   # GET /responszones/1
   def show
+    @user_responszone = User.find_by_id(@responszone.user_responszone)
+    #pry
   end
 
   # GET /responszones/new
@@ -49,7 +51,7 @@ class ResponszonesController < ApplicationController
     @departements = Departement.all
     @responszone = Responszone.new
     
-    pry
+    #pry
   end
 
   # GET /responszones/1/edit
@@ -60,13 +62,14 @@ class ResponszonesController < ApplicationController
   def create
     @responszone = Responszone.new(responszone_params)
     @responszone.user_id = current_user.id
-    @responszone.user_responszone = session[:respons_user]
-    pry
-   # if @responszone.save
-   #   redirect_to @responszone, notice: 'Responszone was successfully created.'
-   # else
-   #   render :new
-   # end
+    @responszone.user_responszone = session[:responszone_user]
+
+    #pry
+    if @responszone.save
+      redirect_to @responszone, notice: 'Responszone was successfully created.'
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /responszones/1
@@ -93,7 +96,7 @@ class ResponszonesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def responszone_params
-      params.require(:responszone).permit(:name, :email, :telephone, :cni, :photocni, :photo, :user_id, :country_id, :region_id, :departement_id, :user_responszone)
+      params.require(:responszone).permit(:telephone, :cni, :photocni, :photo, :user_id, :country_id, :region_id, :departement_id, :user_responszone)
     end
 
     # Params For Responszone_user_id

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_021507) do
+ActiveRecord::Schema.define(version: 2021_02_05_084951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -280,8 +280,6 @@ ActiveRecord::Schema.define(version: 2021_02_01_021507) do
     t.bigint "departement_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "email"
     t.bigint "user_responszone"
     t.index ["country_id"], name: "index_responszones_on_country_id"
     t.index ["departement_id"], name: "index_responszones_on_departement_id"
