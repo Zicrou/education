@@ -3,63 +3,41 @@
 
   <h1>Responszones</h1>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-          <td>||</td>
-          <th>Email</th>
-          <td>||</td>
-          <th>Telephone</th>
-        <th>||</th>
-        <th>Cni</th>
-          <td>||</td>
-          <th>Photocni</th>
-        <th>||</th>
-        <th>Photo</th>
-          <td>||</td>
-          <th>User</th>
-          <td>||</td>
-          <th>Country</th>
-          <td>||</td>
-          <th>Region</th>
-          <td>||</td>
-          <th>Departement</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
+  <!-- SHOWING THE OUVRIERS -->
+  <div class="col-sm-9 offset-sm-1">
       <% @responszones.each do |responszone| %>
-        <tr>
-          <td><%= responszone.user_responszone %></td>
-          <td>||</td>
-          <td><%= responszone.user_responszone %></td>
-          <td>||</td>
-          <td><%= responszone.telephone %></td>
-          <td>||</td>
-          <td><%= responszone.cni %></td>
-          <td>||</td>
-          <td><%= image_tag responszone.photocni.to_s, width: '100%'%></td>
-          <td>||</td>
-          <td><%= image_tag responszone.photo.to_s, width:'100%' %></td>
-          <td>||</td>
-          <td><%= responszone.user.name %></td>
-          <td>||</td>
-          <td><%= responszone.country.name %></td>
-          <td>||</td>
-          <td><%= responszone.region.name %></td>
-          <td>||</td>
-          <td><%= responszone.departement.name %></td>
-          <td><%= link_to 'Show', responszone %></td>
-          <td><%= link_to 'Edit', edit_responszone_path(responszone) %></td>
-          <td><%= link_to 'Destroy', responszone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+        <div class="card text-center">  
+          <div class="card-header">
+          <span>Responsable de zone : <%= responszone.region.name %></span>
+          </div>
+          <div class="card-body">
+            <h2 class="card-title"><%= %></h2>
+            <p><%= image_tag responszone.photo.to_s, width: '100%' %></p>
+            <div class="row">
+              <div class="col-md-6">
+              <p><%= image_tag responszone.photocni.to_s, width: '100%' %></p>
+              </div>
+              <div class="col-md-6">
+                <p class="card-text" style=text-align:right; ><%= responszone.user.name %></p>
+                <p class="card-text" style=text-align:right; ><%= responszone.country.name %></p>
+                <p class="card-text" style=text-align:right; ><%= responszone.region.name + " (" + responszone.departement.name + " )" %></p>
+              </div>
+            </div>
+            <!-- a href="#" class="btn btn-primary">Go somewhere</a -->
+          </div>
+          <div class="card-footer text-muted">
+            <span style=>CiiLaaBokK</span>
+            <span style=margin:auto; ><%= link_to 'Show'%></span>
+            <span style=margin:auto;><%= link_to 'Edit', edit_responszone_path(responszone) %></span>
+            <span style=margin:auto;><%= link_to 'Destroy', responszone, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:site_admin) %></span>
+          </div>
+        </div>
+        <hr>
       <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
+    
+  </div>
+  <!-- ENDING THE OUVRIERS -->
+    
+         
   <%= link_to 'New Responszone', new_responszone_path %>
 </div>
