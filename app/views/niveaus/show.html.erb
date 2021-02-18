@@ -4,7 +4,6 @@
 	<%#= render @matieres %>
 	<%#= render partial: 'niveaus/matiere', locals: { niveau: @niveau } %>
 
-</div>
 <br>
 <%if logged_in?(:site_admin)%>
 	<p>
@@ -15,3 +14,4 @@
 <%= link_to 'Back', niveaus_path %>
 
 <%end%>
+</div>

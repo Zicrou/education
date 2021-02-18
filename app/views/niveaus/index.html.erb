@@ -1,15 +1,24 @@
 <div class="col-sm-8 blog-main">
-  
-  <%= render @niveaus %>
-  
-    <% @niveaus.each do |niveau| %>
-      
-        <td><%= link_to 'Show', niveau if logged_in?(:site_admin) %></td>
-        <td><%= link_to 'Edit', edit_niveau_path(niveau)  if logged_in?(:site_admin) %></td>
-        <td><%= link_to 'Destroy', niveau, method: :delete, data: { confirm: 'Are you sure?' }  if logged_in?(:site_admin) %></td>
-      
-    <% end %>
+  <% @niveaus.each do |niveau| %>
+    <%if logged_in?(:site_admin)%>
+      <p>
+        <strong>
+          <h1><%= niveau.name %></h1>
+        </strong>
+        <%= link_to 'Show', niveau %>
+        <%= link_to 'Edit', edit_niveau_path(niveau)  %>
+        <%= link_to 'Destroy', niveau, method: :delete, data: { confirm: 'Are you sure?' }  %>
+      </p>
+    <%else%>
+      <strong>
+        <h1>
+          <%= link_to niveau.name, "#" %>
+        </h1>
+      </strong>
+    <%end%>
+  <% end %>
+<%= link_to 'New Niveau', new_niveau_path, class:"btn btn-primary" if logged_in?(:site_admin)%>
  
-<%= link_to 'New Niveau', new_niveau_path  if logged_in?(:site_admin)%>
 
 </div>
+
