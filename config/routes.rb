@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :filieres
   resources :responszones do
     collection do
       get :filtered
