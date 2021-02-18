@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_111959) do
+ActiveRecord::Schema.define(version: 2021_02_18_115427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -185,14 +185,6 @@ ActiveRecord::Schema.define(version: 2021_02_18_111959) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mainsdoeuvres", force: :cascade do |t|
-    t.string "nom"
-    t.string "prenom"
-    t.string "telephone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "matieres", force: :cascade do |t|
     t.string "name"
     t.bigint "seri_id"
@@ -203,45 +195,11 @@ ActiveRecord::Schema.define(version: 2021_02_18_111959) do
     t.index ["seri_id"], name: "index_matieres_on_seri_id"
   end
 
-  create_table "metiers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "domaine_id"
-    t.bigint "user_id"
-    t.index ["domaine_id"], name: "index_metiers_on_domaine_id"
-    t.index ["user_id"], name: "index_metiers_on_user_id"
-  end
-
   create_table "niveaus", force: :cascade do |t|
     t.string "name"
     t.string "abbrege"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "ouvriers", force: :cascade do |t|
-    t.string "name"
-    t.string "prenom"
-    t.string "telephone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "domaine_id"
-    t.bigint "metier_id"
-    t.bigint "departement_id"
-    t.string "adresse"
-    t.bigint "region_id"
-    t.string "telephone2"
-    t.string "cni"
-    t.string "photo"
-    t.string "photocni"
-    t.string "numerocni"
-    t.bigint "user_id"
-    t.index ["departement_id"], name: "index_ouvriers_on_departement_id"
-    t.index ["domaine_id"], name: "index_ouvriers_on_domaine_id"
-    t.index ["metier_id"], name: "index_ouvriers_on_metier_id"
-    t.index ["region_id"], name: "index_ouvriers_on_region_id"
-    t.index ["user_id"], name: "index_ouvriers_on_user_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -253,12 +211,6 @@ ActiveRecord::Schema.define(version: 2021_02_18_111959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-  end
-
-  create_table "privileges", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "profils", force: :cascade do |t|
@@ -273,24 +225,6 @@ ActiveRecord::Schema.define(version: 2021_02_18_111959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_regions_on_country_id"
-  end
-
-  create_table "responszones", force: :cascade do |t|
-    t.string "telephone"
-    t.string "cni"
-    t.string "photocni"
-    t.string "photo"
-    t.bigint "user_id"
-    t.bigint "country_id"
-    t.bigint "region_id"
-    t.bigint "departement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_responszone"
-    t.index ["country_id"], name: "index_responszones_on_country_id"
-    t.index ["departement_id"], name: "index_responszones_on_departement_id"
-    t.index ["region_id"], name: "index_responszones_on_region_id"
-    t.index ["user_id"], name: "index_responszones_on_user_id"
   end
 
   create_table "seris", force: :cascade do |t|
@@ -381,19 +315,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_111959) do
   add_foreign_key "juris", "centres"
   add_foreign_key "matieres", "niveaus"
   add_foreign_key "matieres", "seris"
-  add_foreign_key "metiers", "domaines"
-  add_foreign_key "metiers", "users"
-  add_foreign_key "ouvriers", "departements"
-  add_foreign_key "ouvriers", "domaines"
-  add_foreign_key "ouvriers", "metiers"
-  add_foreign_key "ouvriers", "regions"
-  add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
-  add_foreign_key "responszones", "countries"
-  add_foreign_key "responszones", "departements"
-  add_foreign_key "responszones", "regions"
-  add_foreign_key "responszones", "users"
-  add_foreign_key "responszones", "users", name: "user_responszone"
   add_foreign_key "seris", "niveaus"
   add_foreign_key "students", "centres"
   add_foreign_key "students", "etablissements"
