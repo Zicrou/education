@@ -1,8 +1,6 @@
 class DomainesController < ApplicationController
   before_action :set_domaine, only: [:show, :edit, :update, :destroy]
-  access [:user, :respons_zone, :professeur, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}]
-
-  layout 'general-layout'
+  access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
 
   # GET /domaines
   def index
