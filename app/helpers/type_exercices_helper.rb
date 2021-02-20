@@ -1,0 +1,2 @@
+module TypeExercicesHelper
+end

@@ -1,7 +1,7 @@
 class Domaine < ApplicationRecord
     belongs_to :filiere
+    #belongs_to :blog
 
-    has_many :blogs
 
-    validates_presence_of :name, :filiere_id
+    validates_presence_of :name, :filiere_id, :niveau_id
 end

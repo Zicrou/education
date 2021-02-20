@@ -1,9 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-8 blog-main">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @domaine.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @domaine.name %>
+  </p>
 
-<%= link_to 'Edit', edit_domaine_path(@domaine) %> |
-<%= link_to 'Back', domaines_path %>
+  <%= link_to 'Edit', edit_domaine_path(@domaine) %> |
+  <%= link_to 'Back', domaines_path %>
+
+</div>

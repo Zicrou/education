@@ -1,7 +1,7 @@
 class DomainesController < ApplicationController
   before_action :set_domaine, only: [:show, :edit, :update, :destroy]
   access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
-
+layout "general-layout"
   # GET /domaines
   def index
     @domaines = Domaine.all

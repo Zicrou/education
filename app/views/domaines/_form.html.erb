@@ -1,22 +1,48 @@
-<%= form_with(model: domaine, local: true) do |form| %>
-  <% if domaine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(domaine.errors.count, "error") %> prohibited this domaine from being saved:</h2>
+<div class="col-sm-8 blog-main">
+  <%= form_with(model: domaine, local: true) do |form| %>
+    <% if domaine.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(domaine.errors.count, "error") %> prohibited this domaine from being saved:</h2>
 
-      <ul>
-      <% domaine.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% domaine.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control col-md-4" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :filiere_id %>
+      <%= form.collection_select(:filiere_id, Filiere.all, :id, :name,
+          {
+            #selected: blog.topic_id,
+            include_blank: true
+          },
+          class: 'form-control col-md-4'
+        ) 
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :niveau_id %>
+      <%= form.collection_select(:niveau_id, Niveau.all, :id, :name,
+          {
+            #selected: blog.topic_id,
+            include_blank: true
+          },
+          class: 'form-control col-md-4'
+        ) 
+      %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit class:"btn btn-primary" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

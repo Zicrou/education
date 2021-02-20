@@ -1,27 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-8 blog-main">
+  <p id="notice"><%= notice %></p>
 
-<h1>Domaines</h1>
+  <h1>Domaines</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @domaines.each do |domaine| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= domaine.name %></td>
-        <td><%= link_to 'Show', domaine %></td>
-        <td><%= link_to 'Edit', edit_domaine_path(domaine) %></td>
-        <td><%= link_to 'Destroy', domaine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @domaines.each do |domaine| %>
+        <tr>
+          <td><%= domaine.name %></td>
+          <td><%= link_to 'Show', domaine %></td>
+          <td><%= link_to 'Edit', edit_domaine_path(domaine) %></td>
+          <td><%= link_to 'Destroy', domaine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Domaine', new_domaine_path %>
+  <br>
+
+  <%= link_to 'New Domaine', new_domaine_path %>
+
+</div>

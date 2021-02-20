@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_073211) do
+ActiveRecord::Schema.define(version: 2021_02_20_094555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,8 +66,10 @@ ActiveRecord::Schema.define(version: 2021_02_20_073211) do
     t.bigint "matiere_id"
     t.text "image"
     t.bigint "domaine_id"
+    t.bigint "filiere_id"
     t.index ["author_id"], name: "index_blogs_on_author_id"
     t.index ["domaine_id"], name: "index_blogs_on_domaine_id"
+    t.index ["filiere_id"], name: "index_blogs_on_filiere_id"
     t.index ["matiere_id"], name: "index_blogs_on_matiere_id"
     t.index ["niveau_id"], name: "index_blogs_on_niveau_id"
     t.index ["seri_id"], name: "index_blogs_on_seri_id"
@@ -309,6 +311,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_073211) do
   add_foreign_key "authors", "users"
   add_foreign_key "blogs", "authors"
   add_foreign_key "blogs", "domaines"
+  add_foreign_key "blogs", "filieres"
   add_foreign_key "blogs", "matieres"
   add_foreign_key "blogs", "niveaus"
   add_foreign_key "blogs", "seris"
