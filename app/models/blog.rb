@@ -10,8 +10,10 @@ class Blog < ApplicationRecord
   belongs_to :seri, optional: true
   belongs_to :matiere, optional: true
   belongs_to :filiere
+  belongs_to :domaine
   
-  has_many :domaine
+  #has_many :blog_domaines
+  #has_many :domaines, :through => :blog_domaines
   has_many :comments, dependent: :destroy
 
   mount_uploader :image, BlogUploader
