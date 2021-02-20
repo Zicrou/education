@@ -54,6 +54,6 @@ class FilieresController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def filiere_params
-      params.require(:filiere).permit(:name)
+      params.require(:filiere).permit(:name, :niveau_id)
     end
 end

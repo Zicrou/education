@@ -6,3 +6,6 @@ ResponsZone{Have_TO It_iS_DONE! ALHAMDOULILHUWA!
 (DONE!) Add A Migration To Responszone For Taking The User_Id(respons_user) Of The ResponsZone
     Add A Button In User_Index "Définir ResponsZone?" With (respons_user.id)
 }
+
+PUT ALL domaines in One Table
+Show list domaines Filter by Filiere and Niveau(maybe) in blogs view

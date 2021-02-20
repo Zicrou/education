@@ -54,6 +54,6 @@ class DomainesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def domaine_params
-      params.require(:domaine).permit(:name)
+      params.require(:domaine).permit(:name, :niveau_id, :filiere_id)
     end
 end

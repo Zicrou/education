@@ -1,6 +1,9 @@
 class Filiere < ApplicationRecord
+    #BELONGS TO
     belongs_to :niveau
-    has_many :blogs
+
+    #HAS MANY
+    has_many :domaines
 
     validates_presence_of :name, :niveau_id
 end
