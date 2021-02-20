@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_072734) do
+ActiveRecord::Schema.define(version: 2021_02_20_072930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,10 @@ ActiveRecord::Schema.define(version: 2021_02_20_072734) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "niveau_id"
+    t.bigint "filiere_id"
+    t.index ["filiere_id"], name: "index_domaines_on_filiere_id"
+    t.index ["niveau_id"], name: "index_domaines_on_niveau_id"
   end
 
   create_table "eleves", force: :cascade do |t|
@@ -310,6 +314,8 @@ ActiveRecord::Schema.define(version: 2021_02_20_072734) do
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
   add_foreign_key "departements", "users"
+  add_foreign_key "domaines", "filieres"
+  add_foreign_key "domaines", "niveaus"
   add_foreign_key "epreuves", "matieres"
   add_foreign_key "epreuves", "niveaus"
   add_foreign_key "epreuves", "seris"
