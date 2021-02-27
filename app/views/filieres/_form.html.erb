@@ -1,11 +1,11 @@
 <div class="col-sm-8 blog-main">
-  <%= form_with(model: domaine, local: true) do |form| %>
-    <% if domaine.errors.any? %>
+  <%= form_with(model: filiere, local: true) do |form| %>
+    <% if filiere.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(domaine.errors.count, "error") %> prohibited this domaine from being saved:</h2>
+        <h2><%= pluralize(filiere.errors.count, "error") %> prohibited this filiere from being saved:</h2>
 
         <ul>
-        <% domaine.errors.full_messages.each do |message| %>
+        <% filiere.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
         </ul>
@@ -15,18 +15,6 @@
     <div class="form-group">
       <%= form.label :name %>
       <%= form.text_field :name, class:"form-control col-md-4" %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :filiere_id %>
-      <%= form.collection_select(:filiere_id, Filiere.all, :id, :name,
-          {
-            #selected: blog.topic_id,
-            include_blank: true
-          },
-          class: 'form-control col-md-4'
-        ) 
-      %>
     </div>
 
     <div class="form-group">

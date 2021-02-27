@@ -1,32 +1,16 @@
 Rails.application.routes.draw do
-  resources :tags
-  resources :responszones do
-    collection do
-      get :filtered
-    end
-    collection do
-      get :responszone_user_id
-    end
-  end
+  resources :domaines
+  resources :filieres
+ 
   resources :centres
   resources :juris
   resources :students
-  resources :metiers
-  resources :domaines
-  resources :ouvriers do
-    collection do
-      get :recherche
-    end
-    collection do
-      get :filtered
-    end
-  end
+  
   resources :users do
     member do
       get :definir_profil
     end
   end
-  resources :profils
   resources :authors
   resources :matieres
   resources :seris
@@ -62,5 +46,6 @@ Rails.application.routes.draw do
 
   #mount ActionCable.server => '/cable'
 
-  root to: 'blogs#index'
+
+  root to: 'niveaus#index'
 end

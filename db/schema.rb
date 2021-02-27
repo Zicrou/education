@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_191711) do
+ActiveRecord::Schema.define(version: 2021_02_20_103402) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +28,11 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.index ["user_id"], name: "index_authors_on_user_id"
   end
 
+  create_table "blog_domaines", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -40,7 +46,11 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.bigint "matiere_id"
     t.text "image"
     t.bigint "tag_id"
+    t.bigint "domaine_id"
+    t.bigint "filiere_id"
     t.index ["author_id"], name: "index_blogs_on_author_id"
+    t.index ["domaine_id"], name: "index_blogs_on_domaine_id"
+    t.index ["filiere_id"], name: "index_blogs_on_filiere_id"
     t.index ["matiere_id"], name: "index_blogs_on_matiere_id"
     t.index ["niveau_id"], name: "index_blogs_on_niveau_id"
     t.index ["seri_id"], name: "index_blogs_on_seri_id"
@@ -86,6 +96,10 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "niveau_id"
+    t.bigint "filiere_id"
+    t.index ["filiere_id"], name: "index_domaines_on_filiere_id"
+    t.index ["niveau_id"], name: "index_domaines_on_niveau_id"
   end
 
   create_table "etablissements", force: :cascade do |t|
@@ -104,6 +118,14 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title"
+  end
+
+  create_table "filieres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "niveau_id"
+    t.index ["niveau_id"], name: "index_filieres_on_niveau_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -142,16 +164,6 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.index ["seri_id"], name: "index_matieres_on_seri_id"
   end
 
-  create_table "metiers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "domaine_id"
-    t.bigint "user_id"
-    t.index ["domaine_id"], name: "index_metiers_on_domaine_id"
-    t.index ["user_id"], name: "index_metiers_on_user_id"
-  end
-
   create_table "niveaus", force: :cascade do |t|
     t.string "name"
     t.string "abbrege"
@@ -159,28 +171,6 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "ouvriers", force: :cascade do |t|
-    t.string "name"
-    t.string "prenom"
-    t.string "telephone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "domaine_id"
-    t.bigint "metier_id"
-    t.bigint "departement_id"
-    t.string "adresse"
-    t.bigint "region_id"
-    t.string "telephone2"
-    t.string "photo"
-    t.string "photocni"
-    t.string "numerocni"
-    t.bigint "user_id"
-    t.index ["departement_id"], name: "index_ouvriers_on_departement_id"
-    t.index ["domaine_id"], name: "index_ouvriers_on_domaine_id"
-    t.index ["metier_id"], name: "index_ouvriers_on_metier_id"
-    t.index ["region_id"], name: "index_ouvriers_on_region_id"
-    t.index ["user_id"], name: "index_ouvriers_on_user_id"
-  end
 
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
@@ -191,12 +181,6 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "position"
-  end
-
-  create_table "privileges", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "profils", force: :cascade do |t|
@@ -211,24 +195,6 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_regions_on_country_id"
-  end
-
-  create_table "responszones", force: :cascade do |t|
-    t.string "telephone"
-    t.string "cni"
-    t.string "photocni"
-    t.string "photo"
-    t.bigint "user_id"
-    t.bigint "country_id"
-    t.bigint "region_id"
-    t.bigint "departement_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_responszone"
-    t.index ["country_id"], name: "index_responszones_on_country_id"
-    t.index ["departement_id"], name: "index_responszones_on_departement_id"
-    t.index ["region_id"], name: "index_responszones_on_region_id"
-    t.index ["user_id"], name: "index_responszones_on_user_id"
   end
 
   create_table "seris", force: :cascade do |t|
@@ -308,6 +274,8 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
   add_foreign_key "authors", "matieres"
   add_foreign_key "authors", "users"
   add_foreign_key "blogs", "authors"
+  add_foreign_key "blogs", "domaines"
+  add_foreign_key "blogs", "filieres"
   add_foreign_key "blogs", "matieres"
   add_foreign_key "blogs", "niveaus"
   add_foreign_key "blogs", "seris"
@@ -317,23 +285,17 @@ ActiveRecord::Schema.define(version: 2021_02_25_191711) do
   add_foreign_key "comments", "users"
   add_foreign_key "departements", "regions"
   add_foreign_key "departements", "users"
+  add_foreign_key "domaines", "filieres"
+  add_foreign_key "domaines", "niveaus"
+  add_foreign_key "epreuves", "matieres"
+  add_foreign_key "epreuves", "niveaus"
+  add_foreign_key "epreuves", "seris"
   add_foreign_key "etablissements", "departements"
+  add_foreign_key "filieres", "niveaus"
   add_foreign_key "juris", "centres"
   add_foreign_key "matieres", "niveaus"
   add_foreign_key "matieres", "seris"
-  add_foreign_key "metiers", "domaines"
-  add_foreign_key "metiers", "users"
-  add_foreign_key "ouvriers", "departements"
-  add_foreign_key "ouvriers", "domaines"
-  add_foreign_key "ouvriers", "metiers"
-  add_foreign_key "ouvriers", "regions"
-  add_foreign_key "ouvriers", "users"
   add_foreign_key "regions", "countries"
-  add_foreign_key "responszones", "countries"
-  add_foreign_key "responszones", "departements"
-  add_foreign_key "responszones", "regions"
-  add_foreign_key "responszones", "users"
-  add_foreign_key "responszones", "users", name: "user_responszone"
   add_foreign_key "seris", "niveaus"
   add_foreign_key "students", "centres"
   add_foreign_key "students", "etablissements"

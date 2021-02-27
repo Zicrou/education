@@ -17,7 +17,6 @@
 //= require gritter
 //= require lib/typed
 //= require typed-implementation
-//= require ouvrier
 //= require jquery-ui
 //= require activestorage
 //= require html.sortable

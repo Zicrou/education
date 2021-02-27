@@ -27,14 +27,14 @@
       <% end %>
 
       <% if logged_in?(:site_admin, :censeur) %>
-            <p><%= link_to "Les Séries", seris_path() %></p>
+            <p><%= link_to "Les Filiére", filieres_path() %></p>
       <% end %>
 
       <% if logged_in?(:site_admin, :censeur) %>
-            <p><%= link_to "Les Matiéres", matieres_path() %></p>
+            <p><%= link_to "Les Domaines", domaines_path() %></p>
       <% end %>
 
-      <% if logged_in?(:site_admin) %>
-            <p><%= link_to "Les Profils", profils_path() %></p>
-      <% end %>
+      <% #if logged_in?(:site_admin) %>
+            <p><%#= link_to "Les Profils", profils_path() %></p>
+      <% #end %>
 </div>

@@ -1,9 +1,7 @@
 class DomainesController < ApplicationController
   before_action :set_domaine, only: [:show, :edit, :update, :destroy]
-  access [:user, :respons_zone, :professeur, :principale, :censeur, :proviseur] => {except: [:index, :destroy, :create, :edit, :update, :new, :show]}, site_admin: :all, trusted: [:index, :create, :edit, :update, :new, :show, {except: [:destroy]}]
-
-  layout 'general-layout'
-
+  access all: [:index, :show, :new, :edit, :create, :update, :destroy], user: :all
+layout "general-layout"
   # GET /domaines
   def index
     @domaines = Domaine.all
@@ -56,6 +54,6 @@ class DomainesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def domaine_params
-      params.require(:domaine).permit(:name)
+      params.require(:domaine).permit(:name, :niveau_id, :filiere_id)
     end
 end

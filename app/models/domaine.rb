@@ -1,6 +1,7 @@
 class Domaine < ApplicationRecord
-    has_many :metiers, dependent: :destroy
-    has_many :ouvriers, dependent: :destroy
+    belongs_to :filiere
+    has_many :blogs
+    #has_many :blogs, :through => :blog_domaines
 
-    validates_presence_of :name
+    validates_presence_of :name, :filiere_id, :niveau_id
 end

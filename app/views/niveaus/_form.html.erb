@@ -14,14 +14,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:"form-control col-md-4" %>
   </div>
   
-  <div class="field">
+  <div class="form-group">
     <%= form.label :abbrege %>
-    <%= form.text_field :abbrege, placeholder:'2nd' %>
+    <%= form.text_field :abbrege, placeholder:'2nd', class:"form-control col-md-4" %>
   </div>
 
   <div class="actions">

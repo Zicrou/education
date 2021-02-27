@@ -3,12 +3,17 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  validates_presence_of :title, :body, :author_id, :matiere_id, :niveau_id
+  validates_presence_of :title, :body, :author_id, :niveau_id, :domaine_id, :filiere_id
   #belongs_to :topic, optional: true
   belongs_to :author, optional: true
   belongs_to :niveau
   belongs_to :seri, optional: true
-  belongs_to :matiere
+  belongs_to :matiere, optional: true
+  belongs_to :filiere
+  belongs_to :domaine
+  
+  #has_many :blog_domaines
+  #has_many :domaines, :through => :blog_domaines
   has_many :comments, dependent: :destroy
 
   mount_uploader :image, BlogUploader

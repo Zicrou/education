@@ -16,7 +16,18 @@
     <%= f.text_field :title, class: 'form-control', placeholder: "Titre" %>
   </div>
 
-  
+  <div class="form-group">
+    <%= f.label :filiere_id %>
+    <%= f.collection_select(:filiere_id, Filiere.all, :id, :name,
+                              {
+                                #selected: blog.topic_id,
+                                include_blank: true
+                              },
+                              class: 'form-control'
+                            ) 
+  %>
+  </div>
+
   <div class="form-group">
     <%= f.label :niveau_id %>
     <%= f.collection_select(:niveau_id, Niveau.all, :id, :name,
@@ -30,8 +41,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :seri_id %>
-    <%= f.collection_select(:seri_id, Seri.all, :id, :name,
+    <%= f.label :domaine_id %>
+    <%= f.collection_select(:domaine_id, Domaine.all, :id, :name,
                               {
                                 #selected: blog.topic_id,
                                 include_blank: true
@@ -41,19 +52,17 @@
   %>
   </div>
 
-
-
-  <div class="form-group">
-    <%= f.label :matiere_id %>
-    <%= f.collection_select(:matiere_id, Matiere.all, :id, :name,
-                              {
-                                #selected: blog.topic_id,
-                                include_blank: true
-                              },
-                              class: 'form-control'
-                            ) 
-  %>
-  </div>
+  <!--div class="form-group">
+    <%#= f.label :matiere_id %>
+    <%#= f.collection_select(:matiere_id, Matiere.all, :id, :name,
+      #                        {
+      #                          #selected: blog.topic_id,
+      #                          include_blank: true
+      #                        },
+      #                        class: 'form-control'
+      #                      ) 
+  #%>
+  </div-->
 
   <!--div class="form-group">
     <%#= f.radio_button :status, 'draft' %>
