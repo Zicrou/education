@@ -1,16 +1,12 @@
 <div class="col-sm-8 blog-main">
 
   <h2><%= @blog.title %></h2>
-  <p class="breadcrumb-item">Une leçon</p> 
-  	<p>
-  		
-  	</p>
 
   	<nav class="breadcrumb">
-	    <%= link_to "Cours", blog_path, class: 'breadcrumb-item' %>
-	    <%= link_to @blog.niveau.name, '#', class: 'breadcrumb-item' %>
-	    <%= link_to @blog.filiere.name, '#', class: 'breadcrumb-item' %>
-	    <%= link_to @blog.domaine.name, '#', class: 'breadcrumb-item' %>
+	    <%#= link_to "Cours", blog_path, class: 'breadcrumb-item' %>
+	    <%= link_to @blog.niveau.name, niveau_path(@blog.niveau), class: 'breadcrumb-item' %>
+	    <%= link_to @blog.filiere.name, filiere_path(@blog.filiere), class: 'breadcrumb-item' %>
+	    <%= link_to @blog.domaine.name, domaine_path(@blog.domaine), class: 'breadcrumb-item' %>
 
 	    <span class="breadcrumb-item active" ><%= @blog.title %></span>
 
@@ -25,6 +21,13 @@
 		<%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin, :professeur, :censeur, :principale, :proviseur) %> |
 		<%= link_to 'Retour', blogs_path %>
 	</p> 
+
+	<p>
+	Tags:
+		<% @blog.tags.each do |tag| %>
+			<%= link_to tag.name, tag_path(tag) %>
+		<% end %>
+	</p>
 	
 	<p>
 		<%= markdown(@blog.body) %>

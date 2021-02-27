@@ -1,11 +1,23 @@
 <div class="col-sm-8 blog-main">
   <p id="notice"><%= notice %></p>
 
-  <p>
-    <strong>Name:</strong>
+  <h1>
+    <strong>Tag:</strong>
     <%= @tag.name %>
+  </h1>
+
+  <p>
+    <ul>
+      <% @tag.blogs.each do |blog|%>
+      <li>
+        <%= link_to blog.title, blog_path(blog)%>
+      </li>
+      <% end %>
+    <ul>
   </p>
 
-  <%= link_to 'Edit', edit_tag_path(@tag) %> |
-  <%= link_to 'Back', tags_path %>
+  <%# if logged_in?(:site_admin) %>
+    <%#= link_to 'Edit(tag)', edit_tag_path(@tag) %> 
+    <%#= link_to 'Back', tags_path %>
+  <% #end %>
 </div>

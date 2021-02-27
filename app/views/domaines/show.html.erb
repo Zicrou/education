@@ -2,11 +2,22 @@
   <p id="notice"><%= notice %></p>
 
   <p>
-    <strong>Name:</strong>
+    <strong>Domaine:</strong>
     <%= @domaine.name %>
   </p>
 
-  <%= link_to 'Edit', edit_domaine_path(@domaine) %> |
-  <%= link_to 'Back', domaines_path %>
+  <p>
+    <ul>
+      <% @domaine.blogs.each do |blog|%>
+      <li>
+        <%= link_to blog.title, blog_path(blog)%>
+      </li>
+      <% end %>
+    <ul>
+  </p>
 
+<%if logged_in?(:site_admin)%>
+	<%= link_to 'Edit', edit_domaine_path(@domaine) %> |
+  <%= link_to 'Back', domaines_path %>
+<%end%>
 </div>

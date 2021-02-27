@@ -1,30 +1,32 @@
-<br\><br\><br\>
 <br>
 <br>
-<br><%= form_with(model: niveau, local: true) do |form| %>
-  <% if niveau.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(niveau.errors.count, "error") %> prohibited this niveau from being saved:</h2>
+<div class="col-sm-8 blog-main">
 
-      <ul>
-      <% niveau.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <br><%= form_with(model: niveau, local: true) do |form| %>
+    <% if niveau.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(niveau.errors.count, "error") %> prohibited this niveau from being saved:</h2>
+
+        <ul>
+        <% niveau.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= form.label :abbrege %>
+      <%= form.text_field :abbrege, class:"form-control" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class:"form-control col-md-4" %>
-  </div>
-  
-  <div class="form-group">
-    <%= form.label :abbrege %>
-    <%= form.text_field :abbrege, placeholder:'2nd', class:"form-control col-md-4" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

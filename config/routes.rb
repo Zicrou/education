@@ -41,11 +41,12 @@ Rails.application.routes.draw do
       get :toggle_status
     end
   end
+  resources :tags
   resources :topics
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #mount ActionCable.server => '/cable'
 
 
-  root to: 'niveaus#index'
+  root to: 'blogs#index'
 end

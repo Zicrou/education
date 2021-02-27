@@ -3,7 +3,7 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
-  validates_presence_of :title, :body, :author_id, :niveau_id, :domaine_id, :filiere_id
+  validates_presence_of :title, :body, :niveau_id, :domaine_id, :filiere_id, :user_id, :tag_list #, :author_id,
   #belongs_to :topic, optional: true
   belongs_to :author, optional: true
   belongs_to :niveau
@@ -11,12 +11,28 @@ class Blog < ApplicationRecord
   belongs_to :matiere, optional: true
   belongs_to :filiere
   belongs_to :domaine
+  belongs_to :user
   
   #has_many :blog_domaines
   #has_many :domaines, :through => :blog_domaines
   has_many :comments, dependent: :destroy
+  has_many :taggings
+  has_many :tags, through: :taggings
 
   mount_uploader :image, BlogUploader
+
+  def tag_list
+    self.tags.collect do |tag|
+      tag.name
+    end.join(", ")
+  end
+  
+  def tag_list=(tags_string)
+    #tags.join(", ")
+    tag_names = tags_string.split(",").collect{|s| s.strip.downcase}.uniq
+    new_or_found_tags = tag_names.collect {|name| Tag.find_or_create_by(name: name)}
+    self.tags = new_or_found_tags
+  end
 
   def self.special_blogs
   	all

@@ -1,21 +1,18 @@
 <div class="col-sm-8 blog-main">
   <% @niveaus.each do |niveau| %>
-    <%if logged_in?(:site_admin)%>
-      <p>
-        <strong>
-          <h1><%= niveau.name %></h1>
-        </strong>
+    <% if logged_in?(:site_admin) %>
+
         <%= link_to 'Show', niveau %>
         <%= link_to 'Edit', edit_niveau_path(niveau)  %>
         <%= link_to 'Destroy', niveau, method: :delete, data: { confirm: 'Are you sure?' }  %>
-      </p>
-    <%else%>
+      
+    <% end %>
       <strong>
         <h1>
-          <%= link_to niveau.name, "#" %>
+          <%= link_to niveau.name, niveau_path(niveau)%>
         </h1>
+          <h4 style="margin-left:50px;"><%= "( " + niveau.abbrege + " )" %></h4>
       </strong>
-    <%end%>
   <% end %>
 <%= link_to 'New Niveau', new_niveau_path, class:"btn btn-primary" if logged_in?(:site_admin)%>
  

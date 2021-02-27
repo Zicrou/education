@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_074417) do
+ActiveRecord::Schema.define(version: 2021_02_27_083607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_074417) do
     t.text "image"
     t.bigint "domaine_id"
     t.bigint "filiere_id"
+    t.bigint "user_id"
     t.index ["author_id"], name: "index_blogs_on_author_id"
     t.index ["domaine_id"], name: "index_blogs_on_domaine_id"
     t.index ["filiere_id"], name: "index_blogs_on_filiere_id"
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_074417) do
     t.index ["niveau_id"], name: "index_blogs_on_niveau_id"
     t.index ["seri_id"], name: "index_blogs_on_seri_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "centres", force: :cascade do |t|
@@ -284,6 +286,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_074417) do
   add_foreign_key "blogs", "matieres"
   add_foreign_key "blogs", "niveaus"
   add_foreign_key "blogs", "seris"
+  add_foreign_key "blogs", "users"
   add_foreign_key "centres", "departements"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
