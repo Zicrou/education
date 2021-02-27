@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_103402) do
-
+ActiveRecord::Schema.define(version: 2021_02_27_083607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,9 +44,9 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.bigint "seri_id"
     t.bigint "matiere_id"
     t.text "image"
-    t.bigint "tag_id"
     t.bigint "domaine_id"
     t.bigint "filiere_id"
+    t.bigint "user_id"
     t.index ["author_id"], name: "index_blogs_on_author_id"
     t.index ["domaine_id"], name: "index_blogs_on_domaine_id"
     t.index ["filiere_id"], name: "index_blogs_on_filiere_id"
@@ -55,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.index ["niveau_id"], name: "index_blogs_on_niveau_id"
     t.index ["seri_id"], name: "index_blogs_on_seri_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
-    t.index ["tag_id"], name: "index_blogs_on_tag_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
   create_table "centres", force: :cascade do |t|
@@ -171,7 +170,6 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.datetime "updated_at", null: false
   end
 
-
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -234,6 +232,15 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.index ["seri_id"], name: "index_students_on_seri_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_taggings_on_blog_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -279,7 +286,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
   add_foreign_key "blogs", "matieres"
   add_foreign_key "blogs", "niveaus"
   add_foreign_key "blogs", "seris"
-  add_foreign_key "blogs", "tags"
+  add_foreign_key "blogs", "users"
   add_foreign_key "centres", "departements"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
@@ -287,9 +294,6 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
   add_foreign_key "departements", "users"
   add_foreign_key "domaines", "filieres"
   add_foreign_key "domaines", "niveaus"
-  add_foreign_key "epreuves", "matieres"
-  add_foreign_key "epreuves", "niveaus"
-  add_foreign_key "epreuves", "seris"
   add_foreign_key "etablissements", "departements"
   add_foreign_key "filieres", "niveaus"
   add_foreign_key "juris", "centres"
@@ -302,6 +306,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
   add_foreign_key "students", "juris"
   add_foreign_key "students", "niveaus"
   add_foreign_key "students", "seris"
+  add_foreign_key "taggings", "blogs"
   add_foreign_key "technologies", "portfolios"
   add_foreign_key "users", "profils"
 end

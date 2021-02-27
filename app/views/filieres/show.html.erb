@@ -4,8 +4,18 @@
   <p>
     <strong>Name:</strong>
     <%= @filiere.name %>
+  </p><p>
+    <ul>
+      <% @filiere.blogs.each do |blog|%>
+      <li>
+        <%= link_to blog.title, blog_path(blog)%>
+      </li>
+      <% end %>
+    <ul>
   </p>
 
-  <%= link_to 'Edit', edit_filiere_path(@filiere) %> |
-  <%= link_to 'Back', filieres_path %>
+<%if logged_in?(:site_admin)%>
+	<%= link_to 'Edit', edit_filiere_path(@filiere) %> |
+	<%= link_to 'Back', filieres_path %>
+<%end%>
 </div>

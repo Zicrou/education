@@ -11,19 +11,19 @@
   <%= source_helper("alert alert-info blog-sidebar-source") %>
   
   <div class="sidebar-module">
-    <%#= @side_bar_niveaus.name%>
-    <h4>Niveau</h4>
-      <%# @set_sidebar_niveaus.each do |niveau|%>
-        <p><%#= link_to niveau.name, niveaus_path() %></p>
-      <% #end %>
+  <h1><u>Référenciels</u></h1>
+    <h4><%= link_to "Blogs", blogs_path() %></h4>
+    <h4><%= link_to "Niveaux", niveaus_path() %></h4>
+    <h4><%= link_to "Filiéres", niveaus_path() %></h4>
+    <h4><%= link_to "Domaines", niveaus_path() %></h4>
     
   </div>
   <div class="sidebar-module">
     <h4></h4>
     <ol class="list-unstyled">
-      <!--li><a href="#"><%#= fa_icon "github 3x" %></a></li>
-      <li><a href="#"><%#= fa_icon "facebook 3x" %></a></li>
-      <li><a href="#"><%#= fa_icon "instagram 3x" %></a></li-->
+      <li><a href="#"><%= fa_icon "github 3x" %></a></li>
+      <li><a href="#"><%= fa_icon "facebook 3x" %></a></li>
+      <li><a href="#"><%= fa_icon "instagram 3x" %></a></li>
       <li><a href="https://twitter.com/home", target="_blanc"><%= fa_icon "twitter 3x" %></a></li>
     </ol>
   </div>

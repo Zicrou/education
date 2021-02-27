@@ -1,17 +1,28 @@
 <div class="col-sm-8 blog-main">
 
 	<h1><%= @niveau.name %></h1>
+	<h1><%= @niveau.abbrege %></h1>
 	<%#= render @matieres %>
 	<%#= render partial: 'niveaus/matiere', locals: { niveau: @niveau } %>
 
 <br>
-<%if logged_in?(:site_admin)%>
 	<p>
-  <strong>Name:</strong>
+  <strong>Niveau:</strong>
   <%= @niveau.name %>
 </p>
-<%= link_to 'Edit', edit_niveau_path(@niveau) %> |
-<%= link_to 'Back', niveaus_path %>
 
+<p>
+    <ul>
+      <% @niveau.blogs.each do |blog|%>
+      <li>
+        <%= link_to blog.title, blog_path(blog)%>
+      </li>
+      <% end %>
+    <ul>
+  </p>
+
+<%if logged_in?(:site_admin)%>
+	<%= link_to 'Edit', edit_niveau_path(@niveau) %> |
+	<%= link_to 'Back', niveaus_path %>
 <%end%>
 </div>

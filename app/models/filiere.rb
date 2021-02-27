@@ -4,6 +4,7 @@ class Filiere < ApplicationRecord
 
     #HAS MANY
     has_many :domaines
+    has_many :blogs
 
     validates_presence_of :name, :niveau_id
 end

@@ -75,6 +75,8 @@ class BlogsController < ApplicationController
   # POST /blogs.json
   def create
     @blog = Blog.new(blog_params)
+    
+    @blog.user_id = current_user.id
     respond_to do |format|
       if @blog.save
         format.html { redirect_to @blog, notice: 'Le cours a été créé avec succés' }
@@ -128,7 +130,7 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body, :status,:author_id, :domaine_id, :niveau_id, :image, :filiere_id ) #, :author_id, :user_id
+      params.require(:blog).permit(:title, :body, :status, :user_id, :domaine_id, :niveau_id, :image, :filiere_id, :tag_list) #, :author_id, :user_id
     end
 
     #def set_sidebar_topics

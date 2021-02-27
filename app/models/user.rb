@@ -20,9 +20,9 @@ class User < ApplicationRecord
    has_many :comments, dependent: :destroy
    has_many :blogs, dependent: :destroy
    has_many :authors, dependent: :destroy
-   has_many :responszones, dependent: :destroy
-   has_many :ouvriers
-   has_many :metiers
+   #has_many :responszones, dependent: :destroy
+   #has_many :ouvriers
+   #has_many :metiers
    has_many :departements
   def first_name
   	self.name.split.first
