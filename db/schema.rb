@@ -12,34 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_02_20_103402) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
 
   create_table "authors", force: :cascade do |t|
     t.bigint "user_id"
@@ -70,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.bigint "seri_id"
     t.bigint "matiere_id"
     t.text "image"
+    t.bigint "tag_id"
     t.bigint "domaine_id"
     t.bigint "filiere_id"
     t.index ["author_id"], name: "index_blogs_on_author_id"
@@ -79,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.index ["niveau_id"], name: "index_blogs_on_niveau_id"
     t.index ["seri_id"], name: "index_blogs_on_seri_id"
     t.index ["slug"], name: "index_blogs_on_slug", unique: true
+    t.index ["tag_id"], name: "index_blogs_on_tag_id"
   end
 
   create_table "centres", force: :cascade do |t|
@@ -123,29 +100,6 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.bigint "filiere_id"
     t.index ["filiere_id"], name: "index_domaines_on_filiere_id"
     t.index ["niveau_id"], name: "index_domaines_on_niveau_id"
-  end
-
-  create_table "eleves", force: :cascade do |t|
-    t.string "nom"
-    t.string "prenom"
-    t.string "cni"
-    t.string "telephone"
-    t.string "numtable"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "epreuves", force: :cascade do |t|
-    t.string "sujet"
-    t.bigint "matiere_id"
-    t.bigint "seri_id"
-    t.bigint "niveau_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["matiere_id"], name: "index_epreuves_on_matiere_id"
-    t.index ["niveau_id"], name: "index_epreuves_on_niveau_id"
-    t.index ["seri_id"], name: "index_epreuves_on_seri_id"
   end
 
   create_table "etablissements", force: :cascade do |t|
@@ -217,6 +171,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.datetime "updated_at", null: false
   end
 
+
   create_table "portfolios", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
@@ -279,6 +234,12 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.index ["seri_id"], name: "index_students_on_seri_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "technologies", force: :cascade do |t|
     t.string "name"
     t.bigint "portfolio_id"
@@ -304,10 +265,8 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
     t.datetime "updated_at", null: false
     t.string "roles"
     t.bigint "profil_id"
-    t.bigint "region_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["profil_id"], name: "index_users_on_profil_id"
-    t.index ["region_id"], name: "index_users_on_region_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -320,6 +279,7 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
   add_foreign_key "blogs", "matieres"
   add_foreign_key "blogs", "niveaus"
   add_foreign_key "blogs", "seris"
+  add_foreign_key "blogs", "tags"
   add_foreign_key "centres", "departements"
   add_foreign_key "comments", "blogs"
   add_foreign_key "comments", "users"
@@ -344,5 +304,4 @@ ActiveRecord::Schema.define(version: 2021_02_20_103402) do
   add_foreign_key "students", "seris"
   add_foreign_key "technologies", "portfolios"
   add_foreign_key "users", "profils"
-  add_foreign_key "users", "regions"
 end
