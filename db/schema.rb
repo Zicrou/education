@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_083607) do
+ActiveRecord::Schema.define(version: 2021_03_01_151811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -307,6 +307,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_083607) do
   add_foreign_key "students", "niveaus"
   add_foreign_key "students", "seris"
   add_foreign_key "taggings", "blogs"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "technologies", "portfolios"
   add_foreign_key "users", "profils"
 end
