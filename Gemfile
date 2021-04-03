@@ -65,9 +65,9 @@ gem 'petergate', '~> 2.0', '>= 2.0.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'kaminari', '~> 1.1', '>= 1.1.1'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
-gem 'mini_magick', '~> 4.9', '>= 4.9.5'
-gem 'carrierwave-aws', '~> 1.3'
+#gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+#gem 'mini_magick', '~> 4.9', '>= 4.9.5'
+#gem 'carrierwave-aws', '~> 1.3'
 gem 'dotenv-rails', '~> 2.7', '>= 2.7.5'
 gem 'cocoon', '~> 1.2', '>= 1.2.14'
 gem 'gritter', '~> 1.2'
@@ -77,7 +77,7 @@ gem 'redis', '~> 4.1', '>= 4.1.3'
 gem 'redcarpet', '~> 3.5'
 gem 'coderay', '~> 1.1', '>= 1.1.2'
 gem 'sassc'
-
+gem "aws-sdk-s3", require: false
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 ruby "2.6.3"

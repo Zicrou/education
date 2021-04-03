@@ -19,7 +19,8 @@ class Blog < ApplicationRecord
   has_many :taggings
   has_many :tags, through: :taggings
 
-  mount_uploader :image, BlogUploader
+  has_one_attached :image
+  #mount_uploader :image, BlogUploader
 
   def tag_list
     self.tags.collect do |tag|
